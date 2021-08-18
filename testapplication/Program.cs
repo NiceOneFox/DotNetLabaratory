@@ -12,6 +12,7 @@ namespace testapplication
             {
                 Console.Write(array[i] + " ");
             }
+            Console.WriteLine();
         }
 
         static void Main(string[] args)
@@ -22,9 +23,21 @@ namespace testapplication
             BubbleSort.BubbleSortAscending(array);
             BubbleSort.BubbleSortDescending(array2);
 
-            PrintArrayConsole(array);
-            Console.WriteLine();
+            PrintArrayConsole(array);        
             PrintArrayConsole(array2);
+
+            /////////////////////////////////
+
+            int width = 2;
+            int height = 4;
+            double[,] array3 = { {1, 4, -3, 0},
+                         {-9, 5, 2, 1} };
+
+            double result = TwoDimensionalArray.SumOfPositiveElelements(array3, width, height);
+
+            Console.WriteLine("sum of all positive elements: " + result);
+            /////////////////////////////////
+
         }
     }
 }
