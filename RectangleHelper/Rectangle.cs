@@ -4,7 +4,7 @@ namespace RectangleHelper
 {
     public static class Rectangle
     {
-        private static bool ValidationOfRectangleSides(double a, double b)
+        private static void ValidationOfRectangleSides(double a, double b)
         {
             if (a <= 0) 
             {
@@ -13,26 +13,20 @@ namespace RectangleHelper
             if (b <= 0)
             {
                 throw new ArgumentOutOfRangeException($"Lenght of side b: {b}  can not be less than 0 or equal");
-            }
-            return true;      
+            }     
         }
-        public static double Perimeter(double a, double b)
+        public static double GetPerimeter(double a, double b)
         {
-            if (ValidationOfRectangleSides(a, b))
-            {
-                return (2 * a) + (2 * b);
-            } 
-            return -1d;
+            ValidationOfRectangleSides(a, b);    
             
+            return (2 * a) + (2 * b);
         }
 
-        public static double Square(double a, double b)
+        public static double GetSquare(double a, double b)
         {
-            if (ValidationOfRectangleSides(a, b))
-            {
-                return a * b;
-            }
-            return -1d;       
+            ValidationOfRectangleSides(a, b);       
+            
+            return a * b;                
         }
        
     }

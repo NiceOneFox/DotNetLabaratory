@@ -41,17 +41,17 @@ namespace testapplication
                 double a = 4.3;
                 double b = 6.87;
 
-                double perimeter = Rectangle.Perimeter(a, b);
+                double perimeter = Rectangle.GetPerimeter(a, b);
                 Console.WriteLine($"Perimeter of rectangle with sides {a} and {b} equal {perimeter}");
 
                 a = 120;
                 b = 340;
-                double square = Rectangle.Square(a, b);
+                double square = Rectangle.GetSquare(a, b);
                 Console.WriteLine($"Squage of rectangle with sides {a} and {b} equal {square}");
 
                 a = -3;
                 b = 4;
-                perimeter = Rectangle.Perimeter(a, b);
+                perimeter = Rectangle.GetPerimeter(a, b);
                 Console.WriteLine($"Perimeter of rectangle with sides {a} and {b} equal {perimeter}");
 
 

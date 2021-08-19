@@ -16,17 +16,12 @@ namespace ArrayHelper
             {
                 for (int j = i + 1; j < array.Length; j++)
                 {
-                    if (array[i].CompareTo(array[j]) > 0 && order) //ascending order if order true
+                    if ((array[i].CompareTo(array[j]) > 0 && order) || (array[i].CompareTo(array[j]) < 0 && !order))
                     {
                         temp = array[i];
                         array[i] = array[j];
                         array[j] = temp;
-                    } else if (array[i].CompareTo(array[j]) < 0 && !order)  //descending order if order false
-                    {
-                        temp = array[i];
-                        array[i] = array[j];
-                        array[j] = temp;
-                    }                
+                    }              
                 }            
             }
             
