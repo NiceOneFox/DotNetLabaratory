@@ -28,6 +28,7 @@ public class Student
             if (email[i].Equals('.'))
             {
                 fullname.Append(' ');
+                continue;
             }
             fullname.Append(email[i]);           
        }
@@ -40,5 +41,19 @@ public class Student
         return name + '.' + surname + "@epam.com";
     }
 
+    public override bool Equals(object obj)
+    {
+        //Check for null and compare run-time types.
+        if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+        {
+            return false;
+        }
+        Student s = (Student)obj;
+        return (s.Email == Email && s.FullName == FullName);
+    }
 
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(FullName, Email);
+    }
 }
