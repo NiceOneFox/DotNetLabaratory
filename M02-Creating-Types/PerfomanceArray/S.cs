@@ -4,10 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Perfomance
+namespace PerfomanceArray
 {
     struct S
     {
         public int i { get; set; }
+
+        public S (int integer)
+        {
+            i = integer;
+        }
     }
 }

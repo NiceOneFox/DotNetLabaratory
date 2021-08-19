@@ -11,23 +11,36 @@ namespace PerfomanceArray
     {
         static void Main(string[] args)
         {
-            long a = Process.GetCurrentProcess().PrivateMemorySize64;
+            long entryMemory = Process.GetCurrentProcess().PrivateMemorySize64;
+            Console.WriteLine(entryMemory);
 
-            Console.WriteLine(a);
+            Random random = new Random();
 
-            //Random random = new Random();
+            C[] classes = new C[100000];
 
-            //C[] classes = new C[100000];
-            //for (int i = 0; i < 10000; i++)
-            //{
-            //    classes[i].i = random.Next();
-            //}
+            for (int i = 0; i < 10000; i++)
+            {
+                classes[i] = new C(random.Next());
+            }
 
-            //S[] structs = new S[100000];
-            //for (int i = 0; i < 10000; i++)
-            //{
-            //    structs[i].i = random.Next();
+            long classesMemory = Process.GetCurrentProcess().PrivateMemorySize64;
+            long firstDelta = classesMemory - entryMemory;
+            Console.WriteLine($"Memory after init classes: {firstDelta}");
+
+            S[] structs = new S[100000];
+            for (int i = 0; i < 10000; i++)
+            {
+                structs[i] = new S(random.Next());
 
             }
+
+            long structsMemory = Process.GetCurrentProcess().PrivateMemorySize64;
+            long secondDelta = structsMemory - firstDelta - entryMemory;
+            Console.WriteLine($"Memory after init structs: {secondDelta}");
+
+            Console.WriteLine($"differnce between classes memory used and structs are " +
+                $"{Math.Abs(secondDelta - firstDelta)}");
+            
+        }
     }
 }
