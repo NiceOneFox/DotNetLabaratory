@@ -4,9 +4,12 @@ namespace ArrayHelper
 {
     public static class BubbleSort
     {
+        /// <summary>
+        /// Bubble sort of array
+        /// </summary>
         /// <param name="array">Input array</param>
         /// <param name="order">Flag to choose in which order to sort array (ASC/DESC)</param>
-        public static void BubbleSortAscending<T>(T[] array, bool order) where T : IComparable<T>
+        public static void Sort<T>(T[] array, bool order) where T : IComparable<T>
         {
             T temp;
             for (int i = 0; i < array.Length; i++)

@@ -21,8 +21,8 @@ namespace testapplication
             int[] array = {2, 5, 4, 9, 2, 0, 8, 9, 3, 4, 7, 6};
             string[] array2 = { "abd", "abc", "zdf", "zxc", "kls" };
 
-            BubbleSort.BubbleSortAscending(array, true);
-            BubbleSort.BubbleSortAscending(array2, false);
+            BubbleSort.Sort(array, true);
+            BubbleSort.Sort(array2, false);
 
             PrintArrayConsole(array);        
             PrintArrayConsole(array2);
