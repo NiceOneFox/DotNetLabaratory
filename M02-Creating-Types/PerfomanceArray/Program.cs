@@ -38,9 +38,26 @@ namespace PerfomanceArray
             long secondDelta = structsMemory - firstDelta - entryMemory;
             Console.WriteLine($"Memory after init structs: {secondDelta}");
 
-            Console.WriteLine($"differnce between classes memory used and structs are " +
+            Console.WriteLine($"differnce between classes memory used on classes and structs are " +
                 $"{Math.Abs(secondDelta - firstDelta)}");
-            
+
+
+            //Calculate execution time
+            var watch = Stopwatch.StartNew();
+
+            Array.Sort(classes);
+
+            watch.Stop();
+            Console.WriteLine("Used time for sorting classes in ms: " + watch.ElapsedMilliseconds);
+
+            watch.Restart();
+            Console.WriteLine(watch.ElapsedMilliseconds);
+            Array.Sort(structs);
+
+            watch.Stop();
+            Console.WriteLine("Used time for sorting structs in ms: " + watch.ElapsedMilliseconds);
+
+
         }
     }
 }

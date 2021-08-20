@@ -6,13 +6,25 @@ using System.Threading.Tasks;
 
 namespace PerfomanceArray
 {
-    struct S
+    struct S : IComparable
     {
         public int i { get; set; }
 
         public S (int integer)
         {
             i = integer;
+        }
+
+        public int CompareTo(object obj)
+        {
+            //Check for null and compare run-time types.
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            {
+                throw new NullReferenceException();
+            }
+            S tempObj = (S)obj;
+           
+            return i.CompareTo(tempObj.i);
         }
     }
 }
