@@ -37,7 +37,7 @@ namespace PerfomanceArray
             Console.WriteLine($"Memory after init structs: {secondDelta}");
 
             Console.WriteLine($"differnce between classes memory used on classes and structs are " +
-                $"{Math.Abs(secondDelta - firstDelta)}");
+                $"{Math.Abs(secondDelta - firstDelta)} bytes ");
 
 
             //Calculate execution time

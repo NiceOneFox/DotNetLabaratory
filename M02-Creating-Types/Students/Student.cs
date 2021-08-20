@@ -3,42 +3,44 @@ using System.Text;
 
 public class Student
 {
-    private string FullName { get; set; }
+    public string FullName { get; private set; }
 
-    private string Email { get; set; }
+    public string Email { get; private set; }
 
     public Student(string email)
     {
         Email = email;
-        FullName = ParseEmailToFullName(email);
+        FullName = ParseEmailToFullName();
     }
 
     public Student(string name, string surname)
     {
         FullName = name + " " + surname;
-        Email = GetEmailFromFullName(name, surname);
+        Email = GetEmailFromFullName();
     }
 
-    private string ParseEmailToFullName(string email)
+    private string ParseEmailToFullName()
     {
         StringBuilder fullname = new StringBuilder();
-        for (int i = 0; i < email.Length; i++)
+        for (int i = 0; i < Email.Length; i++)
         {
-            if (email[i].Equals('@')) break;
-            if (email[i].Equals('.'))
+            if (Email[i].Equals('@')) break;
+            if (Email[i].Equals('.'))
             {
                 fullname.Append(' ');
                 continue;
             }
-            fullname.Append(email[i]);
+            fullname.Append(Email[i]);
         }
         return fullname.ToString();
 
     }
 
-    private string GetEmailFromFullName(string name, string surname)
+    private string GetEmailFromFullName()
     {
-        return name + '.' + surname + "@epam.com";
+        string temp = FullName;
+        temp = temp.Replace(' ', '.');
+        return temp + "@epam.com";
     }
 
     public override bool Equals(object obj)
