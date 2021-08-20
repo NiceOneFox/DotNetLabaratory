@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics;
 
 namespace PerfomanceArray
@@ -16,9 +12,11 @@ namespace PerfomanceArray
 
             Random random = new Random();
 
-            C[] classes = new C[100000];
+            const int SIZE = 100000;
 
-            for (int i = 0; i < 10000; i++)
+            C[] classes = new C[SIZE];
+
+            for (int i = 0; i < SIZE; i++)
             {
                 classes[i] = new C(random.Next());
             }
@@ -27,8 +25,8 @@ namespace PerfomanceArray
             long firstDelta = classesMemory - entryMemory;
             Console.WriteLine($"Memory after init classes: {firstDelta}");
 
-            S[] structs = new S[100000];
-            for (int i = 0; i < 10000; i++)
+            S[] structs = new S[SIZE];
+            for (int i = 0; i < SIZE; i++)
             {
                 structs[i] = new S(random.Next());
 
@@ -51,12 +49,11 @@ namespace PerfomanceArray
             Console.WriteLine("Used time for sorting classes in ms: " + watch.ElapsedMilliseconds);
 
             watch.Restart();
-            Console.WriteLine(watch.ElapsedMilliseconds);
+
             Array.Sort(structs);
 
             watch.Stop();
             Console.WriteLine("Used time for sorting structs in ms: " + watch.ElapsedMilliseconds);
-
 
         }
     }

@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PerfomanceArray
 {
-    struct S : IComparable
+    struct S : IComparable<S>
     {
         public int i { get; set; }
 
@@ -15,16 +11,10 @@ namespace PerfomanceArray
             i = integer;
         }
 
-        public int CompareTo(object obj)
+        public int CompareTo(S other)
         {
-            //Check for null and compare run-time types.
-            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
-            {
-                throw new NullReferenceException();
-            }
-            S tempObj = (S)obj;
-           
-            return i.CompareTo(tempObj.i);
-        }
+
+            return i.CompareTo(other.i);
+        } 
     }
 }
