@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StringHelper;
+using System;
 
 namespace StringApp
 {
@@ -6,7 +7,9 @@ namespace StringApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine(WordLength.AverageWordLength("Hello World, triple double once T-34"));
+
+            Console.WriteLine(MultiplyCharater.DoubleCharacters("omg i love shrek", "o kek"));
         }
     }
 }
