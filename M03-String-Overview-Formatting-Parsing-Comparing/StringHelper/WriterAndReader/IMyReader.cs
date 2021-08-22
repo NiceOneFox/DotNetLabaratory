@@ -1,6 +1,7 @@
 ﻿namespace StringHelper
 {
-    internal interface IMyReader
+    public interface IMyReader
     {
+        public string Read();
     }
 }

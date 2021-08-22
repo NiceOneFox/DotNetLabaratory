@@ -1,6 +1,7 @@
 ﻿namespace StringHelper
 {
-    internal interface IMyWriter
+    public interface IMyWriter
     {
+        public void Write(string text);
     }
 }

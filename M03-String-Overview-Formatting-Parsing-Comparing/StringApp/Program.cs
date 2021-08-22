@@ -14,6 +14,9 @@ namespace StringApp
             Console.WriteLine(SumOfStringNumbers.SumOfTwoLongNumbers("380", "50"));
 
             Console.WriteLine(WordReverse.Reverse("The greatest victory is that which requires no battle"));
+
+            // Bridge Pattern
+            //MyWriterToFile myWriterToFile = new MyWriterToFile();
         }
     }
 }

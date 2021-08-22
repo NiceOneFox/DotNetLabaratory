@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace StringHelper.WriterAndReader
 {
-    class MyReaderToFile
+    public class MyReaderToFile : IMyReader
     {
+        private readonly string filePath;
+
+        public MyReaderToFile(string path)
+        {
+            filePath = path;
+        }
+        public string Read()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
