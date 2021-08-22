@@ -7,6 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringApp", "StringApp\Stri
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringHelper", "StringHelper\StringHelper.csproj", "{9DA32AA2-8B60-4BB1-BAA4-A7018176A927}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E146E0AD-E75B-4140-B7CE-7FD9B7772662}"
+	ProjectSection(SolutionItems) = preProject
+		inputFile.txt = inputFile.txt
+		outputFile.txt = outputFile.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -18,14 +18,18 @@ namespace StringHelper
             myReader = Reader;
         }
        
+        /// <summary>
+        /// Get text from resource, parse all telephone numbers and Write somewhere
+        /// </summary>
         public void ParseTelephoneNumber()
         {
             string result = "";
             string text = myReader.Read();
 
             // parse
+            
 
-            myWriter.Write(result);
+            myWriter.Write(text);
         }
 
         
