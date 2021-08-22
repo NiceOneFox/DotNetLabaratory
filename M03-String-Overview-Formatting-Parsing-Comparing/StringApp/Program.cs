@@ -11,7 +11,7 @@ namespace StringApp
 
             Console.WriteLine(MultiplyCharater.DoubleCharacters("omg i love shrek", "o kek"));
 
-            Console.WriteLine(SumOfStringNumbers.SumOfTwoLongNumbers("649", "38209"));
+            Console.WriteLine(SumOfStringNumbers.SumOfTwoLongNumbers("380", "50"));
         }
     }
 }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StringHelper
 {
@@ -21,28 +17,47 @@ namespace StringHelper
 
             char overFlowDigit = '0';
             char secondDigit = '0';
+            int tempInt = 0;
 
-            for (int i = first.Length - 1, k = second.Length - 1, j = 0; i >= 0 && k >= 0; i--, k--, j++) 
+            for (int i = first.Length - 1, k = second.Length - 1, j = result.Length - 1; j != 0; i--, k--, j--)
             {
-                int tempInt = (int)(first[i] - '0') + (int)(second[k] - '0'); // 5 7  = 12
 
-                tempInt += (int)(overFlowDigit - '0');
-
-                overFlowDigit = tempInt.ToString().First(); // 5
-
-                secondDigit = tempInt.ToString().Last(); // second digit + oveflow digit                      
-
-              //  result.Append(secondDigit); // take only last digit and save first
-                result[j] = secondDigit;
-                if (i == 1 || k == 1)
+                if (i >= 0 && k >= 0)
                 {
-                    // result.Append(overFlowDigit);
-                    j++;
-                    result[j] = overFlowDigit;
+                    tempInt = (first[i] - '0') + (second[k] - '0'); // 5 7  = 12
                 }
+                if (i < 0)
+                {
+                    tempInt = (second[k] - '0');
+                }
+                if (k < 0)
+                {
+                    tempInt = (first[i] - '0');
+                }
+             
+
+                tempInt += (overFlowDigit - '0');
+
+                string tempString = tempInt.ToString();
+
+
+
+                // число бывает однозначное и тогда first и ласт одно и тоже
+
+                if (tempString.Length == 2)
+                {
+                    overFlowDigit = tempString[0];
+                    secondDigit = tempString[1]; // second digit + oveflow digit       
+                }
+                else
+                {
+                    secondDigit = tempString[0];
+                    overFlowDigit = '0';
+                }
+
+                result[j] = secondDigit;
             }
 
-           // return result.ToString();
             return new string(result);
         }
     }
