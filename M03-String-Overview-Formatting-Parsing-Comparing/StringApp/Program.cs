@@ -10,6 +10,8 @@ namespace StringApp
             Console.WriteLine(WordLength.AverageWordLength("Hello World, triple double once T-34"));
 
             Console.WriteLine(MultiplyCharater.DoubleCharacters("omg i love shrek", "o kek"));
+
+            Console.WriteLine(SumOfStringNumbers.SumOfTwoLongNumbers("649", "38209"));
         }
     }
 }
