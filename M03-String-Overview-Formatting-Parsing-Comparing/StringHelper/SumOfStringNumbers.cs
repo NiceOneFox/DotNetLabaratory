@@ -21,7 +21,6 @@ namespace StringHelper
 
             for (int i = first.Length - 1, k = second.Length - 1, j = result.Length - 1; j != 0; i--, k--, j--)
             {
-
                 if (i >= 0 && k >= 0)
                 {
                     tempInt = (first[i] - '0') + (second[k] - '0'); // 5 7  = 12
@@ -34,15 +33,10 @@ namespace StringHelper
                 {
                     tempInt = (first[i] - '0');
                 }
-             
 
                 tempInt += (overFlowDigit - '0');
 
                 string tempString = tempInt.ToString();
-
-
-
-                // число бывает однозначное и тогда first и ласт одно и тоже
 
                 if (tempString.Length == 2)
                 {
