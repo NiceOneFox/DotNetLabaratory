@@ -12,7 +12,6 @@ namespace StringHelper
         /// <returns>String which contains very big number</returns>
         public static string SumOfTwoLongNumbers(string first, string second)
         {
-            //StringBuilder result = new StringBuilder();
             char[] result = new char[Math.Max(first.Length, second.Length) + 1];
 
             char overFlowDigit = '0';

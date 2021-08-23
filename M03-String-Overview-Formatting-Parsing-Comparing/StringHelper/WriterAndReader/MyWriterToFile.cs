@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 
 
 namespace StringHelper
@@ -11,9 +12,15 @@ namespace StringHelper
         {
             filePath = path;
         }
-        public void Write(string text)
-        {          
-             File.WriteAllText(filePath, text);
+        public async void Write(IEnumerable<string> text)
+        {
+            using (StreamWriter file = new StreamWriter(filePath))
+            {
+                foreach (string line in text)
+                {
+                    await file.WriteLineAsync(line);
+                }
+            }
         }
     }
 }
