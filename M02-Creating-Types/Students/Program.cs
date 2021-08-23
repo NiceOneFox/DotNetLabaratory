@@ -3,25 +3,23 @@ using System.Collections.Generic;
 
 namespace Students
 {
-    class Program
+    public static class Program
     {
         public static IEnumerable<string> GetRandomSubjects(string[] subjects)
         {
-            List<string> list = new List<string>();
+            List<string> allSubjects = new List<string>(subjects);
 
-            int maxSizeIndex = 5;
+            List<string> list = new List<string>(); // random subjects output
 
-            bool[] isUsedValue = new bool[maxSizeIndex]; // flags to indicate if value was used
             Random random = new Random();
 
-            while (list.Count != 3)
+            for (int i = 0; i < 3; i++)
             {
-                int index = random.Next(0, maxSizeIndex);
-                if (!isUsedValue[index])
-                {
-                    list.Add(subjects[index]); // add value
-                    isUsedValue[index] = true; // set flag
-                }
+                int index = random.Next(0, allSubjects.Count);
+
+                list.Add(allSubjects[index]); // add subject to output
+
+                allSubjects.RemoveAt(index); // remove element from allSubjects
             }
 
             return list;

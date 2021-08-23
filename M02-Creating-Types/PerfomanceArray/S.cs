@@ -2,7 +2,7 @@
 
 namespace PerfomanceArray
 {
-    struct S : IComparable<S>
+    public struct S : IComparable<S>
     {
         public int i { get; set; }
 

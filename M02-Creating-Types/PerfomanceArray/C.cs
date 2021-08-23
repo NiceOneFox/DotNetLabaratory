@@ -2,7 +2,7 @@
 
 namespace PerfomanceArray
 {
-    class C : IComparable<C>
+    public class C : IComparable<C>
     {
         public int i { get; set; }
         public C (int integer)
