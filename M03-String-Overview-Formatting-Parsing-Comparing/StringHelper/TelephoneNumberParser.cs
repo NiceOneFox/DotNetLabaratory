@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace StringHelper
 {
@@ -26,7 +24,6 @@ namespace StringHelper
             string text = myReader.Read();
 
             // parse
-
             bool isNumberStarted = false;
 
             bool isNumberEnd = false;
@@ -45,6 +42,7 @@ namespace StringHelper
                     }
                     phone.Append(text[i]);
                     isNumberStarted = true;
+                 
                     continue;
                 }
                 else

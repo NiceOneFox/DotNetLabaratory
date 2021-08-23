@@ -1,7 +1,6 @@
 ﻿using StringHelper;
 using StringHelper.WriterAndReader;
 using System;
-using System.IO;
 
 namespace StringApp
 {
@@ -13,9 +12,9 @@ namespace StringApp
 
             Console.WriteLine(MultiplyCharater.DoubleCharacters("omg i love shrek", "o kek"));
 
-            Console.WriteLine(SumOfStringNumbers.SumOfTwoLongNumbers("380", "50"));
+            Console.WriteLine(SumOfStringNumbers.SumOfTwoLongNumbers("38078293", "5067829407"));
 
-            Console.WriteLine(WordReverse.Reverse("The greatest victory is that which requires no battle"));
+            Console.WriteLine(WordReverse.Reverse("The greatest victory is that which requires no battle "));
 
             // Bridge Pattern
             IMyWriter myWriterToFile = 
