@@ -15,6 +15,11 @@ namespace Students
 
             for (int i = 0; i < 3; i++)
             {
+                if (allSubjects.Count == 0)
+                {
+                    break;
+                }
+
                 int index = random.Next(0, allSubjects.Count);
 
                 list.Add(allSubjects[index]); // add subject to output
