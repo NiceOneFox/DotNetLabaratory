@@ -11,5 +11,10 @@ namespace GeometricShapes
         public Square(double side) : base(side, side)
         {
         }
+        
+        public double GetDiagonal()
+        {
+            return SideA * Math.Sqrt(2);
+        }
     }
 }

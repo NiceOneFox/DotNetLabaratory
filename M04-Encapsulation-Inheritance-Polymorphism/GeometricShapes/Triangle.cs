@@ -26,8 +26,8 @@ namespace GeometricShapes
         /// </summary>
         public override double GetArea()
         {
-            double p = GetPerimeter() / 2;
-            return Math.Sqrt(p * (p - SideA) * (p - SideB) * (p - SideC));
+            double p = GetPerimeter() / 2; // semiperimeter
+            return Math.Sqrt(p * (p - SideA) * (p - SideB) * (p - SideC)); //Heron Formula
         }
 
         public override double GetPerimeter()
