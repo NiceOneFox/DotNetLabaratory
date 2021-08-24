@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GeometricShapes
 {
-    public class Triangle : TwoDimensionalShape
+    public class Triangle : ITwoDimensionalShape
     {
         // Three sides of triangle
         public double SideA { get; private set; }

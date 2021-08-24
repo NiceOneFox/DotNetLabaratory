@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GeometricShapes
 {
-    public class Rectangle : TwoDimensionalShape
+    public class Rectangle : ITwoDimensionalShape
     {
         /// <summary>
         /// One of the side of Rectangle

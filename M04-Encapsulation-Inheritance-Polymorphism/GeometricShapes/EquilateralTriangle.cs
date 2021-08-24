@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace GeometricShapes
 {
-    class EquilateralTriangle : Triangle
+    class EquilateralTriangle : ITwoDimensionalShape
     {
-        public EquilateralTriangle(double a) : base(a, a, a)
+        public double SideA { get; private set; }
+        public EquilateralTriangle(double side)
         {
+            SideA = side;
         }
+        
 
         /// <returns>h of Triangle</returns>
         public double GetHeight()

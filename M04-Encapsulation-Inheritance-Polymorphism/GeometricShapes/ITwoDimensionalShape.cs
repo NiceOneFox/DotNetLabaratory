@@ -2,7 +2,7 @@
 
 namespace GeometricShapes
 {
-    public abstract class TwoDimensionalShape
+    public interface ITwoDimensionalShape
     {
         public abstract double GetPerimeter();
 
