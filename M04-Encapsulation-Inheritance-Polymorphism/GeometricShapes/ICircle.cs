@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace GeometricShapes
 {
-    interface ICircle
+    public interface ICircle
     {
-        
+        public double GetCircumference();
+
+        public double GetRadius();
+
     }
 }
