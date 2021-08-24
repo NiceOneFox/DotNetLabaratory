@@ -1,39 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="GeometricShapes.TwoDimensionalShape">
-    <Position X="6.75" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAEAAAAAA=</HashCode>
-      <FileName>TwoDimensionalShape.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="GeometricShapes.Square">
-    <Position X="5.5" Y="5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
-      <FileName>Square.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="GeometricShapes.Rectangle">
-    <Position X="5.5" Y="2.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAACAAAEAAAAAEAAAAAA=</HashCode>
-      <FileName>Rectangle.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="GeometricShapes.Triangle">
-    <Position X="7.75" Y="2.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAACAAAFAAAAAEAAAAAA=</HashCode>
-      <FileName>Triangle.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="GeometricShapes.EquilateralTriangle">
-    <Position X="7.75" Y="5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>EquilateralTriangle.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

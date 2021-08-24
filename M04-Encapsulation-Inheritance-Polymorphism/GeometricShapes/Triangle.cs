@@ -24,13 +24,13 @@ namespace GeometricShapes
         /// <summary>
         /// Gets area of triange using 3 sides
         /// </summary>
-        public override double GetArea()
+        public double GetArea()
         {
             double p = GetPerimeter() / 2; // semiperimeter
             return Math.Sqrt(p * (p - SideA) * (p - SideB) * (p - SideC)); //Heron Formula
         }
 
-        public override double GetPerimeter()
+        public double GetPerimeter()
         {
             return SideA + SideB + SideC;
         }

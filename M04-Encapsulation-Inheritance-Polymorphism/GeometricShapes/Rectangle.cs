@@ -27,7 +27,7 @@ namespace GeometricShapes
         /// 
         /// </summary>
         /// <returns>Square of rectangle</returns>
-        public override double GetArea()
+        public double GetArea()
         {
             return SideA * SideB;
         }
@@ -36,7 +36,7 @@ namespace GeometricShapes
         /// 
         /// </summary>
         /// <returns>Summ sides of rectangle</returns>
-        public override double GetPerimeter()
+        public double GetPerimeter()
         {
             return (2 * SideA) + (2 * SideB);
         }
