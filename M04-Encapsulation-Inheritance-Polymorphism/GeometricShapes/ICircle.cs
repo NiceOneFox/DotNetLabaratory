@@ -8,8 +8,6 @@ namespace GeometricShapes
 {
     public interface ICircle
     {
-        public double GetCircumference();
-
         public double GetRadius();
 
     }

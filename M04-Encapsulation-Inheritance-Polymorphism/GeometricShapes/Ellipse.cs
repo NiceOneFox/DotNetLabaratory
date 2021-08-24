@@ -6,14 +6,20 @@ using System.Threading.Tasks;
 
 namespace GeometricShapes
 {
-    public class Ellipse : ICircle
+    public class Ellipse : ICircle, ITwoDimensionalShape
     {
 
         public Ellipse()
         {
 
         }
-        public double GetCircumference()
+
+        public double GetArea()
+        {
+            throw new NotImplementedException();
+        }
+
+        public double GetPerimeter()
         {
             throw new NotImplementedException();
         }
