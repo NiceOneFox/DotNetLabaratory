@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GeometricShapes
 {
@@ -15,7 +11,7 @@ namespace GeometricShapes
         }    
 
         /// <returns>h of Triangle</returns>
-        public double GetHeight()
+        public double GetHeight() 
         {
             return (SideA * Math.Sqrt(3)) / 2;
         }

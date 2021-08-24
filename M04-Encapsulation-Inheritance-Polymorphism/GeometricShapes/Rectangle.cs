@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GeometricShapes
 {
@@ -23,18 +19,13 @@ namespace GeometricShapes
             SideA = firstSide;
             SideB = secondSide;
         }
-        /// <summary>
-        /// 
-        /// </summary>
+
         /// <returns>Square of rectangle</returns>
         public double GetArea()
         {
             return SideA * SideB;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         /// <returns>Summ sides of rectangle</returns>
         public double GetPerimeter()
         {

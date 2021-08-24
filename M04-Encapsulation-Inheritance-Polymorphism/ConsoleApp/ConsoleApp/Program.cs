@@ -21,6 +21,11 @@ namespace ConsoleApp
             Triangle triangle = new Triangle(8.2, 7.3, 9.2);
             Console.WriteLine(triangle.GetArea());
             Console.WriteLine(triangle.GetPerimeter());
+
+            Console.WriteLine("Circle area and perimeter");
+            Circle circle = new Circle(7.32);
+            Console.WriteLine(circle.GetPerimeter());
+            Console.WriteLine(circle.GetArea());
         }
     }
 }
