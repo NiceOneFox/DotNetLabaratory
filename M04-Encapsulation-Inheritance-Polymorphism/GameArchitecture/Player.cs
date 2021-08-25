@@ -14,16 +14,20 @@ namespace GameArchitecture
 
         public int TotalScore { get; private set; }
 
+        public bool isAlive { get; set; } = true;
+
         public Player(int x, int y)
         {
             X = x;
             Y = y;
             TotalScore = 0;
+            isAlive = true;
         }
 
-        public void Move(int x, int y)
+        public void Move()
         {
             throw new NotImplementedException();
+            // from current position go to x, y coordinates
         }
 
         public void TakeBonuse(IBonus bonus)

@@ -14,7 +14,5 @@ namespace GameArchitecture.Bonuses
             Y = y;
             Score = score;  
         }
-
-        public int GetScore() { return Score; }
     }
 }

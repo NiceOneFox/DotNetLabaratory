@@ -8,7 +8,7 @@ namespace GameArchitecture
 {
     public interface ICreature
     {
-        public void Move(int x, int y);
+        public void Move();
       
     }
 }

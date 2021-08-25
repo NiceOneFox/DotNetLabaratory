@@ -2,6 +2,7 @@
 using GameArchitecture.Bonuses;
 using GeometricShapes;
 using System;
+using System.Collections.Generic;
 
 namespace ConsoleApp
 {
@@ -29,8 +30,23 @@ namespace ConsoleApp
             Console.WriteLine(circle.GetPerimeter());
             Console.WriteLine(circle.GetArea());
 
-            Apple apple = new Apple(5, 4, 30);
+            IBonus apple = new Apple(5, 4, 30);
             Console.WriteLine(apple.GetScore());
+
+            Player player = new Player(5, 10);
+            GameBoard gameBoard = new GameBoard(40, 40);
+
+
+            List<IGameObject> gameObjects = new List<IGameObject>();
+
+
+            gameBoard.CreateBoard(gameObjects);
+
+            while (gameBoard.isGameOver())
+            {
+                gameBoard.Play(); // make 1 iteration on game time
+            }
+
             
         }
     }

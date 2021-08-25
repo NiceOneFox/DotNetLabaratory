@@ -27,7 +27,7 @@ namespace GameArchitecture
             throw new NotImplementedException();
         }
 
-        public void Move(int x, int y)
+        public void Move()
         {
             throw new NotImplementedException();
         }
