@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 
 namespace GameArchitecture
 {
@@ -36,12 +37,20 @@ namespace GameArchitecture
         {
             // initialize all objects on board
             // key x,y - value object
+            
+            foreach (var gameObj in gameObjects)
+            {
+                if (gameObj.X > Width || gameObj.X < 0)
+                {
+                    throw new ArgumentException($"{gameObj} width out of range of board");
+                }
+                if (gameObj.Y > Height || gameObj.Y < 0)
+                {
+                    throw new ArgumentException($"{gameObj} height out of range of board");
+                }
+            }
             boardObjects = gameObjects;
 
-        }
-        public void AddObjectOnBoard(IGameObject gameObject)
-        {
-            boardObjects.Add(gameObject);
         }
 
         /// <summary>
@@ -53,12 +62,12 @@ namespace GameArchitecture
             {
                 if (gameObj is IPlayer)
                 {
-                    ((Player)gameObj).Move();
+                    ((Player)gameObj).Move();                
                     continue;
                 }
                 if (gameObj is Wolf)
                 {
-                    ((Wolf)gameObj).Hunt();
+                    ((Wolf)gameObj).Hunt();                  
                 }
                 if (gameObj is Bear)
                 {

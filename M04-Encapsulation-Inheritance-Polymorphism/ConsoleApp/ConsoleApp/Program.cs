@@ -30,21 +30,31 @@ namespace ConsoleApp
             Console.WriteLine(circle.GetPerimeter());
             Console.WriteLine(circle.GetArea());
 
-            IBonus apple = new Apple(5, 4, 30);
-            Console.WriteLine(apple.GetScore());
-
+            Apple apple = new Apple(5, 4, 30);
+            Cherry cherry = new Cherry(7, 90, 20);
+            Bear bear = new Bear(16, 20);
+            Wolf wolf = new Wolf(25, 30);
             Player player = new Player(5, 10);
+
             GameBoard gameBoard = new GameBoard(40, 40);
 
 
-            List<IGameObject> gameObjects = new List<IGameObject>();
-
+            List<IGameObject> gameObjects = new List<IGameObject>() {player, apple, cherry, bear, wolf};
 
             gameBoard.CreateBoard(gameObjects);
 
             while (gameBoard.isGameOver())
             {
                 gameBoard.Play(); // make 1 iteration on game time
+            }
+
+            if (player.isAlive)
+            {
+                Console.WriteLine("Win");
+            }
+            else
+            {
+                Console.WriteLine("Lose");
             }
 
             
