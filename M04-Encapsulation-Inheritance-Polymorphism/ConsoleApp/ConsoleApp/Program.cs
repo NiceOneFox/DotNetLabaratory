@@ -1,4 +1,6 @@
-﻿using GeometricShapes;
+﻿using GameArchitecture;
+using GameArchitecture.Bonuses;
+using GeometricShapes;
 using System;
 
 namespace ConsoleApp
@@ -26,6 +28,10 @@ namespace ConsoleApp
             Circle circle = new Circle(7.32);
             Console.WriteLine(circle.GetPerimeter());
             Console.WriteLine(circle.GetArea());
+
+            Apple apple = new Apple(5, 4, 30);
+            Console.WriteLine(apple.GetScore());
+            
         }
     }
 }

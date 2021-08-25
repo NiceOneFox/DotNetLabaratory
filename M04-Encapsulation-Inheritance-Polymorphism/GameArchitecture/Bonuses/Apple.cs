@@ -2,7 +2,7 @@
 
 namespace GameArchitecture.Bonuses
 {
-    class Apple : IGameObject, IBonus
+    public class Apple : IGameObject, IBonus
     {
         public int X { get; set; }
         public int Y { get; set; }
@@ -15,5 +15,6 @@ namespace GameArchitecture.Bonuses
             Score = score;  
         }
 
+        public int GetScore() { return Score; }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameArchitecture.Bonuses
 {
-    class Cherry : IGameObject, IBonus
+    public class Cherry : IGameObject, IBonus
     {
         public int X { get; set; }
         public int Y { get; set; }
