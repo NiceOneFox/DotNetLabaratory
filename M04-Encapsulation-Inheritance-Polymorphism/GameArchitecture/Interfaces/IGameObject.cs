@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace GameArchitecture
 {
-    interface IGameObject
+    public interface IGameObject
     {
+        public int X { get; set; }
+
+        public int Y { get; set; }
+        public Pair<int, int> GetPosition();
     }
 }

@@ -8,6 +8,6 @@ namespace GameArchitecture
 {
     public interface IPlayer
     {
-        public void TakeBonuse(IBonus bonuses);
+        public void TakeBonuse(IBonus bonus);
     }
 }
