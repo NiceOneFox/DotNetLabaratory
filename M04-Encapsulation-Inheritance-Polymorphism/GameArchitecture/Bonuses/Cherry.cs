@@ -10,15 +10,14 @@ namespace GameArchitecture.Bonuses
     {
         public int X { get; set; }
         public int Y { get; set; }
+        public int Score { get; set; }
 
-        public Pair<int, int> GetPosition()
+        public Cherry(int x, int y, int score)
         {
-            throw new NotImplementedException();
+            X = x;
+            Y = y;
+            Score = score;
         }
 
-        public int GetScore()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

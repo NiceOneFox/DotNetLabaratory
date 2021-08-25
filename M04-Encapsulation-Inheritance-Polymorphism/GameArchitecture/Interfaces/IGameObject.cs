@@ -11,6 +11,6 @@ namespace GameArchitecture
         public int X { get; set; }
 
         public int Y { get; set; }
-        public Pair<int, int> GetPosition();
+        public Pair<int, int> GetPosition() { return new Pair<int, int>(X, Y); }
     }
 }

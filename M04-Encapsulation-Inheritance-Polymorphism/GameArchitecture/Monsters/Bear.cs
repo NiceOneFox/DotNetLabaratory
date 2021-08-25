@@ -11,12 +11,13 @@ namespace GameArchitecture
         public int X { get; set; }
         public int Y { get; set; }
 
-        public void Attack(ICreature creature)
+        public Bear(int x, int y)
         {
-            throw new NotImplementedException();
+            X = x;
+            Y = y;
         }
 
-        public Pair<int, int> GetPosition()
+        public void Attack(ICreature creature)
         {
             throw new NotImplementedException();
         }

@@ -12,14 +12,13 @@ namespace GameArchitecture
 
         public int Y { get; set; }
 
+        public int TotalScore { get; private set; }
+
         public Player(int x, int y)
         {
             X = x;
             Y = y;
-        }
-        public Pair<int, int> GetPosition()
-        {
-            return new Pair<int, int>(X, Y);
+            TotalScore = 0;
         }
 
         public void Move(int x, int y)

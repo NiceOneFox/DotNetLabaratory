@@ -4,22 +4,16 @@ namespace GameArchitecture.Bonuses
 {
     class Apple : IGameObject, IBonus
     {
-        private int score { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
+        public int Score { get ; set; }
 
-        public Apple(int score)
+        public Apple(int x, int y, int score)
         {
-            this.score = score;
-        }
-        public Pair<int, int> GetPosition()
-        {
-            throw new NotImplementedException();
+            X = x;
+            Y = y;
+            Score = score;  
         }
 
-        public int GetScore()
-        {
-            return score;
-        }
     }
 }
