@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameArchitecture
 {
-    interface IBonuses
+    interface IGameObject
     {
-        public int GetScore();
     }
 }

@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace GameArchitecture
 {
-    public interface ICreature
+    public interface IPlayer
     {
-        public void Move(int x, int y);
-
-        public Pair
+        public void TakeBonuse(IBonus bonuses);
     }
 }
