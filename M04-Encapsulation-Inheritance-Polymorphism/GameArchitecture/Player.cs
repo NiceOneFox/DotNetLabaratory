@@ -27,7 +27,6 @@ namespace GameArchitecture
         public void Move()
         {
             throw new NotImplementedException();
-            // from current position go to x, y coordinates
         }
 
         public void TakeBonuse(IBonus bonus)

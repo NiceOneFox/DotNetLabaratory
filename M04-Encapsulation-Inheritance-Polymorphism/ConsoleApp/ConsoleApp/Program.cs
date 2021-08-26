@@ -1,5 +1,6 @@
 ﻿using GameArchitecture;
 using GameArchitecture.Bonuses;
+using GameArchitecture.Obstacles;
 using GeometricShapes;
 using System;
 using System.Collections.Generic;
@@ -35,11 +36,12 @@ namespace ConsoleApp
             Bear bear = new Bear(16, 20);
             Wolf wolf = new Wolf(25, 30);
             Player player = new Player(5, 10);
+            Tree tree = new Tree(3, 4);
+            Stone stone = new Stone(8, 35);
 
             GameBoard gameBoard = new GameBoard(40, 40);
 
-
-            List<IGameObject> gameObjects = new List<IGameObject>() {player, apple, cherry, bear, wolf};
+            List<IGameObject> gameObjects = new List<IGameObject>() {player, apple, cherry, bear, wolf, tree, stone};
 
             gameBoard.CreateBoard(gameObjects);
 

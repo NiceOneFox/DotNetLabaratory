@@ -72,9 +72,8 @@ namespace GameArchitecture
                 if (gameObj is Bear)
                 {
                     ((Bear)gameObj).Hunt();
-                }
-
-            }
+                }                
+            }           
         }
     }
 }
