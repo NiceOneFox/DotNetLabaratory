@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace GameArchitecture
 {
     public interface ICreature
-    {
-        public void Move();
+    {    
       
     }
 }

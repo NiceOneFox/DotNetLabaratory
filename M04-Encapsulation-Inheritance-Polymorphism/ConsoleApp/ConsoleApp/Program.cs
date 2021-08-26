@@ -31,6 +31,8 @@ namespace ConsoleApp
             Console.WriteLine(circle.GetPerimeter());
             Console.WriteLine(circle.GetArea());
 
+            //////////////////////////////////////////////////
+
             Apple apple = new Apple(5, 4, 30);
             Cherry cherry = new Cherry(7, 90, 20);
             Bear bear = new Bear(16, 20);
@@ -41,13 +43,14 @@ namespace ConsoleApp
 
             GameBoard gameBoard = new GameBoard(40, 40);
 
-            List<IGameObject> gameObjects = new List<IGameObject>() {player, apple, cherry, bear, wolf, tree, stone};
+            List<IGameObject> gameObjects = new List<IGameObject>() {apple, cherry, bear, wolf, tree, stone};
 
             gameBoard.CreateBoard(gameObjects);
 
-            while (gameBoard.isGameOver())
+            while (gameBoard.isGameOver() && player.isAlive)
             {
-                gameBoard.Play(); // make 1 iteration on game time
+                gameBoard.Play(); // make 1 iteration on game time, monsters makes one step
+                player.Move(gameBoard);
             }
 
             if (player.isAlive)

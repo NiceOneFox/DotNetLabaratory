@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameArchitecture
 {
-    public class Player : IGameObject, IPlayer, ICreature
+    public class Player : IPlayer, ICreature
     {
         public int X { get; set; }
 
@@ -24,14 +24,18 @@ namespace GameArchitecture
             isAlive = true;
         }
 
-        public void Move()
+        public void TakeBonus(IBonus bonus)
         {
-            throw new NotImplementedException();
+            TotalScore += bonus.Score;
         }
 
-        public void TakeBonuse(IBonus bonus)
+        public void Move(IGameBoard gameBoard)
         {
-            throw new NotImplementedException();
+            // move to somewhere
+            // if IObstacle go another way
+            // if IMonster x, y  = X, y  -- Dead
+            // if IBonus TakeBonus() method
+            return;
         }
     }
 }

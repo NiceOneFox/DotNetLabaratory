@@ -60,11 +60,6 @@ namespace GameArchitecture
         {
             foreach(var gameObj in boardObjects)
             {
-                if (gameObj is IPlayer)
-                {
-                    ((Player)gameObj).Move();                
-                    continue;
-                }
                 if (gameObj is Wolf)
                 {
                     ((Wolf)gameObj).Hunt();                  
