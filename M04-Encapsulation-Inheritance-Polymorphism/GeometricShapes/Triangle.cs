@@ -13,6 +13,11 @@ namespace GeometricShapes
 
         public Triangle(double a, double b, double c)
         {
+            ValidationOfFigures.CheckIfLessOrEqualZero(a);
+            ValidationOfFigures.CheckIfLessOrEqualZero(b);
+            ValidationOfFigures.CheckIfLessOrEqualZero(c);
+            ValidationOfFigures.CheckIfTriangle(a, b, c);
+
             SideA = a;
             SideB = b;
             SideC = c;

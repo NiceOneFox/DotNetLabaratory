@@ -7,6 +7,8 @@ namespace GeometricShapes
         public double SideA { get; private set; }
         public EquilateralTriangle(double side)
         {
+            ValidationOfFigures.CheckIfLessOrEqualZero(side);
+
             SideA = side;
         }    
 

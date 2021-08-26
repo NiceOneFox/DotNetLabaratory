@@ -16,6 +16,9 @@ namespace GeometricShapes
 
         public Rectangle(double firstSide, double secondSide)
         {
+            ValidationOfFigures.CheckIfLessOrEqualZero(firstSide);
+            ValidationOfFigures.CheckIfLessOrEqualZero(secondSide);
+
             SideA = firstSide;
             SideB = secondSide;
         }

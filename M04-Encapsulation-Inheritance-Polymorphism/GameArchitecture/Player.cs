@@ -33,7 +33,7 @@ namespace GameArchitecture
         {
             // move to somewhere
             // if IObstacle go another way
-            // if IMonster x, y  = X, y  -- Dead
+            // if IMonster x, y  = X, Y -- Dead
             // if IBonus TakeBonus() method
             return;
         }

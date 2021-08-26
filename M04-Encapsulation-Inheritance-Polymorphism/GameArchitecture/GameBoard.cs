@@ -60,15 +60,16 @@ namespace GameArchitecture
         {
             foreach(var gameObj in boardObjects)
             {
-                if (gameObj is Wolf)
+                if (gameObj is Wolf w)
                 {
-                    ((Wolf)gameObj).Hunt();                  
+                    w.Hunt(); // ((Wolf)gameObj).Hunt();                  
                 }
-                if (gameObj is Bear)
+                if (gameObj is Bear b)
                 {
-                    ((Bear)gameObj).Hunt();
+                    b.Hunt();
                 }                
             }           
         }
+
     }
 }

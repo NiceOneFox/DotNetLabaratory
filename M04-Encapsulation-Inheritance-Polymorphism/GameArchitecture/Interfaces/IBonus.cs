@@ -9,7 +9,6 @@ namespace GameArchitecture
     public interface IBonus
     {
         public int Score { get; set; }
-        public int GetScore() { return Score; }
 
     }
 }

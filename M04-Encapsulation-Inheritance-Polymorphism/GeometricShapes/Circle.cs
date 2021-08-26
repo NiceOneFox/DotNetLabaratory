@@ -8,6 +8,8 @@ namespace GeometricShapes
 
         public Circle(double R)
         {
+            ValidationOfFigures.CheckIfLessOrEqualZero(R);
+
             Radius = R;
         }
 
