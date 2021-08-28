@@ -23,18 +23,18 @@ namespace StringHelper
             {
                 if (i >= 0 && k >= 0)
                 {
-                    tempInt = (first[i] - '0') + (second[k] - '0'); // 5 7  = 12
+                    tempInt = CharDigitToInt(first[i]) + CharDigitToInt(second[k]); // 5 7  = 12
                 }
                 if (i < 0)
                 {
-                    tempInt = (second[k] - '0');
+                    tempInt = CharDigitToInt(second[k]);
                 }
                 if (k < 0)
                 {
-                    tempInt = (first[i] - '0');
+                    tempInt = CharDigitToInt(first[i]);
                 }
 
-                tempInt += (overFlowDigit - '0');
+                tempInt += CharDigitToInt(overFlowDigit);
 
                 string tempString = tempInt.ToString();
 
@@ -54,5 +54,11 @@ namespace StringHelper
 
             return new string(result);
         }
+
+        private static int CharDigitToInt(Char c)
+        {
+            return c - '0';
+        }
+
     }
 }

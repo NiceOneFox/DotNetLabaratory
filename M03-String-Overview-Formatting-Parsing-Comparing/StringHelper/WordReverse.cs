@@ -16,7 +16,6 @@ namespace StringHelper
             bool isWordStarted = false;
 
             int startIndexOfWord = -1;
-          
 
             for (int i = 0; i < sentence.Length; i++)
             {
@@ -34,7 +33,7 @@ namespace StringHelper
                     for (int j = result.Length - i - 1, d = startIndexOfWord; j < result.Length - startIndexOfWord; j++, d++)
                     {
                         result[j] = sentence[d];
-                        
+
                     }
                     continue;
                 }
