@@ -1,15 +1,24 @@
 ﻿using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace GameArchitecture
 {
     public class GameBoard : IGameBoard
     {
-        public readonly int Width;
+        private int width;
 
-        public readonly int Height;
+        private int height;
 
         public List<IGameObject> boardObjects { get; set; }
+
+        public int Width { get => width; set { height = value; }
+        }
+        public int Height { get => height; set { height = value; } }
+
+        public IGameObject this[int index]{ 
+            get => boardObjects.ElementAt(index);
+        }
 
         public GameBoard(int width, int height)
         {
@@ -23,7 +32,7 @@ namespace GameArchitecture
         /// <returns>true is bonuses on board</returns>
         public bool isGameOver()
         {
-            foreach(var gameObj in boardObjects)
+            foreach (var gameObj in boardObjects)
             {
                 if (gameObj is IBonus)
                 {
@@ -37,7 +46,7 @@ namespace GameArchitecture
         {
             // initialize all objects on board
             // key x,y - value object
-            
+
             foreach (var gameObj in gameObjects)
             {
                 if (gameObj.X > Width || gameObj.X < 0)
@@ -58,7 +67,7 @@ namespace GameArchitecture
         /// </summary>
         public void Play()
         {
-            foreach(var gameObj in boardObjects)
+            foreach (var gameObj in boardObjects)
             {
                 if (gameObj is Wolf w)
                 {
@@ -67,8 +76,8 @@ namespace GameArchitecture
                 if (gameObj is Bear b)
                 {
                     b.Hunt();
-                }                
-            }           
+                }
+            }
         }
 
     }
