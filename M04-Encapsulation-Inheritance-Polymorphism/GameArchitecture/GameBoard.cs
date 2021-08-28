@@ -12,11 +12,31 @@ namespace GameArchitecture
 
         public List<IGameObject> boardObjects { get; set; }
 
-        public int Width { get => width; set { height = value; }
+        public int Width
+        {
+            get => width;
+            set
+            {
+                if (value > 0)
+                {
+                    height = value;
+                }
+            }
         }
-        public int Height { get => height; set { height = value; } }
+        public int Height
+        {
+            get => height;
+            set
+            {
+                if (value > 0)
+                {
+                    height = value;
+                }
+            }
+        }
 
-        public IGameObject this[int index]{ 
+        public IGameObject this[int index]
+        {
             get => boardObjects.ElementAt(index);
         }
 
