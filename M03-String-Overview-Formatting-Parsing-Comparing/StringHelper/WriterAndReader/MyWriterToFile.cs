@@ -8,9 +8,9 @@ namespace StringHelper
     {
         private readonly string filePath;
 
-        public MyWriterToFile(string path)
+        public MyWriterToFile(string filePath)
         {
-            filePath = path;
+            this.filePath = filePath;
         }
         public async void Write(IEnumerable<string> text)
         {

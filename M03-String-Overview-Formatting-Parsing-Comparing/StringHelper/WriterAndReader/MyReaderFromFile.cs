@@ -6,9 +6,9 @@ namespace StringHelper.WriterAndReader
     {
         private readonly string filePath;
 
-        public MyReaderFromFile(string path)
+        public MyReaderFromFile(string filePath)
         {
-            filePath = path;
+            this.filePath = filePath;
         }
         public string Read()
         {

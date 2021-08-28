@@ -6,14 +6,14 @@ namespace StringHelper
 {
     public class TelephoneNumberParser
     {
-        private readonly IMyWriter myWriter;
+        private readonly IMyWriter writer;
 
-        private readonly IMyReader myReader;
+        private readonly IMyReader reader;
 
-        public TelephoneNumberParser(IMyWriter Writer, IMyReader Reader)
+        public TelephoneNumberParser(IMyWriter writer, IMyReader reader)
         {
-            myWriter = Writer;
-            myReader = Reader;
+            this.writer = writer;
+            this.reader = reader;
         }
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace StringHelper
         /// </summary>
         public void ParseTelephoneNumber()
         {
-            string text = myReader.Read();
+            string text = reader.Read();
 
             // parse
             bool isNumberStarted = false;
@@ -61,7 +61,7 @@ namespace StringHelper
            
             }
 
-            myWriter.Write(cellPhones);
+            writer.Write(cellPhones);
         }
 
 

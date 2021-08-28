@@ -11,12 +11,12 @@ namespace StringHelper
         {
             StringBuilder newString = new StringBuilder(first.Length);
 
-            for (int i = 0; i < first.Length; i++)
+            for (int i = 0; i < first.Length; i++) // O(n) - n length of first string
             {
-                newString.Append(first[i]);
-                for (int j = 0; j < second.Length; j++)
+                newString.Append(first[i]); // O(1)
+                for (int j = 0; j < second.Length; j++) // O(m)
                 {
-                    if (first[i] == second[j] && second[j] != ' ')
+                    if (first[i] == second[j] && second[j] != ' ') // O(1)
                     {
                         newString.Append(first[i]); // double character if it contains in second string
                         break;
