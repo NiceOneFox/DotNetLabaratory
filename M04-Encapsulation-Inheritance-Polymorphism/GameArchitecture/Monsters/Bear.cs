@@ -8,9 +8,6 @@ namespace GameArchitecture
 {
     public class Bear : IGameObject, ICreature, IMonster
     {
-        public int X { get; set; }
-        public int Y { get; set; }
-
         public Bear(int x, int y)
         {
             X = x;

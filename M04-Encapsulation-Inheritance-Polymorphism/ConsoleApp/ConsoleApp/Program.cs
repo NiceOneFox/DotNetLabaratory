@@ -60,9 +60,7 @@ namespace ConsoleApp
             else
             {
                 Console.WriteLine("Lose");
-            }
-
-            
+            }           
         }
     }
 }

@@ -19,7 +19,7 @@ namespace GameArchitecture
             {
                 if (value > 0)
                 {
-                    height = value;
+                    width = value;
                 }
             }
         }
