@@ -14,14 +14,14 @@ namespace GameArchitecture
 
         public int TotalScore { get; private set; }
 
-        public bool isAlive { get; set; } = true;
+        public bool IsAlive { get; set; } = true;
 
         public Player(int x, int y)
         {
             X = x;
             Y = y;
             TotalScore = 0;
-            isAlive = true;
+            IsAlive = true;
         }
 
         public void TakeBonus(IBonus bonus)

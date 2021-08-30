@@ -10,7 +10,7 @@ namespace GameArchitecture
 
         private int height;
 
-        public List<IGameObject> boardObjects { get; set; }
+        public List<IGameObject> BoardObjects { get; set; }
 
         public int Width
         {
@@ -37,7 +37,7 @@ namespace GameArchitecture
 
         public IGameObject this[int index]
         {
-            get => boardObjects.ElementAt(index);
+            get => BoardObjects.ElementAt(index);
         }
 
         public GameBoard(int width, int height)
@@ -52,7 +52,7 @@ namespace GameArchitecture
         /// <returns>true is bonuses on board</returns>
         public bool isGameOver()
         {
-            foreach (var gameObj in boardObjects)
+            foreach (var gameObj in BoardObjects)
             {
                 if (gameObj is IBonus)
                 {
@@ -78,7 +78,7 @@ namespace GameArchitecture
                     throw new ArgumentException($"{gameObj} height out of range of board");
                 }
             }
-            boardObjects = gameObjects;
+            BoardObjects = gameObjects;
 
         }
 
@@ -87,7 +87,7 @@ namespace GameArchitecture
         /// </summary>
         public void Play()
         {
-            foreach (var gameObj in boardObjects)
+            foreach (var gameObj in BoardObjects)
             {
                 if (gameObj is Wolf w)
                 {

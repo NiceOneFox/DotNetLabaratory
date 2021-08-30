@@ -47,13 +47,13 @@ namespace ConsoleApp
 
             gameBoard.CreateBoard(gameObjects);
 
-            while (gameBoard.isGameOver() && player.isAlive)
+            while (gameBoard.isGameOver() && player.IsAlive)
             {
                 gameBoard.Play(); // make 1 iteration on game time, monsters makes one step
                 player.Move(gameBoard);
             }
 
-            if (player.isAlive)
+            if (player.IsAlive)
             {
                 Console.WriteLine("Win");
             }
