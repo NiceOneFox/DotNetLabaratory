@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace StringHelper
 {
@@ -23,43 +25,14 @@ namespace StringHelper
         {
             string text = reader.Read();
 
-            // parse
-            bool isNumberStarted = false;
+            Regex regex = 
+                new Regex(@"((\+7 )(\(\d{2,3}\) )(\d{3}-\d{2}-\d{2})) | (\+\d{3} \(\d{2}\) \d{3}-\d{4}) | (\d{1} \d{3} \d{3}-\d{2}-\d{2})");
 
-            bool isNumberEnd = false;
+            MatchCollection matches = regex.Matches(text);
 
-            List<string> cellPhones = new List<string>();
+            Console.WriteLine(matches.Count);
 
-            StringBuilder phone = new StringBuilder();
-
-            for (int i = 0; i < text.Length; i++)
-            {
-                if (Char.IsDigit(text[i]) || text[i] == '+' || text[i] == '-' || text[i] == '(' || text[i] == ')' || Char.IsWhiteSpace(text[i]))
-                {
-                    if (Char.IsWhiteSpace(text[i]) && !isNumberStarted)
-                    {
-                        continue;
-                    }
-                    phone.Append(text[i]);
-                    isNumberStarted = true;
-                 
-                    continue;
-                }
-                else
-                {
-                    isNumberEnd = true;
-                }
-               
-                if (isNumberStarted && isNumberEnd) // add full telephone number to list
-                {
-                    cellPhones.Add(phone.ToString());
-                    phone.Clear();
-
-                    isNumberEnd = false;
-                    isNumberStarted = false;
-                }
-           
-            }
+            List<string> cellPhones = new List<string>(matches.Cast<Match>().Select(m => m.Value.Trim()).ToList());          
 
             writer.Write(cellPhones);
         }
