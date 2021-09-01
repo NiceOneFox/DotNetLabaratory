@@ -16,9 +16,6 @@ namespace StringConverter
         {
             try
             {
-
-
-
                 int result = 0; // 459
                 bool isNegative = false;
 

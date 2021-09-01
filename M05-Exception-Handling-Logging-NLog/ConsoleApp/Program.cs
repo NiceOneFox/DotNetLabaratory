@@ -9,9 +9,17 @@ namespace ConsoleApp
         static void Main(string[] args)
         {
             string number = "-459";
+            // консоль меседжи от экспешионов
 
-            StringToNumber stringConverter = new StringToNumber(logger);
-            Console.WriteLine(stringConverter.ConvertToInt(number));
+            NLog.Logger logger = NLog.LogManager.GetLogger(typeof(StringToNumber).FullName);
+
+            logger.Info("test info");
+            logger.Trace("trace smth");
+            logger.Fatal("fatal error");
+           //StringToNumber stringConverter = new StringToNumber(logger);
+
+
+          //  Console.WriteLine(stringConverter.ConvertToInt(number));
         }
     }
 }
