@@ -1,5 +1,4 @@
 ﻿using System;
-
 using StringConverter;
 
 namespace ConsoleApp
@@ -16,10 +15,8 @@ namespace ConsoleApp
             logger.Info("test info");
             logger.Trace("trace smth");
             logger.Fatal("fatal error");
-           //StringToNumber stringConverter = new StringToNumber(logger);
 
-
-          //  Console.WriteLine(stringConverter.ConvertToInt(number));
+            //  Console.WriteLine(stringConverter.ConvertToInt(number));
         }
-    }
+}
 }
