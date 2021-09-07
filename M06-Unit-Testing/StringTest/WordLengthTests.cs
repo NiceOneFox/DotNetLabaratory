@@ -1,8 +1,8 @@
 using NUnit.Framework;
 
-namespace StringTest
+namespace StringOverviewTests
 {
-    public class Tests
+    public class WordLengthTests //2
     {
         [SetUp]
         public void Setup()
@@ -10,7 +10,7 @@ namespace StringTest
         }
 
         [Test]
-        public void Test1()
+        public void AverageWordLength_EmptyString_0Expected(string input)
         {
             Assert.Pass();
         }
