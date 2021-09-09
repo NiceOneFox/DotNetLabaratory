@@ -7,7 +7,6 @@ using StringConverter;
 
 namespace ConsoleApp
 {
-
     class Program
     {
         private static IServiceProvider BuildDIContainer(IConfiguration config)
@@ -27,31 +26,39 @@ namespace ConsoleApp
 
         static void Main(string[] args)
         {
-            string number = "-459";
+            string number = "-45d80";
             // консоль меседжи от экспешионов
 
-            //NLog.Logger logger = NLog.LogManager.GetLogger(typeof(StringToNumber).FullName);
+            NLog.Logger logger = NLog.LogManager.GetLogger(typeof(StringToNumber).FullName);
 
-            //logger.Info("test info");
-            //logger.Trace("trace smth");
-            //logger.Fatal("fatal error");
-
-
-            var config = new ConfigurationBuilder()
-           .Build();
-
-            var servicesProvider = BuildDIContainer(config);
-
-            using (servicesProvider as IDisposable)
+            try
             {
-                var converter = servicesProvider.GetRequiredService<StringToNumber>();
+                var config = new ConfigurationBuilder()
+               .Build();
+               
+                var servicesProvider = BuildDIContainer(config);
 
-                converter.ConvertToInt(number);
+                using (servicesProvider as IDisposable)
+                {
+                    var converter = servicesProvider.GetRequiredService<StringToNumber>();
 
+                    converter.ConvertToInt(number);
+
+                }
+            } 
+            catch (ArgumentNullException ex)
+            {
+                logger.Error(ex.Message, ex);
             }
-
-           // var stringToNumberConverter = new StringToNumber(logger);
-            //  Console.WriteLine(stringConverter.ConvertToInt(number));
+            catch (ArgumentException ex)
+            {
+                logger.Error(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                logger.Debug(ex, ex.Message);
+                logger.Error(ex, ex.Message);
+            }
         }
 }
 }
