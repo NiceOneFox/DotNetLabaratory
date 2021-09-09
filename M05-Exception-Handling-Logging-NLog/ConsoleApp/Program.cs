@@ -16,8 +16,8 @@ namespace ConsoleApp
                   .AddTransient<StringToNumber>()
                   .AddLogging(loggingBuilder =>
                   {
-                  // configure Logging with NLog
-                  loggingBuilder.ClearProviders();
+                      // configure Logging with NLog
+                      loggingBuilder.ClearProviders();
                       loggingBuilder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
                       loggingBuilder.AddNLog(config);
                   })
@@ -27,7 +27,6 @@ namespace ConsoleApp
         static void Main(string[] args)
         {
             string number = "-45d80";
-            // консоль меседжи от экспешионов
 
             NLog.Logger logger = NLog.LogManager.GetLogger(typeof(StringToNumber).FullName);
 
@@ -35,7 +34,7 @@ namespace ConsoleApp
             {
                 var config = new ConfigurationBuilder()
                .Build();
-               
+
                 var servicesProvider = BuildDIContainer(config);
 
                 using (servicesProvider as IDisposable)
@@ -45,7 +44,7 @@ namespace ConsoleApp
                     converter.ConvertToInt(number);
 
                 }
-            } 
+            }
             catch (ArgumentNullException ex)
             {
                 logger.Error(ex.Message, ex);
@@ -60,5 +59,5 @@ namespace ConsoleApp
                 logger.Error(ex, ex.Message);
             }
         }
-}
+    }
 }

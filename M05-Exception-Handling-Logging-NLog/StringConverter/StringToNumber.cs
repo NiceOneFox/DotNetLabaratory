@@ -11,7 +11,7 @@ namespace StringConverter
         {
             this.logger = logger;
         }
-        
+
         public int ConvertToInt(string str)
         {
             try
@@ -20,15 +20,13 @@ namespace StringConverter
                 {
                     throw new ArgumentNullException("String number was null");
                 }
-                
-               
+
                 int result = 0;
                 bool isNegative = false;
 
                 if (str[0] == '-')
                 {
                     isNegative = true;
-                    logger.LogInformation("{str} is negative number", str);
                 }
 
                 for (int i = str.Length - 1; i >= (0 + Convert.ToInt32(isNegative)); i--)
@@ -44,11 +42,12 @@ namespace StringConverter
                 if (isNegative)
                 {
                     result *= -1;
+                    logger.LogInformation("{str} is negative number", str);
                 }
 
                 logger.LogInformation("{result} return value", result);
                 return result;
-            } 
+            }
             catch (ArgumentNullException ex)
             {
                 logger.LogError(ex, ex.Message);
