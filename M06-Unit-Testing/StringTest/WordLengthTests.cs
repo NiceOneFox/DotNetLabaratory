@@ -1,42 +1,28 @@
 using NUnit.Framework;
 using StringHelper;
+using StringHelperTests.DataCaseTests;
 
 namespace StringOverviewTests
 {
     public class WordLengthTests //2
     {
-        [TestCase("wee see lee", ExpectedResult = 2.66d)]
-        [TestCase("Some information, has written;", ExpectedResult = 6.25d)]
-        public double AverageWordLength_CorrectString(string input)
+        [TestCase("wee see lee", 2.66)]
+        [TestCase("Some information, has written;", 6.25)]
+        public void AverageWordLength_CorrectString(string input, double expectedResult)
         {
-            return WordLength.AverageWordLength(input);
-        }
-        [Test]
-        public void AverageWordLength_OneWordString_1Expected()
-        {
-            string input = "do";
-            Assert.AreEqual(2d, WordLength.AverageWordLength(input));
+            double result = WordLength.AverageWordLength(input);
+
+            Assert.AreEqual(expectedResult, Is.EqualTo(result).Within(1).Ulps);
         }
 
-        [Test]
-        public void AverageWordLength_CorrectString_4Expected()
+        [TestCaseSource(typeof(StringTestCaseSource), nameof(StringTestCaseSource.NullOrEmptyStringCase0DoubleExpected))]
+        public void AverageWordLength_EmptyString_0Expected(string input, double expectedResult)
         {
-            string input = "we also know as creators.";
-            Assert.AreEqual(4d, WordLength.AverageWordLength(input));
-        }
+            double result = -1d;
 
-        [Test]
-        public void AverageWordLength_EmptyString_0Expected()
-        {
-            Assert.AreEqual(0, WordLength.AverageWordLength(""));
-        }
+            result = WordLength.AverageWordLength(input);
 
-        [Test]
-        public void AverageWordLength_NullString_0Expected()
-        {
-            string testString = null;
-
-            Assert.AreEqual(0, WordLength.AverageWordLength(testString));
+            Assert.AreEqual(expectedResult, result);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using StringHelper;
+using StringHelperTests.DataCaseTests;
 
 namespace StringOverviewTests //4
 {
@@ -12,12 +13,14 @@ namespace StringOverviewTests //4
             return SumOfStringNumbers.SumOfTwoLongNumbers(first, second);
         }
 
-        [TestCase(null, "31", ExpectedResult = "0")]
-        [TestCase("903457451", null, ExpectedResult = "0")]
-        [TestCase(null, null, ExpectedResult = "")]
-        public string DoubleCharacters_StringNull_0Expected(string first, string second)
+        [TestCaseSource(typeof(StringTestCaseSource), nameof(StringTestCaseSource.NullCases0StringExpected))]
+        public void DoubleCharacters_StringNull_0Expected(string first, string second, string expectedResult)
         {
-            return SumOfStringNumbers.SumOfTwoLongNumbers(first, second);
+            string result = "value"; // not empty string as we expect empty one
+
+            result = SumOfStringNumbers.SumOfTwoLongNumbers(first, second);
+
+            Assert.AreEqual(expectedResult, result);
         }
 
         [TestCase("47906", "", ExpectedResult = "47906")]

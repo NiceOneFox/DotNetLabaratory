@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using StringHelper;
+using StringHelperTests.DataCaseTests;
 
 namespace StringOverviewTests
 {
@@ -12,18 +13,14 @@ namespace StringOverviewTests
             return WordReverse.Reverse(sentence);
         }
 
-        [TestCaseSource(nameof(EmptyNullCases))]
-        public void Reverse_NullString_EmptyStringExpected(string sentence)
+        [TestCaseSource(typeof(StringTestCaseSource), nameof(StringTestCaseSource.NullOrEmptyStringCaseEmptyStringExpected))]
+        public void Reverse_NullOrEmptyString_EmptyStringExpected(string sentence, string expectedResult)
         {
-            string result = WordReverse.Reverse(sentence);
-            Assert.AreEqual("", result);
+            string result = "result";
+                
+            result = WordReverse.Reverse(sentence);
+
+            Assert.AreEqual(expectedResult, result);
         }
-
-        static object[] EmptyNullCases =
-        {
-        new object[] { null},
-        new object[] { "" },
-        };
-
     }
 }

@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using StringHelper;
+using StringHelperTests.DataCaseTests;
 
 namespace StringOverviewTests
 {
@@ -12,12 +13,14 @@ namespace StringOverviewTests
             return MultiplyCharater.DoubleCharacters(first, second);
         }
 
-        [TestCase(null, "SomeText", ExpectedResult = "")]
-        [TestCase("SomeText", null, ExpectedResult = "")]
-        [TestCase(null, null, ExpectedResult = "")]
-        public string DoubleCharacters_StringNull_ExpectedEmptyString(string first, string second)
+        [TestCaseSource(typeof(StringTestCaseSource), nameof(StringTestCaseSource.NullCasesEmptyStringExpected))]
+        public void DoubleCharacters_StringNull_ExpectedEmptyString(string first, string second, string expectedResult)
         {
-            return MultiplyCharater.DoubleCharacters(first, second);
+            string result = "value"; // not empty string as we expect empty one
+
+            result = MultiplyCharater.DoubleCharacters(first, second);
+
+            Assert.AreEqual(expectedResult, result);
         }
 
     }
