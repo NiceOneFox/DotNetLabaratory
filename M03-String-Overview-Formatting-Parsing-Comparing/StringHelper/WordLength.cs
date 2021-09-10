@@ -8,6 +8,11 @@ namespace StringHelper
         /// <returns>Average length of words in string</returns>
         public static double AverageWordLength(string input)
         {
+            if (input?.Length == 0 || input is null)
+            {
+                return 0;
+            }
+
             double lengthOfWordsInSentence = 0d;
 
             int startIndexOfWord = -1;
@@ -25,7 +30,7 @@ namespace StringHelper
                     continue;
                 }
 
-                if (!Char.IsLetter(input[i]) && isWordStarted || i == input.Length) // word has ended
+                if (!Char.IsLetter(input[i]) && isWordStarted || i == input.Length - 1) // word has ended
                 {
                     isWordStarted = false;
                     numberOfWordsInSentence++;

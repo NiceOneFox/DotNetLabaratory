@@ -11,6 +11,11 @@ namespace StringHelper
         /// <returns>sentence with reversed word</returns>
         public static string Reverse(string sentence)
         {
+            if (sentence == null || sentence == "")
+            {
+                return "";
+            }
+
             char[] result = new char[sentence.Length];
 
             bool isWordStarted = false;

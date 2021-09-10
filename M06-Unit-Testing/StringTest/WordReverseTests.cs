@@ -1,15 +1,29 @@
 ﻿using NUnit.Framework;
+using StringHelper;
 
 namespace StringOverviewTests
 {
     public class WordReverseTests //5
     {
-        [Test]
-        public void TestMethod()
+        [TestCase("9004", ExpectedResult = "4009")]
+        [TestCase("Typical string with comma.", ExpectedResult = "comma with string Typical")]
+        public string Reverse_CorrectInput(string sentence)
         {
-            // TODO: Add your test code here
-            var answer = 42;
-            Assert.That(answer, Is.EqualTo(42), "Some useful error message");
+            return WordReverse.Reverse(sentence);
         }
+
+        [TestCaseSource(nameof(EmptyNullCases))]
+        public void Reverse_NullString_EmptyStringExpected(string sentence)
+        {
+            string result = WordReverse.Reverse(sentence);
+            Assert.AreEqual("", result);
+        }
+
+        static object[] EmptyNullCases =
+        {
+        new object[] { null},
+        new object[] { "" },
+        };
+
     }
 }

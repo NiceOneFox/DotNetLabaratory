@@ -12,6 +12,10 @@ namespace StringHelper
         /// <returns>String which contains very big number</returns>
         public static string SumOfTwoLongNumbers(string first, string second)
         {
+            if (first == null || second == null)
+            {
+                return "0";
+            }
 
             char[] result = new char[Math.Max(first.Length, second.Length) + 1];
 
@@ -52,7 +56,7 @@ namespace StringHelper
                 result[j] = secondDigit;
             }
 
-            return new string(result);
+            return new string(result).Replace("\0", string.Empty);
         }
 
         private static int CharDigitToInt(Char c)
