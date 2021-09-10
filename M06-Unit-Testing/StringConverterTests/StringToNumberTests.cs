@@ -13,7 +13,7 @@ namespace StringConverterTests
         [TestCase("455", 455)]
         [TestCase("-4567890", -4567890)]
         [TestCase("0", 0)]
-        public void ConverToInt(string number, int expectedResult)
+        public void ConverToIntTest(string number, int expectedResult)
         {
             //Arrange
             int result = int.MaxValue;
