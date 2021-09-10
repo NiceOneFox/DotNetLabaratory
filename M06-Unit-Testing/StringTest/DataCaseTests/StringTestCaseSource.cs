@@ -39,7 +39,5 @@ namespace StringHelperTests.DataCaseTests
         new object[] { null, ""},
         new object[] { "", ""},
         };
-
-
     }
 }
