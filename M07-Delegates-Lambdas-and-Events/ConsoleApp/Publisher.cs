@@ -8,17 +8,21 @@ namespace ConsoleApp
 {
     public class Publisher
     {
-        public delegate void NotifierHandler(int count);
+        public delegate void NotifierHandler(string message);
 
         public event NotifierHandler Notifier;
 
         public void Work()
         {
-            for (int i = 0; i < 10; i++)
+            for (int i = 20; i != 0; i--)
             { 
-                Notifier(i * 10); 
+                if (i == 10)
+                {
+                    Notifier("Passed half time");
+                }
                 System.Threading.Thread.Sleep(100);
             }
+            Notifier("Timer done work");
         }
         
     }

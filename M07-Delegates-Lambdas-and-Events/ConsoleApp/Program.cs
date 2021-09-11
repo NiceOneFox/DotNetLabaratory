@@ -45,18 +45,16 @@ namespace ConsoleApp
 
             PrintMatrix(matrix, SIZE);
             ///////////////////////////////
-            TestMethod1();
-        }
+            Publisher publisher = new Publisher();
+            var sub1 = new Subscriber();
+            sub1.Subscribe(publisher);
 
-        public static void TestMethod1() 
-        {
-            var publish = new Publisher(); 
-            publish.Notifier += worker_Progress;
-            publish.Work(); }
-        private static void worker_Progress(int percentComplete)
-        {
-            Console.WriteLine(percentComplete); 
-        }
+            var sub2 = new Subscriber();
+            sub2.Subscribe(publisher);
 
+            publisher.Work();
+
+
+        }
     }
 }
