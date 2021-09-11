@@ -28,7 +28,7 @@ namespace ConsoleApp
 
             const int WIDTH = 5;
             const int HEIGHT = 5;
-
+            
             int[,] matrix = new int[WIDTH, HEIGHT] {
                 {4, 2, 7, 5, 2 },
                 {9, 0, 1, 3, 6 },
@@ -36,7 +36,13 @@ namespace ConsoleApp
                 {5, 1, 0, 3, 8 },
                 {2, 4, 7, 2, 9 } };
 
-            matrix = MatrixSort.MatrixHelper.BubbleSort(matrix, WIDTH, HEIGHT, SortType, OrderType);
+            matrix = MatrixSort.MatrixHelper.BubbleSort(matrix, WIDTH, HEIGHT,DelMethod, (x, y) => true);
+        }
+
+        public static bool DelMethod(int x, int y)
+        {
+            Console.WriteLine("235");
+            return true;
         }
     }
 }
