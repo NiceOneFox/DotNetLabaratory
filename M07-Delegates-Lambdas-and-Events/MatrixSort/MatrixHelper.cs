@@ -1,37 +1,34 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MatrixSort
 {
     public static class MatrixHelper
     {
-        public delegate bool SortOrder(int x, int y);
-
-        public delegate int SortType(int[] x);
-
-        public static int[,] BubbleSort(int[,] matrix, int width, int height, SortOrder sortOrder, SortType sortType)
+        public static List<List<int>> BubbleSort(List<List<int>> matrix, int size, 
+            Func<int, int, bool> sortOrder, Func<List<int>, int> sortType)
         {
-            
-            for (int i = 0; i < width; i++)
+            List<int> tempRow;
+
+            for (int i = 0; i < size; i++)
             {
                 // get row 
-                int[] row = new int[height];
-                for (int k = 0; k < height; k++)
-                {
-                    row[k] = matrix[width, k];
-                }
-                Span<int> row2 = matrix[width, 0].Slice(0, 4);
-                // get sortType result
-                int result = sortType(row);
+                List<int> row = matrix[i].ToList();
 
-                // if result > current result => swap rows
-                // deletegate SordOrder its about >, <, == 
-
-                for (int j = 0; j < height; j++)
+                for (int j = i + 1; j < size; j++)
                 {
-                    // 1 сумма элементов в стркке матрице
+                    List<int> nextRow = matrix[j].ToList();
+
+                    if (sortOrder(sortType(row), sortType(nextRow)))
+                    {
+                        // swap rows
+                        tempRow = matrix[i].ToList();
+                        matrix[i] = nextRow;
+                        matrix[j] = tempRow;
+                    }
                 }
             }
-
             return matrix;
         }
 
