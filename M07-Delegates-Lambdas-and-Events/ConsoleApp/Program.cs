@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ConsoleApp
 {
-    class Program
+    public class Program
     {
         public static void PrintMatrix(List<List<int>> matrix, int size)
         {
@@ -44,6 +44,19 @@ namespace ConsoleApp
             matrix = MatrixSort.MatrixHelper.BubbleSort(matrix, SIZE, AscOrderType, MaxElementSortType);
 
             PrintMatrix(matrix, SIZE);
-        }          
+            ///////////////////////////////
+            TestMethod1();
+        }
+
+        public static void TestMethod1() 
+        {
+            var publish = new Publisher(); 
+            publish.Notifier += worker_Progress;
+            publish.Work(); }
+        private static void worker_Progress(int percentComplete)
+        {
+            Console.WriteLine(percentComplete); 
+        }
+
     }
 }
