@@ -32,8 +32,7 @@ namespace ConsoleApp
             }
             /////////////
             ///
-            Queue<int> q = new Queue<int>();
-            q.Dequeue
+           
         }
     }
 }
