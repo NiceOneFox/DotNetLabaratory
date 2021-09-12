@@ -10,7 +10,8 @@ namespace ConsoleApp
         {
             List<int> collection = new List<int>() { 4, 1, 5, 9, 3 };
             List<string> collection2 = new List<string>() { "hey", "hi", "hello", "Greetings" };
-            collection.Sort();
+
+            collection.Sort(); // collections must be sorted
             collection2.Sort();
 
             var target = 3;
@@ -21,6 +22,14 @@ namespace ConsoleApp
 
             Console.WriteLine($"Index of element {target} was: {result}");
             Console.WriteLine($"Index of element {target2} was: {result2}");
+            ///////////////
+
+            MathMethods mathMethods = new MathMethods();
+
+            foreach (var number in mathMethods.Fibonacci())
+            {
+                Console.WriteLine(number);
+            }
         }
     }
 }
