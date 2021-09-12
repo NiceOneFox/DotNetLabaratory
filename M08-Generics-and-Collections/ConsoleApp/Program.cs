@@ -30,6 +30,10 @@ namespace ConsoleApp
             {
                 Console.WriteLine(number);
             }
+            /////////////
+            ///
+            Queue<int> q = new Queue<int>();
+            q.Dequeue
         }
     }
 }
