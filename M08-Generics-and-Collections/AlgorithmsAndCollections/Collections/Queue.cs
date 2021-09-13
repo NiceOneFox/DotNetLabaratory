@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,22 +7,71 @@ using System.Threading.Tasks;
 
 namespace AlgorithmsAndCollections.Collections
 {
-    public class Queue<T>
+    public class Queue<T> : IEnumerable<T>
     {
-        public LinkedList<T> collection { get; set; }
+        public Node<T> Head { get; private set; }
 
+        public Node<T> Tail { get; private set; }
+
+        public int Count { get; set; } = 0;
+
+        /// <summary>
+        /// Retrieve object from Queue
+        /// </summary>
         public T Dequeue()
         {
-            if (collection.Count == 0)
+            if (Count == 0)
             {
-                throw new ArgumentException("Queue was empty when Dequeue called");
+                //return default; 
+                throw new InvalidOperationException("Queue was empty");
             }
-            return collection.Last();
+
+            T output = Head.Value;
+            Head = Head.Next;
+            Count--;
+
+            return output;
         }
 
+        /// <summary>
+        /// Adds object to Queue
+        /// </summary>
         public void Enqueue(T value)
-        {          
-            collection.AddFirst(value);
+        {
+            Node<T> node = new Node<T>(value);
+            Node<T> tempNode = Tail;
+            Tail = node;
+
+            if (Count == 0)
+                Head = Tail;
+            else
+                tempNode.Next = Tail;
+            Count++;
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            Node<T> current = Head;
+            while (current != null)
+            {
+                yield return current.Value;
+                current = current.Next;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable)this).GetEnumerator();
+        }
+
+        public class Node<U>
+        {
+            public Node<U> Next { get; set; }
+            public U Value { get; set; }
+            public Node(U value)
+            {
+                Value = value;
+            }
         }
 
     }

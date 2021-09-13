@@ -31,8 +31,21 @@ namespace ConsoleApp
                 Console.WriteLine(number);
             }
             /////////////
-            ///
-           
+       
+            AlgorithmsAndCollections.Collections.Queue<int> queue = new AlgorithmsAndCollections.Collections.Queue<int>();
+            queue.Enqueue(5);
+            queue.Enqueue(7);
+            queue.Enqueue(8);
+            queue.Enqueue(2);
+
+            Console.WriteLine(queue.Dequeue());
+
+            foreach (int value in queue)
+            {
+                Console.Write(value + " ");
+            }
+            ////////////////////
+
         }
     }
 }
