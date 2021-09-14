@@ -26,7 +26,7 @@ namespace ConsoleApp
 
         static void Main(string[] args)
         {
-            string number = "-45d80";
+            string number = "458000";
 
             NLog.Logger logger = NLog.LogManager.GetLogger(typeof(StringToNumber).FullName);
 

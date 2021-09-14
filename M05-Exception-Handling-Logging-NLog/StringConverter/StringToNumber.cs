@@ -5,11 +5,11 @@ namespace StringConverter
 {
     public class StringToNumber
     {
-        private readonly ILogger<StringToNumber> logger;
+        private readonly ILogger<StringToNumber> _logger;
 
         public StringToNumber(ILogger<StringToNumber> logger)
         {
-            this.logger = logger;
+            _logger = logger;
         }
 
         public int ConvertToInt(string str)
@@ -33,34 +33,36 @@ namespace StringConverter
                 {
                     if (!(str[i] >= '0' && str[i] <= '9')) // check if not a digit
                     {
-                        logger.LogDebug("number {str} contained not digit - {str[i]}", str, str[i]);
+                        _logger.LogError("number {str} contained not digit - {str[i]}", str, str[i]);
                         throw new ArgumentException($"number {str} contained not digit - {str[i]}");
                     }
+
                     result += (str[i] - '0') * (int)Math.Pow(10, str.Length - i - 1);
                 }
 
                 if (isNegative)
                 {
                     result *= -1;
-                    logger.LogInformation("{str} is negative number", str);
+                    _logger.LogInformation("{str} is negative number", str);
                 }
 
-                logger.LogInformation("{result} return value", result);
+                _logger.LogInformation("{result} return value", result);
                 return result;
             }
             catch (ArgumentNullException ex)
             {
-                logger.LogError(ex, ex.Message);
-                throw new ArgumentNullException(ex.Message, ex);
+                _logger.LogError(ex, ex.Message);
+                throw;
             }
             catch (ArgumentException ex)
             {
-                throw new ArgumentException(ex.Message, ex);
+                _logger.LogError(ex, ex.Message);
+                throw;            
             }
             catch (Exception ex)
             {
-                logger.LogDebug(ex, ex.Message);
-                throw new Exception(ex.Message, ex);
+                _logger.LogError(ex, ex.Message);
+                throw;
             }
         }
     }
