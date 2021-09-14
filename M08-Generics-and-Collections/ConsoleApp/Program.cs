@@ -20,7 +20,7 @@ namespace ConsoleApp
                 var target = 3;
                 var target2 = "hi";
 
-                int result = SearchMethods.BinarySerach(collection, 0, collection.Count, target);
+                int result =  SearchMethods.BinarySerach(collection, 0, collection.Count, target);
                 int result2 = SearchMethods.BinarySerach(collection2, 0, collection2.Count, target2);
 
                 Console.WriteLine($"Index of element {target} was: {result}");
