@@ -10,9 +10,9 @@ namespace ConsoleApp
     {
         public void Subscribe(Publisher publisher)
         {
-            publisher.Notifier += worker_Progress;
+            publisher.Notifier += WorkerProgress;
         }
-        private void worker_Progress(string message)
+        private void WorkerProgress(string message)
         {
             Console.WriteLine(message);
         }

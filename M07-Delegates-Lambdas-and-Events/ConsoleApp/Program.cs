@@ -19,20 +19,22 @@ namespace ConsoleApp
         }
         public static void Main(string[] args)
         {
-            //////////
-            Func<List<int>, int> SumSortType = (List<int> x) => x.Sum();
+            #region MatrixDelegates
+            Func<List<int>, int> sumSortType = (List<int> x) => x.Sum();
 
-            Func<List<int>, int> MaxElementSortType = (List<int> x) => x.Max();
+            Func<List<int>, int> maxElementSortType = (List<int> x) => x.Max();
 
-            Func<List<int>, int> MinElementSortType = (List<int> x) => x.Min();
+            Func<List<int>, int> minElementSortType = (List<int> x) => x.Min();
 
-            /////////
-            Func<int, int, bool> AscOrderType = (int x, int y) => x >= y;
+    
+            Func<int, int, bool> ascOrderType = (int x, int y) => x >= y;
 
-            Func<int, int, bool> DescOrderType = (int x, int y) => y >= x;
+            Func<int, int, bool> descOrderType = (int x, int y) => y >= x;
 
-            ////////
-            const int SIZE = 5;
+            #endregion
+
+            #region MatrixInitAndCallBubbleSort
+            const int size = 5;
 
             List<List<int>> matrix = new List<List<int>>() {
                 new List<int>() {1, 1, 0, 3, 2 },
@@ -41,10 +43,13 @@ namespace ConsoleApp
                 new List<int>() {8, 9, 0, 1, 2 },
                 new List<int>() {5, 4, 3, 2, 1 } };
 
-            matrix = MatrixSort.MatrixHelper.BubbleSort(matrix, SIZE, AscOrderType, MaxElementSortType);
+            matrix = MatrixSort.MatrixHelper.BubbleSort(matrix, size, ascOrderType, maxElementSortType);
+           
+            PrintMatrix(matrix, size);
 
-            PrintMatrix(matrix, SIZE);
-            ///////////////////////////////
+            #endregion
+
+            #region PublisherAndSubcribers
             Publisher publisher = new Publisher();
             var sub1 = new Subscriber();
             sub1.Subscribe(publisher);
@@ -53,8 +58,7 @@ namespace ConsoleApp
             sub2.Subscribe(publisher);
 
             publisher.Work();
-
-
+            #endregion
         }
     }
 }
