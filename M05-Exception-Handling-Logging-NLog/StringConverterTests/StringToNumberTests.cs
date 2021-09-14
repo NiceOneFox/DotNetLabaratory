@@ -13,8 +13,6 @@ namespace StringConverterTests
         [TestCase("455", 455)]
         [TestCase("-4567890", -4567890)]
         [TestCase("0", 0)]
-        [TestCase("2147483647", 2147483647)]
-        [TestCase("-2147483648", -2147483648)]
         public void ConverToIntTest(string number, int expectedResult)
         {
             //Arrange
