@@ -10,7 +10,7 @@ namespace AlgorithmsAndCollections.Collections
 
         public Node<T> Tail { get; private set; }
 
-        public int Count { get; set; } = 0;
+        public int Count { get; private set; } = 0;
 
         /// <summary>
         /// Retrieve object from Queue
