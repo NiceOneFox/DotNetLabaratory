@@ -4,38 +4,35 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-
+using CommandLine;
 
 namespace LinqConsole
 {
     class Program
     {
-        static void Main(string[] args)
+        public class Options
         {
-            //var student = new Student("Ivan Petrov", "Maths", DateTime.Parse("25/11/2012"),  4);
+            [Option('n', "namestudent", Required = true, HelpText = "Full name of the student")]
 
-            //List<Student> allStudents = new List<Student>();
-            //allStudents.Add(student);
-            //allStudents.Add(new Student("Grisha Ivanov", "PE", DateTime.Parse("26/10/2012"), 5));
-            //allStudents.Add(new Student("Grisha Ivanov", "Maths", DateTime.Parse("23/10/2012"), 4));
-            //allStudents.Add(new Student("Lena Dinskaya", "English", DateTime.Parse("12/11/2012"), 3));
-            //allStudents.Add(new Student("Lena Dinskaya", "Physics", DateTime.Parse("24/10/2012"), 4));
+            public string NameStudent { get; set; }
+
+            [Option('m', "minmark", Required = true, HelpText = "Min mark of student for sorting")]
+
+            public int MaxMark { get; set; }
+        }
+        static void Main(string[] args) //-name Ivan - minmark 3 - maxmark 5 - datefrom 20 / 11 / 2012 - dateto 20 / 12 / 2012 - test Maths
+        {
+            string jsonString = File.ReadAllText(@"C:\Users\Eugene\Documents\GitHub\EpamLaboratoryProjects\M01-Introduction-To-The-Language\M09-Introduction-to-Language-Integrated-Query-(LINQ)\LinqConsole\Data\StudentsData.json");
+            List<Student> allStudents = JsonSerializer.Deserialize<List<Student>>(jsonString);
 
 
-            //var jsonString = JsonSerializer.Serialize(allStudents);
+            Parser.Default.ParseArguments<Options>(args)
+                   .WithParsed<Options>(o =>
+                   {
+                       Console.WriteLine(o.NameStudent + " " + o.MaxMark);
+                   });
 
-            //File.WriteAllText(
-            //    @"C:\Users\Eugene\Documents\GitHub\EpamLaboratoryProjects\M01-Introduction-To-The-Language\M09-Introduction-to-Language-Integrated-Query-(LINQ)\LinqConsole\Data\StudentsData.json", jsonString);
-       
-           string jsonString = File.ReadAllText(@"C:\Users\Eugene\Documents\GitHub\EpamLaboratoryProjects\M01-Introduction-To-The-Language\M09-Introduction-to-Language-Integrated-Query-(LINQ)\LinqConsole\Data\StudentsData.json");
-           List<Student> allStudents = JsonSerializer.Deserialize<List<Student>>(jsonString);
 
-            foreach (var stud in allStudents)
-            {
-                Console.WriteLine(stud.Date);
-            }
-           
-            
         }
     }
 }
