@@ -8,7 +8,7 @@ namespace LinqConsole.Models
 {
     public class Student
     {
-        public string Name { get; set; }
+        public string Name { get; set;  }
 
         public string TestName { get; set; }
 

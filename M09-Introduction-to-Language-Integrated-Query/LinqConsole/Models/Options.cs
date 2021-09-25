@@ -10,7 +10,16 @@ namespace LinqConsole.Models
     public class Options
     {
         [Option('s', "namestudent", Required = true, HelpText = "Full name of the student")]
-        public string NameStudent { get; set; }
+        public string NameStudent
+        { 
+            get => nameStudent;
+            set
+            {
+                nameStudent = value.Replace("-", " ");
+            }
+        }
+
+        private string nameStudent;
 
         [Option('m', "maxmark", Required = false, HelpText = "Max mark of student")]
         public int MaxMark { get; set; }
@@ -21,23 +30,28 @@ namespace LinqConsole.Models
         [Option('f', "datefrom", Required = false, HelpText = "Date from retriving student's marks")]
         public DateTime DateFrom
         {
-            get => DateFrom;
+            get => dateFrom;
             set
             {
-                DateFrom =  DateTime.Parse(value.ToString());
+                dateFrom = DateTime.Parse(value.ToString());
             }
         }
+
+        private DateTime dateFrom;
 
 
         [Option('t', "dateto", Required = false, HelpText = "Date to retriving student's marks")]
-        public DateTime DateTo {
-            get => DateTo;
+        public DateTime DateTo
+        {
+            get => dateTo;
             set
             {
-                DateTo = DateTime.Parse(value.ToString());
+                dateTo = DateTime.Parse(value.ToString());
             }
 
         }
+
+        private DateTime dateTo;
 
         [Option('n', "test", Required = false, HelpText = "Test name")]
         public string TestName { get; set; }

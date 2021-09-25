@@ -23,7 +23,8 @@ namespace ConsoleParser
             var status = args.Contains(option);
             if (status)
             {
-                Console.WriteLine($"option: {option} is Set by user");
+                Console.WriteLine($"option: {option} is Set by user"); // тут все опции которые задал пользователь
+
                 return true;
             }
             Console.WriteLine("option: {option} is Set by Parser");
