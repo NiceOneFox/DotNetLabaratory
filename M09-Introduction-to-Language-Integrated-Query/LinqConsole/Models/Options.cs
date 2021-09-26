@@ -48,7 +48,6 @@ namespace LinqConsole.Models
             {
                 dateTo = DateTime.Parse(value.ToString());
             }
-
         }
 
         private DateTime? dateTo;
