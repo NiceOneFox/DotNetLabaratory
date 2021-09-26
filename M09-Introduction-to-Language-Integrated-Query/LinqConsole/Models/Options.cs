@@ -11,7 +11,7 @@ namespace LinqConsole.Models
     {
         [Option('s', "namestudent", Required = true, HelpText = "Full name of the student")]
         public string NameStudent
-        { 
+        {
             get => nameStudent;
             set
             {
@@ -55,5 +55,9 @@ namespace LinqConsole.Models
 
         [Option('n', "test", Required = false, HelpText = "Test name")]
         public string? TestName { get; set; }
+
+        [Option('r', "sort", Required = false, HelpText = "Sort by field", Separator = ' ')]
+        public IEnumerable<string> Sort { get; set; }
+      
     }
 }

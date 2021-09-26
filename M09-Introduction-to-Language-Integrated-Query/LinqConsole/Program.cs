@@ -18,6 +18,8 @@ namespace LinqConsole
 
             List<Student> sortedStudents = new List<Student>();
 
+           // string testString = "-s Grisha-Ivanov -m 5 -l 3 -r Assesment asc";
+
             Parser.Default.ParseArguments<Options>(args) // ./LinqConsole -s Grisha-Ivanov -m 5 -l 3
                 .WithParsed<Options>(o =>
                    {
@@ -28,14 +30,23 @@ namespace LinqConsole
                        .Where(x => (o.MinMark is not null)     ? x.Assesment >= o.MinMark : true)
                        .Where(x => (o.DateFrom is not null)    ? x.Date >= o.DateFrom     : true)
                        .Where(x => (o.DateTo is not null)      ? x.Date <= o.DateTo       : true)
-                       .Where(x => (o.TestName is not null)    ? x.TestName == o.TestName : true)
+                       .Where(x => (o.TestName is not null)    ? x.TestName == o.TestName : true)                      
                        .ToList();
 
+                                        
+                       if (o.Sort is not null)
+                       {
+                           Func<Student, object> orderByFunc = item => item.GetType().GetProperty(o.Sort.First()).GetValue(item);
 
-                       //Console.WriteLine("Name student sort: " + o.NameStudent);
-
-
-                       //sortedStudents.Sort();
+                           if (o.Sort.LastOrDefault() == "asc")
+                           {
+                               sortedStudents = sortedStudents.OrderBy(orderByFunc).ToList();
+                           }                         
+                           else if (o.Sort.LastOrDefault() == "desc")
+                           {
+                               sortedStudents = sortedStudents.OrderByDescending(orderByFunc).ToList();
+                           }
+                       }                    
 
                        foreach (var stud in sortedStudents)
                        {
