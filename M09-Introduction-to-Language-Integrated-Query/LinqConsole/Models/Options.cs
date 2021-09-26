@@ -22,13 +22,13 @@ namespace LinqConsole.Models
         private string nameStudent;
 
         [Option('m', "maxmark", Required = false, HelpText = "Max mark of student")]
-        public int MaxMark { get; set; }
+        public int? MaxMark { get; set; }
 
         [Option('l', "minmark", Required = false, HelpText = "Min mark of student")]
-        public int MinMark { get; set; }
+        public int? MinMark { get; set; }
 
         [Option('f', "datefrom", Required = false, HelpText = "Date from retriving student's marks")]
-        public DateTime DateFrom
+        public DateTime? DateFrom
         {
             get => dateFrom;
             set
@@ -37,11 +37,11 @@ namespace LinqConsole.Models
             }
         }
 
-        private DateTime dateFrom;
+        private DateTime? dateFrom;
 
 
         [Option('t', "dateto", Required = false, HelpText = "Date to retriving student's marks")]
-        public DateTime DateTo
+        public DateTime? DateTo
         {
             get => dateTo;
             set
@@ -51,9 +51,9 @@ namespace LinqConsole.Models
 
         }
 
-        private DateTime dateTo;
+        private DateTime? dateTo;
 
         [Option('n', "test", Required = false, HelpText = "Test name")]
-        public string TestName { get; set; }
+        public string? TestName { get; set; }
     }
 }

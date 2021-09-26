@@ -17,13 +17,6 @@ namespace LinqConsole
             List<Student> allStudents = JsonSerializer.Deserialize<List<Student>>(jsonString);
 
             List<Student> sortedStudents  = new List<Student>();
-            List<Student> sortedStudents2 = new List<Student>();
-            List<Student> sortedStudents3 = new List<Student>();
-            List<Student> sortedStudents4 = new List<Student>();
-            List<Student> sortedStudents5 = new List<Student>();
-            List<Student> sortedStudents6 = new List<Student>();
-            List<Student> sortedStudents7 = new List<Student>();
-
 
             Dictionary<string, Func<List<Student>, string>> keyValuePairs = new Dictionary<string, Func<List<Student>, string>>();
 
@@ -36,13 +29,7 @@ namespace LinqConsole
 
                        string unparsedArgs = CommandLine.Parser.Default.FormatCommandLine(o, config => config.SkipDefault = true);
 
-                       //foreach(var prop in typeof(Options).GetProperties())
-                       //{
-                       //    if (args.Contains(prop.Name.ToLower()))
-                       //    {
-                       //        keyValuePairs.TryGetValue(prop.Name);
-                       //    }
-                       //}
+                       Console.WriteLine(unparsedArgs);
 
                        if (unparsedArgs.Contains(o.NameStudent))
                        {
@@ -56,54 +43,49 @@ namespace LinqConsole
                        }
                        
 
-                       if (unparsedArgs.Contains(o.MaxMark.ToString()))
+                       if (o.MaxMark is not null)
                        {
-                           sortedStudents2 = (from s in sortedStudents
+                           sortedStudents = (from s in sortedStudents
                                              where s.Assesment <= o.MaxMark
                                              select s).ToList();
 
                            Console.WriteLine("Max mark sort:" + o.MaxMark);
                        }
 
-                       if (unparsedArgs.Contains(o.MinMark.ToString()))
+                       if (o.MinMark is not null)
                        {
-                           sortedStudents3 = (from s in sortedStudents2
+                           sortedStudents = (from s in sortedStudents
                                               where s.Assesment >= o.MinMark
                                               select s).ToList();
 
                            Console.WriteLine("Min mark sort:" + o.MinMark);
                        }
 
-                       if (unparsedArgs.Contains(o.DateFrom.ToString()))
+                       if (o.DateFrom is not null)
                        {
-                           sortedStudents4 = (from s in sortedStudents3
+                           sortedStudents = (from s in sortedStudents
                                               where s.Date >= o.DateFrom
                                               select s).ToList();
                            Console.WriteLine("Date from sort:" + o.DateFrom);
                        }
 
-                       if (unparsedArgs.Contains(o.DateTo.ToString()))
+                       if (o.DateTo is not null)
                        {
-                           sortedStudents5 = (from s in sortedStudents4
+                           sortedStudents = (from s in sortedStudents
                                               where s.Date <= o.DateTo
                                               select s).ToList();
                            Console.WriteLine("Date to sort:" + o.DateTo);
                        }
 
-                       if (unparsedArgs.Contains(o.TestName))
-                       {
-                           sortedStudents6 = (from s in sortedStudents5
+                       if (o.TestName is not null)
+                       { 
+                           sortedStudents = (from s in sortedStudents
                                               where s.TestName == o.TestName
                                               select s).ToList();
                            Console.WriteLine("Test name:" + o.TestName);
                        }
 
-                       sortedStudents6.Sort();
-
-
-                  
-
-
+                       //sortedStudents.Sort();
 
                        //foreach (var prop in typeof(Options).GetProperties())
                        //{                          
@@ -112,7 +94,7 @@ namespace LinqConsole
                        //    }
                        //}
                       
-                       foreach (var stud in sortedStudents6)
+                       foreach (var stud in sortedStudents)
                        {
                            Console.WriteLine(stud.Name + " " + stud.Date + " " + stud.TestName + " " + stud.Assesment);
                        }
