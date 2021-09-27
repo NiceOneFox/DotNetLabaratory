@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LinqConsole.Models
 {
-    public class Student
+    public class Student : IComparable<Student>, IEquatable<Student>
     {
         public string Name { get; set;  }
 
@@ -22,6 +22,35 @@ namespace LinqConsole.Models
             this.TestName = testName;
             this.Date = date;
             this.Assesment = assesment;
+        }
+
+        public int CompareTo(Student other)
+        {
+            if (other is null) return 1;
+
+            if (this.Name == other.Name && 
+                this.TestName == other.TestName &&
+                this.Date == other.Date &&
+                this.Assesment == other.Assesment)
+            {
+                return 0;
+            }
+
+            return -1;
+        }
+
+        public bool Equals(Student other)
+        {
+            if (this.Name == other.Name &&
+                this.TestName == other.TestName &&
+                this.Date == other.Date &&
+                this.Assesment == other.Assesment)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
         }
     }
 }
