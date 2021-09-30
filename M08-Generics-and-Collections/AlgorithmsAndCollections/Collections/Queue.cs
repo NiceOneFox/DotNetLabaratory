@@ -58,7 +58,7 @@ namespace AlgorithmsAndCollections.Collections
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return ((IEnumerable)this).GetEnumerator();
+            return GetEnumerator();
         }
 
     }

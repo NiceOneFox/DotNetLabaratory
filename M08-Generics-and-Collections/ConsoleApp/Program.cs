@@ -1,6 +1,7 @@
 ﻿using AlgorithmsAndCollections;
 using AlgorithmsAndCollections.Algorithms;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace ConsoleApp
