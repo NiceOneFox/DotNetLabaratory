@@ -11,19 +11,22 @@ namespace AlgorithmsAndCollections
             int nextNumber;
 
             for (int i = 0; ; i++)
-            {               
-                if (i == 47) // next number will have overflow. Greater than int.MaxValue
+            {
+                try
                 {
-                    yield break;
+                    nextNumber = checked(prevNumber + number);
+                }
+                catch (System.OverflowException ex)
+                {
+                    // log
+                    throw ex;
                 }
 
-                nextNumber = prevNumber + number;             
-                
                 yield return prevNumber;
 
                 prevNumber = number;
                 number = nextNumber;
-            }         
+            }
         }
     }
 }

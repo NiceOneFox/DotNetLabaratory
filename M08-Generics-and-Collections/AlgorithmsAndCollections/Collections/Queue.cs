@@ -61,15 +61,5 @@ namespace AlgorithmsAndCollections.Collections
             return ((IEnumerable)this).GetEnumerator();
         }
 
-        public class Node<U>
-        {
-            public Node<U> Next { get; set; }
-            public U Value { get; set; }
-            public Node(U value)
-            {
-                Value = value;
-            }
-        }
-
     }
 }

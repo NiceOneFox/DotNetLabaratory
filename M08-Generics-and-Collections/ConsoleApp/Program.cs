@@ -11,6 +11,7 @@ namespace ConsoleApp
         {
             try
             {
+                #region CollectionBinarySearch
                 List<int> collection = new List<int>() { 4, 1, 5, 9, 3 };
                 List<string> collection2 = new List<string>() { "hey", "hi", "hello", "Greetings" };
 
@@ -25,15 +26,10 @@ namespace ConsoleApp
 
                 Console.WriteLine($"Index of element {target} was: {result}");
                 Console.WriteLine($"Index of element {target2} was: {result2}");
-                ///////////////
 
-                MathMethods mathMethods = new MathMethods();
+                #endregion CollectionBinarySearch
 
-                foreach (var number in mathMethods.Fibonacci())
-                {
-                    Console.WriteLine(number);
-                }
-                /////////////
+                #region RPN
 
                 AlgorithmsAndCollections.Collections.Queue<int> queue = new AlgorithmsAndCollections.Collections.Queue<int>();
                 queue.Enqueue(5);
@@ -51,7 +47,20 @@ namespace ConsoleApp
 
                 Console.WriteLine("\nCalculator program");
                 Console.WriteLine(RPN.Calculate("(5,4 + 4) * (3 / 5) - 40"));
-            } 
+
+                #endregion RPN
+
+                #region MathMethods
+
+                MathMethods mathMethods = new MathMethods();
+
+                foreach (var number in mathMethods.Fibonacci())
+                {
+                    Console.WriteLine(number);
+                }
+
+                #endregion MathMethods
+            }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
