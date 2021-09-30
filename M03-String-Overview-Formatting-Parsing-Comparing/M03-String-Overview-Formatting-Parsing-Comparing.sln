@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		outputFile.txt = outputFile.txt
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringHelperTests", "StringTest\StringHelperTests.csproj", "{13A33386-FB04-4D65-BBD5-33EEB5AF27F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,18 @@ Global
 		{9DA32AA2-8B60-4BB1-BAA4-A7018176A927}.Release|x64.Build.0 = Release|Any CPU
 		{9DA32AA2-8B60-4BB1-BAA4-A7018176A927}.Release|x86.ActiveCfg = Release|Any CPU
 		{9DA32AA2-8B60-4BB1-BAA4-A7018176A927}.Release|x86.Build.0 = Release|Any CPU
+		{13A33386-FB04-4D65-BBD5-33EEB5AF27F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13A33386-FB04-4D65-BBD5-33EEB5AF27F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13A33386-FB04-4D65-BBD5-33EEB5AF27F8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{13A33386-FB04-4D65-BBD5-33EEB5AF27F8}.Debug|x64.Build.0 = Debug|Any CPU
+		{13A33386-FB04-4D65-BBD5-33EEB5AF27F8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{13A33386-FB04-4D65-BBD5-33EEB5AF27F8}.Debug|x86.Build.0 = Debug|Any CPU
+		{13A33386-FB04-4D65-BBD5-33EEB5AF27F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13A33386-FB04-4D65-BBD5-33EEB5AF27F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13A33386-FB04-4D65-BBD5-33EEB5AF27F8}.Release|x64.ActiveCfg = Release|Any CPU
+		{13A33386-FB04-4D65-BBD5-33EEB5AF27F8}.Release|x64.Build.0 = Release|Any CPU
+		{13A33386-FB04-4D65-BBD5-33EEB5AF27F8}.Release|x86.ActiveCfg = Release|Any CPU
+		{13A33386-FB04-4D65-BBD5-33EEB5AF27F8}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,6 +9,11 @@ namespace StringHelper
         /// <returns>Double characters in first string which contains in second</returns>
         public static string DoubleCharacters(string first, string second)
         {
+            if (first == null || second == null)
+            {
+                return "";
+            }
+
             StringBuilder newString = new StringBuilder(first.Length);
 
             for (int i = 0; i < first.Length; i++) // O(n) - n length of first string
