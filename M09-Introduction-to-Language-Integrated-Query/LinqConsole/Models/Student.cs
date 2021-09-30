@@ -18,10 +18,10 @@ namespace LinqConsole.Models
 
         public Student(string name, string testName, DateTime date, int assesment)
         {
-            this.Name = name;
-            this.TestName = testName;
-            this.Date = date;
-            this.Assesment = assesment;
+            Name = name;
+            TestName = testName;
+            Date = date;
+            Assesment = assesment;
         }
 
         public int CompareTo(Student other)
@@ -41,16 +41,10 @@ namespace LinqConsole.Models
 
         public bool Equals(Student other)
         {
-            if (this.Name == other.Name &&
-                this.TestName == other.TestName &&
-                this.Date == other.Date &&
-                this.Assesment == other.Assesment)
-            {
-                return true;
-            } else
-            {
-                return false;
-            }
+            return this.Name      == other.Name &&
+                   this.TestName  == other.TestName &&
+                   this.Date      == other.Date &&
+                   this.Assesment == other.Assesment;
         }
     }
 }
