@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace WebApplicationStudents.Models
 {
-    public record Student(string Name, int Age, string Email);
+    public record Student(string Name, int Age, string Email, int Points);
 }

@@ -14,6 +14,7 @@ namespace WebApplicationStudents.Validation
             RuleFor(x => x.Name).NotEmpty().Length(6, 100);
             RuleFor(x => x.Age).NotEmpty().GreaterThan(0).LessThan(100);
             RuleFor(x => x.Email).EmailAddress();
+            RuleFor(x => x.Points).GreaterThan(0);
         }
     }
 }
