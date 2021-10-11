@@ -12,6 +12,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BusinessLogic;
+using AutoMapper;
 
 namespace WebApplicationStudents
 {
@@ -35,6 +37,8 @@ namespace WebApplicationStudents
                 s.RegisterValidatorsFromAssemblyContaining<Startup>();
                 s.DisableDataAnnotationsValidation = false;
             });
+
+            services.AddBusinessLogic(Configuration.GetConnectionString("StudentDb"));
 
             services.AddSwaggerGen(c =>
             {
