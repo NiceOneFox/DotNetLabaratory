@@ -11,10 +11,11 @@ namespace WebApplicationStudents.Validation
     {
         public StudentValidator()
         {
-            RuleFor(x => x.Name).NotEmpty().Length(6, 100);
+            RuleFor(x => x.FirstName).NotEmpty().Length(2, 30);
+            RuleFor(x => x.LastName).NotEmpty().Length(2, 30);
             RuleFor(x => x.Age).NotEmpty().GreaterThan(0).LessThan(100);
-            RuleFor(x => x.Email).EmailAddress();
-            RuleFor(x => x.Points).GreaterThan(0);
+            RuleFor(x => x.Email).NotEmpty().EmailAddress();
+            RuleFor(x => x.Score).GreaterThan(0);
         }
     }
 }

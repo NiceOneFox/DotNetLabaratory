@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace WebApplicationStudents.Models
+﻿namespace WebApplicationStudents.Models
 {
-    public record Student(string Name, int Age, string Email, int Points);
+    public record Student(string FirstName, string LastName, int Age, string Email, int Score);
 }

@@ -14,6 +14,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using BusinessLogic;
 using AutoMapper;
+using DatabaseAccess;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApplicationStudents
 {
@@ -38,14 +40,21 @@ namespace WebApplicationStudents
                 s.DisableDataAnnotationsValidation = false;
             });
 
-            services.AddBusinessLogic(Configuration.GetConnectionString("StudentDb"));
+            services.AddDbContext<CourseDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("CourseDb"));
+            });        
+
+            services.AddBusinessLogic(Configuration.GetConnectionString("CourseDb"));
+
+            services.AddDataAccess(Configuration.GetConnectionString("CourseDb"));
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApplicationStudents", Version = "v1" });
             });
 
-     
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

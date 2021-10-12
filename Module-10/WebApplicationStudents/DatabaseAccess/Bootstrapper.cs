@@ -9,7 +9,7 @@ namespace DatabaseAccess
         public static IServiceCollection AddDataAccess(this IServiceCollection services, string connectionString)
         {
             return services
-                .AddDbContext<StudentDbContext>(options => options.UseNpgsql(connectionString))
+                .AddDbContext<CourseDbContext>(options => options.UseSqlServer(connectionString))
                 .AddScoped<IStudentRepository, StudentRepository>();
         }
     }

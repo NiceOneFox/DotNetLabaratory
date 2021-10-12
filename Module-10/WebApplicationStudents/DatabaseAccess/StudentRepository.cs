@@ -1,41 +1,56 @@
 ﻿using DatabaseAccess.Models;
 using DatabaseAccess.Repository;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace DatabaseAccess
 {
     public class StudentRepository : IStudentRepository
     {
-        private readonly StudentDbContext _studentDbContext;
+        private readonly CourseDbContext _context;
 
-        public StudentRepository(StudentDbContext studentDbContext)
+        public StudentRepository(CourseDbContext coureDbContext)
         {
-            _studentDbContext = studentDbContext;
+            _context = coureDbContext;
         }
 
         public void Delete(int id)
         {
-            throw new System.NotImplementedException();
+            var studentToDelete = _context.Students.Find(id);
+            _context.Entry(studentToDelete).State = EntityState.Deleted;
+            _context.SaveChanges();
         }
 
-        public void Edit(StudentDb person)
+        public void Edit(StudentDb student)
         {
-            throw new System.NotImplementedException();
+            if (_context.Students.Find(student.Id) is StudentDb studentInDB)
+            {
+                studentInDB.FirstName = student.FirstName;
+                studentInDB.LastName = student.LastName;
+                studentInDB.Age = student.Age;
+                studentInDB.Email = student.Email;
+                studentInDB.Score = student.Score;
+                _context.Entry(studentInDB).State = EntityState.Modified;
+                _context.SaveChanges();
+            }
         }
 
         public StudentDb Get(int id)
         {
-            throw new System.NotImplementedException();
+            return _context.Students.FirstOrDefault(s => s.Id == id);
         }
 
         public IEnumerable<StudentDb> GetAll()
         {
-            throw new System.NotImplementedException();
+            return _context.Students.ToList();
         }
 
-        public int New(StudentDb person)
+        public int New(StudentDb student)
         {
-            throw new System.NotImplementedException();
+            var result = _context.Students.Add(student);
+            _context.SaveChanges();
+            return result.Entity.Id;
         }
     }
 }

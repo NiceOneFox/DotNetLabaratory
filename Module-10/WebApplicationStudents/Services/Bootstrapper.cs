@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using AutoMapper;
 using BusinessLogic.Mappers;
+using DatabaseAccess;
 
 namespace BusinessLogic
 {
