@@ -2,6 +2,8 @@
 using AutoMapper;
 using BusinessLogic.Mappers;
 using DatabaseAccess;
+using BusinessLogic.ServiceInterfaces;
+using BusinessLogic.Services;
 
 namespace BusinessLogic
 {

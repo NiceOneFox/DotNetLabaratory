@@ -1,4 +1,4 @@
-﻿using BusinessLogic;
+﻿using BusinessLogic.ServiceInterfaces;
 using BusinessLogic.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

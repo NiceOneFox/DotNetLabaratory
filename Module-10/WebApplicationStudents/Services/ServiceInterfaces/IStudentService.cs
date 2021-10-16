@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using BusinessLogic.Models;
 
-namespace BusinessLogic
+namespace BusinessLogic.ServiceInterfaces
 {
     public interface IStudentService
     {

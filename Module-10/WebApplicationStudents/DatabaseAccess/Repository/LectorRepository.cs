@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace DatabaseAccess.Repository
 {
-    public interface IStudentRepository
+    public interface ILectorRepository
     {
         void Delete(int id);
-        void Edit(StudentDb student);
-        StudentDb? Get(int id);
-        IEnumerable<StudentDb> GetAll();
-        int New(StudentDb student);
+        void Edit(LectorDb lector);
+        LectorDb? Get(int id);
+        IEnumerable<LectorDb> GetAll();
+        int New(LectorDb lector);
     }
-
 }

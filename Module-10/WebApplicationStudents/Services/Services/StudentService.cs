@@ -1,11 +1,11 @@
 ﻿using BusinessLogic.Models;
-using System;
 using System.Collections.Generic;
 using DatabaseAccess.Repository;
 using AutoMapper;
 using DatabaseAccess.Models;
+using BusinessLogic.ServiceInterfaces;
 
-namespace BusinessLogic
+namespace BusinessLogic.Services
 {
     public class StudentService : IStudentService
     {
