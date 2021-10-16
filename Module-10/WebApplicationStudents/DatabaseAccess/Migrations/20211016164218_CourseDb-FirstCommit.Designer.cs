@@ -4,14 +4,16 @@ using DatabaseAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DatabaseAccess.Migrations
 {
     [DbContext(typeof(CourseDbContext))]
-    partial class CourseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211016164218_CourseDb-FirstCommit")]
+    partial class CourseDbFirstCommit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,22 +28,15 @@ namespace DatabaseAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DeadLine")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("LectureId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("LectureId")
                         .IsUnique();
 
-                    b.ToTable("Homeworks");
+                    b.ToTable("HomeworkDb");
                 });
 
             modelBuilder.Entity("DatabaseAccess.Models.LectorDb", b =>
@@ -69,7 +64,7 @@ namespace DatabaseAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Lectors");
+                    b.ToTable("LectorDb");
                 });
 
             modelBuilder.Entity("DatabaseAccess.Models.LectureDb", b =>
@@ -93,7 +88,7 @@ namespace DatabaseAccess.Migrations
 
                     b.HasIndex("LectorId");
 
-                    b.ToTable("Lectures");
+                    b.ToTable("LectureDb");
                 });
 
             modelBuilder.Entity("DatabaseAccess.Models.MarkDb", b =>
@@ -113,6 +108,7 @@ namespace DatabaseAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Text")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -121,7 +117,7 @@ namespace DatabaseAccess.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("Marks");
+                    b.ToTable("MarkDb");
                 });
 
             modelBuilder.Entity("DatabaseAccess.Models.StudentDb", b =>
