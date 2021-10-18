@@ -14,6 +14,10 @@ namespace BusinessLogic
             return services
                 .AddScoped<IStudentService, StudentService>()
                 .AddAutoMapper(typeof(MapperStudent))
+                .AddAutoMapper(typeof(MapperLecture))
+                .AddAutoMapper(typeof(MapperLector))
+                .AddAutoMapper(typeof(MapperHomework))
+                .AddAutoMapper(typeof(MapperMark))
                 .AddDataAccess(connectionString);
         }
     }
