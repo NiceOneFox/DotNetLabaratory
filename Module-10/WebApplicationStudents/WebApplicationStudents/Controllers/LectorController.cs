@@ -26,7 +26,7 @@ namespace WebApplicationStudents.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Lector> GetStudent(int id)
+        public ActionResult<Lector> GetLector(int id)
         {
             return _lectorService.Get(id) switch
             {
@@ -36,27 +36,27 @@ namespace WebApplicationStudents.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IReadOnlyCollection<Lector>> GetStudents()
+        public ActionResult<IReadOnlyCollection<Lector>> GetLectors()
         {
             return _lectorService.GetAll().ToArray();
         }
 
         [HttpPost]
-        public IActionResult AddStudent(Lector lector)
+        public IActionResult AddLector(Lector lector)
         {
             var newLectorId = _lectorService.New(lector);
             return Ok($"api/lector/{newLectorId}");
         }
 
         [HttpPut("{id}")]
-        public ActionResult<string> UpdateStudent(int id, Lector lector)
+        public ActionResult<string> UpdateLector(int id, Lector lector)
         {
             var lectorId = _lectorService.Edit(lector with { Id = id });
             return Ok($"api/lector/{lectorId}");
         }
 
         [HttpDelete("{id}")]
-        public ActionResult DeleteStudent(int id)
+        public ActionResult UpdateLector(int id)
         {
             _lectorService.Delete(id);
             return Ok();
