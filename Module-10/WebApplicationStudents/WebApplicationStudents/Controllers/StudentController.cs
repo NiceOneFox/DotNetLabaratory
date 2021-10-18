@@ -43,14 +43,14 @@ namespace WebApplicationStudents.Controllers
         public IActionResult AddStudent(Student student)
         {
             var newStudentId = _studentService.New(student);
-            return Ok($"api/person/{newStudentId}");
+            return Ok($"api/student/{newStudentId}");
         }
 
         [HttpPut("{id}")]
         public ActionResult<string> UpdateStudent(int id, Student student)
         {
             var studentId = _studentService.Edit(student with { Id = id });
-            return Ok($"api/person/{studentId}");
+            return Ok($"api/student/{studentId}");
         }
 
         [HttpDelete("{id}")]
