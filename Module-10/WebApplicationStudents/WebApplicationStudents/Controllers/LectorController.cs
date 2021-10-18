@@ -42,7 +42,7 @@ namespace WebApplicationStudents.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddLector(Lector lector)
+        public ActionResult AddLector(Lector lector)
         {
             var newLectorId = _lectorService.New(lector);
             return Ok($"api/lector/{newLectorId}");
@@ -56,7 +56,7 @@ namespace WebApplicationStudents.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult UpdateLector(int id)
+        public ActionResult DeleteLector(int id)
         {
             _lectorService.Delete(id);
             return Ok();

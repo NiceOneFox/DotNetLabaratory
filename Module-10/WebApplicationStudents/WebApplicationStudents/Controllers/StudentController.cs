@@ -40,7 +40,7 @@ namespace WebApplicationStudents.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddStudent(Student student)
+        public ActionResult AddStudent(Student student)
         {
             var newStudentId = _studentService.New(student);
             return Ok($"api/student/{newStudentId}");
