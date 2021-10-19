@@ -28,7 +28,7 @@ namespace BusinessLogic.Services
         {
             var studentDb = _mapper.Map<StudentDb>(student);
             _studentRepository.Edit(studentDb);
-            return student.Id;
+            return studentDb.Id;
         }
 
         public Student? Get(int id)
