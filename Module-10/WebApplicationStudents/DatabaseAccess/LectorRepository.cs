@@ -33,6 +33,8 @@ namespace DatabaseAccess
                 lectorInDb.LastName = lector.LastName;
                 lectorInDb.Email = lector.Email;
                 lectorInDb.Position = lector.Position;
+                _context.Entry(lectorInDb).State = EntityState.Modified;
+                _context.SaveChanges();
             }
         }
 
