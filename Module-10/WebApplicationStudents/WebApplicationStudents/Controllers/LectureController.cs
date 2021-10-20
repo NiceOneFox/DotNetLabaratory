@@ -29,12 +29,12 @@ namespace WebApplicationStudents.Controllers
             return _lectureService.Get(id) switch
             {
                 null => NotFound(),
-                var lector => lector // implicit cast to AcitonResult
+                var lecture => lecture // implicit cast to AcitonResult
             };
         }
 
         [HttpGet]
-        public ActionResult<IReadOnlyCollection<Lector>> GetLectures()
+        public ActionResult<IReadOnlyCollection<Lecture>> GetLectures()
         {
             return _lectureService.GetAll().ToArray();
         }
