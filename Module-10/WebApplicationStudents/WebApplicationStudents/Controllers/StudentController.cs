@@ -2,12 +2,9 @@
 using BusinessLogic.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using WebApplicationStudents.Validation;
-using FluentValidation.Results;
+using WebApplicationStudents.Models;
 using AutoMapper;
 
 namespace WebApplicationStudents.Controllers
@@ -46,27 +43,17 @@ namespace WebApplicationStudents.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddStudent(Models.Student student)
+        public ActionResult AddStudent(Student student)
         {
-            var validator = new StudentValidation();
-            var result = validator.Validate(student);
-            if (result.IsValid)
-            {
-                var newStudentId = _studentService.New(student);
-                return Ok($"api/student/{newStudentId}");
-            } else
-            {
-                foreach (ValidationFailure failer in result.Errors)
-                {
-                    ModelState.AddModelError(failer.PropertyName, failer.ErrorMessage);
-                }
-            }            
+            var newStudentId = _studentService.New(_mapper.Map<StudentBl>(student));
+            return Ok($"api/student/{newStudentId}");
         }
 
         [HttpPut("{id}")]
-        public ActionResult<string> UpdateStudent(int id, StudentBl student)
+        public ActionResult<string> UpdateStudent(int id, Student student)
         {
-            var studentId = _studentService.Edit(student with { Id = id });
+            var studentBl = _mapper.Map<StudentBl>(student);
+            var studentId = _studentService.Edit(studentBl with { Id = id });
             return Ok($"api/student/{studentId}");
         }
 

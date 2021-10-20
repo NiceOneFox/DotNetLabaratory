@@ -7,7 +7,7 @@ using DatabaseAccess.Models;
 using DatabaseAccess.RepositoryInterfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace DatabaseAccess
+namespace DatabaseAccess.Repository
 {
     public class LectureRepository : ILectureRepository
     {

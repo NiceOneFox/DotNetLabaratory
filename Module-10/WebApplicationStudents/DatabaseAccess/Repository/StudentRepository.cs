@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
-namespace DatabaseAccess
+namespace DatabaseAccess.Repository
 {
     public class StudentRepository : IStudentRepository
     {
