@@ -13,7 +13,7 @@ namespace BusinessLogic.Mappers
     {
         public MapperHomework()
         {
-            CreateMap<Homework, HomeworkDb>()
+            CreateMap<HomeworkBl, HomeworkDb>()
                 .ReverseMap();
         }
     }

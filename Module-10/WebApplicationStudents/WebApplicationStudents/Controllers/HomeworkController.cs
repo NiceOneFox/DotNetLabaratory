@@ -21,7 +21,7 @@ namespace WebApplicationStudents.Controllers
         }
 
         [HttpGet("id")]
-        public ActionResult<Homework> GetHomework(int id)
+        public ActionResult<HomeworkBl> GetHomework(int id)
         {
             return _homeworkService.Get(id) switch
             {
@@ -31,20 +31,20 @@ namespace WebApplicationStudents.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IReadOnlyCollection<Homework>> GetHomeworks()
+        public ActionResult<IReadOnlyCollection<HomeworkBl>> GetHomeworks()
         {
             return _homeworkService.GetAll().ToArray();
         }
 
         [HttpPost]
-        public ActionResult AddHomework(Homework homework)
+        public ActionResult AddHomework(HomeworkBl homework)
         {
             var newHomeworkId = _homeworkService.New(homework);
             return Ok($"api/homework/{newHomeworkId}");
         }
 
         [HttpPut("{id}")]
-        public ActionResult<string> UpdateHomework(int id, Homework homework)
+        public ActionResult<string> UpdateHomework(int id, HomeworkBl homework)
         {
             var homeworkId = _homeworkService.Edit(homework with { Id = id });
             return Ok($"api/homework/{homeworkId}");

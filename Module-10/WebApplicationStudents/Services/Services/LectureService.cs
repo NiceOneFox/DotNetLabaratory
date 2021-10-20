@@ -27,26 +27,26 @@ namespace BusinessLogic.Services
             _lectureRepository.Delete(id);
         }
 
-        public int Edit(Lecture lecture)
+        public int Edit(LectureBl lecture)
         {
             var lectureDb = _mapper.Map<LectureDb>(lecture);
             _lectureRepository.Edit(lectureDb);
             return lectureDb.Id;
         }
 
-        public Lecture? Get(int id)
+        public LectureBl? Get(int id)
         {
             var lectureDb = _lectureRepository.Get(id);
-            return _mapper.Map<Lecture?>(lectureDb);
+            return _mapper.Map<LectureBl?>(lectureDb);
         }
 
-        public IReadOnlyCollection<Lecture> GetAll()
+        public IReadOnlyCollection<LectureBl> GetAll()
         {
             var lectureInDb = _lectureRepository.GetAll();
-            return _mapper.Map<IReadOnlyCollection<Lecture>>(lectureInDb);
+            return _mapper.Map<IReadOnlyCollection<LectureBl>>(lectureInDb);
         }
 
-        public int New(Lecture lecture)
+        public int New(LectureBl lecture)
         {
             var lectureDb = _mapper.Map<LectureDb>(lecture);
             return _lectureRepository.New(lectureDb);

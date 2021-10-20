@@ -13,6 +13,7 @@ using BusinessLogic;
 using AutoMapper;
 using DatabaseAccess;
 using Microsoft.EntityFrameworkCore;
+using WebApplicationStudents.Validation;
 
 namespace WebApplicationStudents
 {
@@ -31,16 +32,16 @@ namespace WebApplicationStudents
 
             services.AddControllers();
 
-            services.AddFluentValidation(s =>
+            services.AddFluentValidation(fv =>
             {
-                s.RegisterValidatorsFromAssemblyContaining<Startup>();
-                s.DisableDataAnnotationsValidation = false;
+                fv.RegisterValidatorsFromAssemblyContaining<LectorValidation>();
+                          
             });
 
-            services.AddDbContext<CourseDbContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("CourseDb"));
-            });        
+            //services.AddDbContext<CourseDbContext>(options =>
+            //{
+            //    options.UseSqlServer(Configuration.GetConnectionString("CourseDb"));
+            //});        
 
             services.AddBusinessLogic(Configuration.GetConnectionString("CourseDb"));
 

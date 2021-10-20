@@ -6,6 +6,5 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic.Models
 {
-    public record Lector(int Id, string FirstName, string LastName, string Email, string Position);
+    public record LectureBl(int Id, DateTime Date, string Name);
 }
-

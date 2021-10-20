@@ -6,10 +6,10 @@ namespace BusinessLogic.ServiceInterfaces
 {
     public interface IStudentService
     {
-        Student? Get(int id);
-        IReadOnlyCollection<Student> GetAll();
-        int New(Student student);
-        int Edit(Student student);
+        StudentBl? Get(int id);
+        IReadOnlyCollection<StudentBl> GetAll();
+        int New(StudentBl student);
+        int Edit(StudentBl student);
         void Delete(int id);
     }
 }

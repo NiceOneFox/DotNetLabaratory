@@ -8,7 +8,7 @@ namespace BusinessLogic.Mappers
     {
         public MapperStudent()
         {
-            CreateMap<Student, StudentDb>().
+            CreateMap<StudentBl, StudentDb>().
                 ReverseMap();
         }
     }

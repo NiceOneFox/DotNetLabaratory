@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplicationStudents.Validation;
+using FluentValidation.Results;
 
 namespace WebApplicationStudents.Controllers
 {
@@ -24,7 +26,7 @@ namespace WebApplicationStudents.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Student> GetStudent(int id)
+        public ActionResult<StudentBl> GetStudent(int id)
         {
             return _studentService.Get(id) switch
             {
@@ -34,20 +36,32 @@ namespace WebApplicationStudents.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IReadOnlyCollection<Student>> GetStudents()
+        public ActionResult<IReadOnlyCollection<StudentBl>> GetStudents()
         {
             return _studentService.GetAll().ToArray();
         }
 
         [HttpPost]
-        public ActionResult AddStudent(Student student)
+        public ActionResult AddStudent(Models.Student student)
         {
-            var newStudentId = _studentService.New(student);
-            return Ok($"api/student/{newStudentId}");
+            var validator = new StudentValidator();
+            var result = validator.Validate(student);
+            if (result.IsValid)
+            {
+                var newStudentId = _studentService.New(student);
+                return Ok($"api/student/{newStudentId}");
+            } else
+            {
+                foreach (ValidationFailure failer in result.Errors)
+                {
+                    ModelState.AddModelError(failer.PropertyName, failer.ErrorMessage);
+                }
+            }
+             
         }
 
         [HttpPut("{id}")]
-        public ActionResult<string> UpdateStudent(int id, Student student)
+        public ActionResult<string> UpdateStudent(int id, StudentBl student)
         {
             var studentId = _studentService.Edit(student with { Id = id });
             return Ok($"api/student/{studentId}");

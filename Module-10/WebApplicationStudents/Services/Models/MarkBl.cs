@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic.Models
 {
-    public record Mark(int Id, int Assesment, string Text);
+    public record MarkBl(int Id, int Assesment, string Text);
 }

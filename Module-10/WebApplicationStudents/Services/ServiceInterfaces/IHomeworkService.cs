@@ -9,10 +9,10 @@ namespace BusinessLogic.ServiceInterfaces
 {
     public interface IHomeworkService
     {
-        Homework? Get(int id);
-        IReadOnlyCollection<Homework> GetAll();
-        int New(Homework homework);
-        int Edit(Homework homework);
+        HomeworkBl? Get(int id);
+        IReadOnlyCollection<HomeworkBl> GetAll();
+        int New(HomeworkBl homework);
+        int Edit(HomeworkBl homework);
         void Delete(int id);
     }
 }

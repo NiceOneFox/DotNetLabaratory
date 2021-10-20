@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic.Models
 {
-    public record Homework(int Id, string Text, DateTime DeadLine);
+    public record HomeworkBl(int Id, string Text, DateTime DeadLine);
 }

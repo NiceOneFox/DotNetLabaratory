@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using WebApplicationStudents.Validation;
 
 namespace WebApplicationStudents.Controllers
 {
@@ -26,7 +26,7 @@ namespace WebApplicationStudents.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Lector> GetLector(int id)
+        public ActionResult<LectorBl> GetLector(int id)
         {
             return _lectorService.Get(id) switch
             {
@@ -36,20 +36,20 @@ namespace WebApplicationStudents.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IReadOnlyCollection<Lector>> GetLectors()
+        public ActionResult<IReadOnlyCollection<LectorBl>> GetLectors()
         {
             return _lectorService.GetAll().ToArray();
         }
 
         [HttpPost]
-        public ActionResult AddLector(Lector lector)
+        public ActionResult AddLector(LectorBl lector)
         {
             var newLectorId = _lectorService.New(lector);
             return Ok($"api/lector/{newLectorId}");
         }
 
         [HttpPut("{id}")]
-        public ActionResult<string> UpdateLector(int id, Lector lector)
+        public ActionResult<string> UpdateLector(int id, LectorBl lector)
         {
             var lectorId = _lectorService.Edit(lector with { Id = id });
             return Ok($"api/lector/{lectorId}");

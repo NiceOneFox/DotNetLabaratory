@@ -9,10 +9,10 @@ namespace BusinessLogic.ServiceInterfaces
 {
     public interface ILectureService
     {
-        Lecture? Get(int id);
-        IReadOnlyCollection<Lecture> GetAll();
-        int New(Lecture lecture);
-        int Edit(Lecture lecture);
+        LectureBl? Get(int id);
+        IReadOnlyCollection<LectureBl> GetAll();
+        int New(LectureBl lecture);
+        int Edit(LectureBl lecture);
         void Delete(int id);
     }
 }

@@ -24,26 +24,26 @@ namespace BusinessLogic.Services
             _studentRepository.Delete(id);
         }
 
-        public int Edit(Student student)
+        public int Edit(StudentBl student)
         {
             var studentDb = _mapper.Map<StudentDb>(student);
             _studentRepository.Edit(studentDb);
             return studentDb.Id;
         }
 
-        public Student? Get(int id)
+        public StudentBl? Get(int id)
         {
             var studentDb = _studentRepository.Get(id);
-            return _mapper.Map<Student?>(studentDb);
+            return _mapper.Map<StudentBl?>(studentDb);
         }
 
-        public IReadOnlyCollection<Student> GetAll()
+        public IReadOnlyCollection<StudentBl> GetAll()
         {
             var studentDb = _studentRepository.GetAll();
-            return _mapper.Map<IReadOnlyCollection<Student>>(studentDb);
+            return _mapper.Map<IReadOnlyCollection<StudentBl>>(studentDb);
         }
 
-        public int New(Student student)
+        public int New(StudentBl student)
         {
             var studentDb = _mapper.Map<StudentDb>(student);
             return _studentRepository.New(studentDb);

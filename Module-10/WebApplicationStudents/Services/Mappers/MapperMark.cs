@@ -13,7 +13,7 @@ namespace BusinessLogic.Mappers
     {
         public MapperMark()
         {
-            CreateMap<Mark, MarkDb>()
+            CreateMap<MarkBl, MarkDb>()
                 .ReverseMap();
         }
     }

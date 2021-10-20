@@ -13,7 +13,7 @@ namespace BusinessLogic.Mappers
     {
         public MapperLecture()
         {
-            CreateMap<Lecture, LectureDb>()
+            CreateMap<LectureBl, LectureDb>()
                 .ReverseMap();
         }
     }
