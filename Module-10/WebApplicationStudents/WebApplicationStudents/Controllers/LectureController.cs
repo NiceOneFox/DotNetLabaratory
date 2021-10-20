@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplicationStudents.Models;
+using AutoMapper;
 
 namespace WebApplicationStudents.Controllers
 {
@@ -17,10 +19,13 @@ namespace WebApplicationStudents.Controllers
 
         private readonly ILogger _logger;
 
-        public LectureController(ILectureService lectureService, ILogger logger)
+        private readonly IMapper _mapper;
+
+        public LectureController(ILectureService lectureService, ILogger logger, IMapper mapper)
         {
             _lectureService = lectureService;
             _logger = logger;
+            _mapper = mapper;
         }
 
         [HttpGet("{id}")] 
@@ -40,16 +45,17 @@ namespace WebApplicationStudents.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddLecture(LectureBl lecture)
+        public ActionResult AddLecture(Lecture lecture)
         {
-            var newLectureId = _lectureService.New(lecture);
+            var newLectureId = _lectureService.New(_mapper.Map<LectureBl>(lecture));
             return Ok($"api/lecture/{newLectureId}");
         }
 
         [HttpPut("{id}")]
-        public ActionResult<string> UpdateLecture(int id, LectureBl lecture)
+        public ActionResult<string> UpdateLecture(int id, Lecture lecture)
         {
-            var lectureId = _lectureService.Edit(lecture with { Id = id });
+            var lectureBl = _mapper.Map<LectureBl>(lecture);
+            var lectureId = _lectureService.Edit(lectureBl with { Id = id });
             return Ok($"api/lecture/{lectureId}");
         }
 

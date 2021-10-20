@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplicationStudents.Validation;
+using AutoMapper;
+using WebApplicationStudents.Models;
 
 namespace WebApplicationStudents.Controllers
 {
@@ -19,10 +21,13 @@ namespace WebApplicationStudents.Controllers
 
         private readonly ILogger<LectorController> _logger;
 
-        public LectorController(ILectorService lectorService, ILogger<LectorController> logger)
+        private readonly IMapper _mapper;
+
+        public LectorController(ILectorService lectorService, ILogger<LectorController> logger, IMapper mapper)
         {
             _lectorService = lectorService;
             _logger = logger;
+            _mapper = mapper;
         }
 
         [HttpGet("{id}")]
@@ -42,16 +47,17 @@ namespace WebApplicationStudents.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddLector(LectorBl lector)
+        public ActionResult AddLector(Lector lector)
         {
-            var newLectorId = _lectorService.New(lector);
+            var newLectorId = _lectorService.New(_mapper.Map<LectorBl>(lector));
             return Ok($"api/lector/{newLectorId}");
         }
 
         [HttpPut("{id}")]
-        public ActionResult<string> UpdateLector(int id, LectorBl lector)
+        public ActionResult<string> UpdateLector(int id, Lector lector)
         {
-            var lectorId = _lectorService.Edit(lector with { Id = id });
+            var lectorBl = _mapper.Map<LectorBl>(lector);
+            var lectorId = _lectorService.Edit(lectorBl with { Id = id });
             return Ok($"api/lector/{lectorId}");
         }
 
