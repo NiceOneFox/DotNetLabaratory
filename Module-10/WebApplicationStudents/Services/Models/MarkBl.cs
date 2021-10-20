@@ -6,5 +6,10 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic.Models
 {
-    public record MarkBl(int Id, int Assesment, string Text);
+    public record MarkBl
+    {
+        public int Id { get; init; }
+        public int? Assesment { get; init; }
+        public string? Text { get; init; }
+    }
 }

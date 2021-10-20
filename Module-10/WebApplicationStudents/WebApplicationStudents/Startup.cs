@@ -41,7 +41,11 @@ namespace WebApplicationStudents
                 fv.RegisterValidatorsFromAssemblyContaining<MarkValidation>();
             });
 
-            services.AddMappers();
+           //services.AddMappers();
+
+            //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddBusinessLogic(Configuration.GetConnectionString("CourseDb"));
 

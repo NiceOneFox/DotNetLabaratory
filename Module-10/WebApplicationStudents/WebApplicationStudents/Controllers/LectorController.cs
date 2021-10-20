@@ -56,8 +56,8 @@ namespace WebApplicationStudents.Controllers
         [HttpPut("{id}")]
         public ActionResult<string> UpdateLector(int id, Lector lector)
         {
-            var lectorBl = _mapper.Map<LectorBl>(lector);
-            var lectorId = _lectorService.Edit(lectorBl with { Id = id });
+            var lectorBl = _mapper.Map<LectorBl>(lector) with { Id = id };
+            var lectorId = _lectorService.Edit(lectorBl);
             return Ok($"api/lector/{lectorId}");
         }
 
