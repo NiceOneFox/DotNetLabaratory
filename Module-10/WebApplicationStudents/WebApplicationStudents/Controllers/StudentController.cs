@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApplicationStudents.Validation;
 using FluentValidation.Results;
+using AutoMapper;
 
 namespace WebApplicationStudents.Controllers
 {
@@ -19,10 +20,13 @@ namespace WebApplicationStudents.Controllers
 
         private readonly ILogger<StudentController> _logger;
 
-        public StudentController(IStudentService studentService, ILogger<StudentController> logger)
+        private readonly IMapper _mapper;
+
+        public StudentController(IStudentService studentService, ILogger<StudentController> logger, IMapper mapper)
         {
             _studentService = studentService;
             _logger = logger;
+            _mapper = mapper;
         }
 
         [HttpGet("{id}")]
@@ -44,7 +48,7 @@ namespace WebApplicationStudents.Controllers
         [HttpPost]
         public ActionResult AddStudent(Models.Student student)
         {
-            var validator = new StudentValidator();
+            var validator = new StudentValidation();
             var result = validator.Validate(student);
             if (result.IsValid)
             {
@@ -56,8 +60,7 @@ namespace WebApplicationStudents.Controllers
                 {
                     ModelState.AddModelError(failer.PropertyName, failer.ErrorMessage);
                 }
-            }
-             
+            }            
         }
 
         [HttpPut("{id}")]

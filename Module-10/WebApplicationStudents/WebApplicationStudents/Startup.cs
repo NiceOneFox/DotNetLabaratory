@@ -35,9 +35,13 @@ namespace WebApplicationStudents
             services.AddFluentValidation(fv =>
             {
                 fv.RegisterValidatorsFromAssemblyContaining<LectorValidation>();
-                          
+                fv.RegisterValidatorsFromAssemblyContaining<StudentValidation>();
+                fv.RegisterValidatorsFromAssemblyContaining<LectureValidation>();
+                fv.RegisterValidatorsFromAssemblyContaining<HomeworkValidation>();
+                fv.RegisterValidatorsFromAssemblyContaining<MarkValidation>();
             });
 
+            services.AddMappers()
             //services.AddDbContext<CourseDbContext>(options =>
             //{
             //    options.UseSqlServer(Configuration.GetConnectionString("CourseDb"));
@@ -51,8 +55,6 @@ namespace WebApplicationStudents
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApplicationStudents", Version = "v1" });
             });
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -7,9 +7,9 @@ using WebApplicationStudents.Models;
 
 namespace WebApplicationStudents.Validation
 {
-    public class StudentValidator : AbstractValidator<Student>
+    public class StudentValidation : AbstractValidator<Student>
     {
-        public StudentValidator()
+        public StudentValidation()
         {
             RuleFor(x => x.FirstName).NotEmpty().Length(2, 30);
             RuleFor(x => x.LastName).NotEmpty().Length(2, 30);
