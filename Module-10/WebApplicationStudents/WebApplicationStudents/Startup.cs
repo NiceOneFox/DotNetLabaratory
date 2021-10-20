@@ -34,16 +34,8 @@ namespace WebApplicationStudents
 
             services.AddFluentValidation(fv =>
             {
-                fv.RegisterValidatorsFromAssemblyContaining<LectorValidation>();
-                fv.RegisterValidatorsFromAssemblyContaining<StudentValidation>();
-                fv.RegisterValidatorsFromAssemblyContaining<LectureValidation>();
-                fv.RegisterValidatorsFromAssemblyContaining<HomeworkValidation>();
-                fv.RegisterValidatorsFromAssemblyContaining<MarkValidation>();
+                fv.RegisterValidatorsFromAssemblyContaining<Startup>();
             });
-
-           //services.AddMappers();
-
-            //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddAutoMapper(typeof(Startup));
 
