@@ -14,6 +14,7 @@ using AutoMapper;
 using DatabaseAccess;
 using Microsoft.EntityFrameworkCore;
 using WebApplicationStudents.Validation;
+using WebApplicationStudents.Exceptions;
 
 namespace WebApplicationStudents
 {
@@ -58,6 +59,8 @@ namespace WebApplicationStudents
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApplicationStudents v1"));
             }
+
+            app.UseCustomExceptionHandler();
 
             app.UseHttpsRedirection();
 

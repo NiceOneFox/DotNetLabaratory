@@ -25,7 +25,7 @@ namespace DatabaseAccess.Repository
             _context.SaveChanges();
         }
 
-        public void Edit(LectorDb lector)
+        public int? Edit(LectorDb lector)
         {
             if (_context.Lectors.Find(lector.Id) is LectorDb lectorInDb)
             {
@@ -35,6 +35,11 @@ namespace DatabaseAccess.Repository
                 lectorInDb.Position = lector.Position;
                 _context.Entry(lectorInDb).State = EntityState.Modified;
                 _context.SaveChanges();
+                return lector.Id;
+            } 
+            else
+            {
+                return null;
             }
         }
 

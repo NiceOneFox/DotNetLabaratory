@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using WebApplicationStudents.Validation;
 using AutoMapper;
 using WebApplicationStudents.Models;
+using WebApplicationStudents.Exceptions;
 
 namespace WebApplicationStudents.Controllers
 {
@@ -33,6 +34,8 @@ namespace WebApplicationStudents.Controllers
         [HttpGet("{id}")]
         public ActionResult<LectorBl> GetLector(int id)
         {
+            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Lector was less than zero");
+
             return _lectorService.Get(id) switch
             {
                 null => NotFound(),
@@ -56,14 +59,21 @@ namespace WebApplicationStudents.Controllers
         [HttpPut("{id}")]
         public ActionResult<string> UpdateLector(int id, Lector lector)
         {
+            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Lector was less than zero");
+
             var lectorBl = _mapper.Map<LectorBl>(lector) with { Id = id };
-            var lectorId = _lectorService.Edit(lectorBl);
+            int? lectorId = _lectorService.Edit(lectorBl);
+
+            if (lectorId == null) throw new NotFoundInstanceException($"Lector with ${id} was not found to update");
+
             return Ok($"api/lector/{lectorId}");
         }
 
         [HttpDelete("{id}")]
         public ActionResult DeleteLector(int id)
         {
+            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Lector was less than zero");
+
             _lectorService.Delete(id);
             return Ok();
         }

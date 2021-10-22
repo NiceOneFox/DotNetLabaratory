@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using WebApplicationStudents.Models;
 using AutoMapper;
+using WebApplicationStudents.Exceptions;
 
 namespace WebApplicationStudents.Controllers
 {
@@ -29,9 +30,11 @@ namespace WebApplicationStudents.Controllers
         [HttpGet("{id}")]
         public ActionResult<StudentBl> GetStudent(int id)
         {
+            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Student was less than zero");
+
             return _studentService.Get(id) switch
             {
-                null => NotFound(),
+                null => throw new NotFoundInstanceException($"Instance Student with {id} was not found"),
                 var student => student // implicit cast to AcitonResult
             };
         }
@@ -52,6 +55,8 @@ namespace WebApplicationStudents.Controllers
         [HttpPut("{id}")]
         public ActionResult<string> UpdateStudent(int id, Student student)
         {
+            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Student was less than zero");
+
             var studentBl = _mapper.Map<StudentBl>(student);
             var studentId = _studentService.Edit(studentBl with { Id = id });
             return Ok($"api/student/{studentId}");
@@ -60,6 +65,8 @@ namespace WebApplicationStudents.Controllers
         [HttpDelete("{id}")]
         public ActionResult DeleteStudent(int id)
         {
+            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Student was less than zero");
+
             _studentService.Delete(id);
             return Ok();
         }
