@@ -61,6 +61,7 @@ namespace WebApplicationStudents.Controllers
 
             var lectureBl = _mapper.Map<LectureBl>(lecture);
             var lectureId = _lectureService.Edit(lectureBl with { Id = id });
+           
             return Ok($"api/lecture/{lectureId}");
         }
 

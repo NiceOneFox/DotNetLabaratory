@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
+using DatabaseAccess.Repository;
 
 namespace WebApplicationStudents.Exceptions
 {
@@ -43,6 +44,11 @@ namespace WebApplicationStudents.Exceptions
                 case IndexLessThanZeroException lessThanZeroException:
                     statusCode = HttpStatusCode.BadRequest;
                     result = JsonSerializer.Serialize(lessThanZeroException.Message);
+                    break;
+
+                case NotFoundInstanceException notFoundInstanceException:
+                    statusCode = HttpStatusCode.NotFound;
+                    result = JsonSerializer.Serialize(notFoundInstanceException.Message);
                     break;
 
                 default:

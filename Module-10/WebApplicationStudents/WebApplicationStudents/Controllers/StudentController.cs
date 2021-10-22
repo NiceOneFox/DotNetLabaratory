@@ -34,7 +34,7 @@ namespace WebApplicationStudents.Controllers
 
             return _studentService.Get(id) switch
             {
-                null => NotFound(),
+                null => throw new NotFoundInstanceException($"Instance Student with {id} was not found"),
                 var student => student // implicit cast to AcitonResult
             };
         }

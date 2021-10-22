@@ -62,7 +62,10 @@ namespace WebApplicationStudents.Controllers
             if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Lector was less than zero");
 
             var lectorBl = _mapper.Map<LectorBl>(lector) with { Id = id };
-            var lectorId = _lectorService.Edit(lectorBl);
+            int? lectorId = _lectorService.Edit(lectorBl);
+
+            if (lectorId == null) throw new NotFoundInstanceException($"Lector with ${id} was not found to update");
+
             return Ok($"api/lector/{lectorId}");
         }
 
