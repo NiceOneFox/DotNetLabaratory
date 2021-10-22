@@ -60,7 +60,7 @@ namespace WebApplicationStudents
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApplicationStudents v1"));
             }
 
-            //app.UseCustomExceptionHandler();
+            app.UseCustomExceptionHandler();
 
             app.UseHttpsRedirection();
 

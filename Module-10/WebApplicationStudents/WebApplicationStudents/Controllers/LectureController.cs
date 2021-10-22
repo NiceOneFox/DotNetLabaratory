@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApplicationStudents.Models;
 using AutoMapper;
+using WebApplicationStudents.Exceptions;
 
 namespace WebApplicationStudents.Controllers
 {
@@ -31,6 +32,8 @@ namespace WebApplicationStudents.Controllers
         [HttpGet("{id}")] 
         public ActionResult<LectureBl> GetLecture(int id)
         {
+            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Lecture was less than zero");                         
+            
             return _lectureService.Get(id) switch
             {
                 null => NotFound(),
@@ -54,6 +57,8 @@ namespace WebApplicationStudents.Controllers
         [HttpPut("{id}")]
         public ActionResult<string> UpdateLecture(int id, Lecture lecture)
         {
+            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Lecture was less than zero");
+
             var lectureBl = _mapper.Map<LectureBl>(lecture);
             var lectureId = _lectureService.Edit(lectureBl with { Id = id });
             return Ok($"api/lecture/{lectureId}");
@@ -62,6 +67,8 @@ namespace WebApplicationStudents.Controllers
         [HttpDelete("{id}")]
         public ActionResult DeleteLecture(int id)
         {
+            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Lecture was less than zero");
+
             _lectureService.Delete(id);
             return Ok();
         }
