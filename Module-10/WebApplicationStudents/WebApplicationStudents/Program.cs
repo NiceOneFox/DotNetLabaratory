@@ -5,7 +5,9 @@ using Microsoft.Extensions.Logging;
 using NLog.Web;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace WebApplicationStudents
@@ -14,9 +16,10 @@ namespace WebApplicationStudents
     {
         public static void Main(string[] args)
         {
-            var logger = NLogBuilder.ConfigureNLog(@"nlog.config").GetCurrentClassLogger();
-            logger.Debug("init main");
-            CreateHostBuilder(args).Build().Run();
+            var logger = NLog.Web.NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+           
+                logger.Debug("init main");
+                CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
