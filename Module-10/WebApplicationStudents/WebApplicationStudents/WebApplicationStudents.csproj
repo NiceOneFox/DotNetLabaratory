@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Services\BusinessLogic.csproj" />
+    <Content Update="nlog.config" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>
