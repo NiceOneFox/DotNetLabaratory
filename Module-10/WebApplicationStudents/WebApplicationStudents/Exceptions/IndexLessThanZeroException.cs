@@ -15,7 +15,7 @@ namespace WebApplicationStudents.Exceptions
         public IndexLessThanZeroException(string message)
             : base(message)
         {
-            // LOG
+
         }
 
         public IndexLessThanZeroException(string message, Exception innerException) : base(message, innerException)

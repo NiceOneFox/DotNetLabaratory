@@ -12,6 +12,7 @@ namespace WebApplicationStudents.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [FormatFilter]
     public class StudentController : ControllerBase
     {
         private readonly IStudentService _studentService;
@@ -27,7 +28,7 @@ namespace WebApplicationStudents.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}.{format?}")]
         public ActionResult<StudentBl> GetStudent(int id)
         {
             if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Student was less than zero");

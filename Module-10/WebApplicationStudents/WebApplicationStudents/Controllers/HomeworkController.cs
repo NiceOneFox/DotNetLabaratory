@@ -10,6 +10,8 @@ using WebApplicationStudents.Exceptions;
 
 namespace WebApplicationStudents.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class HomeworkController : ControllerBase
     {
         private readonly IHomeworkService _homeworkService;

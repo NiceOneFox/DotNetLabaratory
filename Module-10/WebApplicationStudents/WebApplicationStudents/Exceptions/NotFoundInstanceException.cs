@@ -14,7 +14,7 @@ namespace WebApplicationStudents.Exceptions
 
         public NotFoundInstanceException(string message) : base(message)
         {
-            // LOG
+
         }
 
         public NotFoundInstanceException(string message, Exception innerException) : base(message, innerException)

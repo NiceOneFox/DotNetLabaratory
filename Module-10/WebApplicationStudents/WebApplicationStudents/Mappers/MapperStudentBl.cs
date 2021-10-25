@@ -12,7 +12,7 @@ namespace WebApplicationStudents.Mappers
     {
         public MapperStudentBl()
         {
-            CreateMap<Homework, HomeworkBl>()
+            CreateMap<Student, StudentBl>()
                .ReverseMap();
         }
     }

@@ -17,9 +17,9 @@ namespace WebApplicationStudents
         public static void Main(string[] args)
         {
             var logger = NLog.Web.NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
-           
-                logger.Debug("init main");
-                CreateHostBuilder(args).Build().Run();
+
+            logger.Trace("CreateHostBuilder");
+            CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -31,7 +31,7 @@ namespace WebApplicationStudents
                .ConfigureLogging(logging =>
                {
                    logging.ClearProviders();
-                   logging.SetMinimumLevel(LogLevel.Trace);                   
+                   logging.SetMinimumLevel(LogLevel.Trace);
                })
                .UseNLog();  // NLog: Setup NLog for Dependency injection
     }

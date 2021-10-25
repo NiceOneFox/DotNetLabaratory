@@ -31,7 +31,7 @@ namespace WebApplicationStudents
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers().AddXmlSerializerFormatters();
 
             services.AddFluentValidation(fv =>
             {
@@ -58,6 +58,12 @@ namespace WebApplicationStudents
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApplicationStudents v1"));
+            }
+
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<CourseDbContext>();
+                context.Database.EnsureCreated();
             }
 
             app.UseCustomExceptionHandler();
