@@ -14,11 +14,11 @@ namespace WebApplicationStudents.Controllers
     [Route("[controller]")]
     public class AttendanceController : ControllerBase
     {
-        private readonly IServiceAttendance _serviceAttendance;
+        private readonly IAttendanceService _serviceAttendance;
 
         private readonly ILogger<AttendanceController> _logger;
 
-        public AttendanceController(IServiceAttendance serviceAttendance, ILogger<AttendanceController> logger)
+        public AttendanceController(IAttendanceService serviceAttendance, ILogger<AttendanceController> logger)
         {
             _serviceAttendance = serviceAttendance;
             _logger = logger;
@@ -28,6 +28,7 @@ namespace WebApplicationStudents.Controllers
         [HttpGet(".{format?}")]
         public IActionResult GetReport(string orderBy, string name) // student "Ivan"
         {
+            var result = _serviceAttendance.GetReportOfAttendance(orderBy, name);
             //var result = _serviceAttendance.GetByPartialName(fragment);
             //if (!result.Any())
             //{
@@ -39,8 +40,7 @@ namespace WebApplicationStudents.Controllers
             //{
             //    return NotFound(namelike);
             //}
-            return Ok();
-           
+            return result;           
         }
     }
 }
