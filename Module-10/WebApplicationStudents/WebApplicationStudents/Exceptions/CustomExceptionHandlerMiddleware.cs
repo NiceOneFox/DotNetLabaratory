@@ -8,6 +8,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using DatabaseAccess.Repository;
 using Microsoft.Extensions.Logging;
+using CourseExceptions;
 
 namespace WebApplicationStudents.Exceptions
 {

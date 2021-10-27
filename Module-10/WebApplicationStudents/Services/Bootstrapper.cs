@@ -14,10 +14,9 @@ namespace BusinessLogic
             return services
                 .AddScoped<IStudentService, StudentService>()
                 .AddScoped<ILectorService, LectorService>()
-                .AddScoped<ILectureService, LectureService>()    
+                .AddScoped<ILectureService, LectureService>()
                 .AddScoped<IHomeworkService, HomeworkService>()
                 .AddAutoMapper(typeof(MapperBl))
-                //.AddAutoMapper(typeof(MapperMark))
                 .AddDataAccess(connectionString);
         }
     }
