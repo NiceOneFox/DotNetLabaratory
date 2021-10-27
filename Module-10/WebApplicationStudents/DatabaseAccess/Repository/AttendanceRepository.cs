@@ -17,7 +17,8 @@ namespace DatabaseAccess.Repository
         }
         public IEnumerable<object> GetReport(string orderBy, string name)
         {
-            return _context.Students.Join()
+            //return _context.Students.Join()
+            return null;
         }
     }
 }

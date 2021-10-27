@@ -40,7 +40,7 @@ namespace WebApplicationStudents.Controllers
             //{
             //    return NotFound(namelike);
             //}
-            return result;           
+            return (IActionResult)result;           
         }
     }
 }

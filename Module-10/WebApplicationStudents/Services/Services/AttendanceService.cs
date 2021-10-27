@@ -9,7 +9,7 @@ namespace BusinessLogic.Services
 {
     public class AttendanceService : IAttendanceService
     {
-        private readonly IAttendanceRepository _attendanceRepository;
+        //private readonly IAttendanceRepository _attendanceRepository;
 
         public IEnumerable<object> GetReportOfAttendance(string orderby, string name)
         {
