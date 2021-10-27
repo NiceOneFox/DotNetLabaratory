@@ -11,6 +11,7 @@ using WebApplicationStudents.Validation;
 using AutoMapper;
 using WebApplicationStudents.Models;
 using WebApplicationStudents.Exceptions;
+using CourseExceptions;
 
 namespace WebApplicationStudents.Controllers
 {
@@ -62,9 +63,9 @@ namespace WebApplicationStudents.Controllers
             if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Lector was less than zero");
 
             var lectorBl = _mapper.Map<LectorBl>(lector) with { Id = id };
-            int? lectorId = _lectorService.Edit(lectorBl);
+            var lectorId = _lectorService.Edit(lectorBl);
 
-            if (lectorId == null) throw new NotFoundInstanceException($"Lector with ${id} was not found to update");
+            if (lectorId == null) 
 
             return Ok($"api/lector/{lectorId}");
         }

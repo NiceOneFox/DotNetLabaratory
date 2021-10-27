@@ -11,7 +11,7 @@ namespace WebApplicationStudents.Validation
     {
         public MarkValidation()
         {
-            RuleFor(x => x.Assesment).NotEmpty().NotNull().GreaterThan(-1).LessThan(5).
+            RuleFor(x => x.Assesment).NotEmpty().NotNull().InclusiveBetween(0, 5).
                 WithMessage("Assesment value must be between 0 and 5");
             RuleFor(x => x.Text).MaximumLength(255);
         }

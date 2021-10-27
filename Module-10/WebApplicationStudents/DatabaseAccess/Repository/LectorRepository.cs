@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using CourseExceptions;
 
 namespace DatabaseAccess.Repository
 {
@@ -39,7 +40,7 @@ namespace DatabaseAccess.Repository
             } 
             else
             {
-                return null;
+                throw new NotFoundInstanceException($"Lector with ${lector.Id} was not found to update");
             }
         }
 
