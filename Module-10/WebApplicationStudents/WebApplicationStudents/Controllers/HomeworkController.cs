@@ -7,6 +7,7 @@ using System.Linq;
 using WebApplicationStudents.Models;
 using AutoMapper;
 using WebApplicationStudents.Exceptions;
+using CourseExceptions;
 
 namespace WebApplicationStudents.Controllers
 {

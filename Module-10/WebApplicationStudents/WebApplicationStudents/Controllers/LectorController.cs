@@ -65,8 +65,6 @@ namespace WebApplicationStudents.Controllers
             var lectorBl = _mapper.Map<LectorBl>(lector) with { Id = id };
             var lectorId = _lectorService.Edit(lectorBl);
 
-            if (lectorId == null) 
-
             return Ok($"api/lector/{lectorId}");
         }
 

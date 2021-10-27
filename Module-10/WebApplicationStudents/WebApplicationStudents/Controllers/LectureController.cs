@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using WebApplicationStudents.Models;
 using AutoMapper;
 using WebApplicationStudents.Exceptions;
+using CourseExceptions;
 
 namespace WebApplicationStudents.Controllers
 {
