@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using WebApplicationStudents.Models;
 using AutoMapper;
 using WebApplicationStudents.Exceptions;
+using CourseExceptions;
 
 namespace WebApplicationStudents.Controllers
 {
@@ -22,7 +23,7 @@ namespace WebApplicationStudents.Controllers
 
         private readonly IMapper _mapper;
 
-        public LectureController(ILectureService lectureService, ILogger logger, IMapper mapper)
+        public LectureController(ILectureService lectureService, ILogger<LectureController> logger, IMapper mapper)
         {
             _lectureService = lectureService;
             _logger = logger;
@@ -32,8 +33,9 @@ namespace WebApplicationStudents.Controllers
         [HttpGet("{id}")] 
         public ActionResult<LectureBl> GetLecture(int id)
         {
+            _logger.LogTrace("GetLecture method");
             if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Lecture was less than zero");                         
-            
+           
             return _lectureService.Get(id) switch
             {
                 null => NotFound(),

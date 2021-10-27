@@ -4,8 +4,9 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
-namespace WebApplicationStudents.Exceptions
+namespace CourseExceptions
 {
+    [Serializable]
     public class IndexLessThanZeroException : Exception
     {
         public IndexLessThanZeroException()
@@ -15,7 +16,7 @@ namespace WebApplicationStudents.Exceptions
         public IndexLessThanZeroException(string message)
             : base(message)
         {
-            // LOG
+
         }
 
         public IndexLessThanZeroException(string message, Exception innerException) : base(message, innerException)

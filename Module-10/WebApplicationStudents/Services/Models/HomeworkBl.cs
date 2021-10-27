@@ -9,7 +9,7 @@ namespace BusinessLogic.Models
     public record HomeworkBl
     {
         public int Id { get; init; }
-        public string? Text { get; init; }
-        public DateTime? DateTime { get; init; }
+        public string Text { get; init; }
+        public DateTime DateTime { get; init; }
     }
 }

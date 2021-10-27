@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace WebApplicationStudents.Exceptions
+namespace CourseExceptions
 {
+    [Serializable]
     public class NotFoundInstanceException : Exception
     {
         public NotFoundInstanceException()
@@ -14,7 +16,7 @@ namespace WebApplicationStudents.Exceptions
 
         public NotFoundInstanceException(string message) : base(message)
         {
-            // LOG
+
         }
 
         public NotFoundInstanceException(string message, Exception innerException) : base(message, innerException)

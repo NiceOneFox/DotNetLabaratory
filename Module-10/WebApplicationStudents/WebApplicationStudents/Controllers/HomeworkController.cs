@@ -7,9 +7,12 @@ using System.Linq;
 using WebApplicationStudents.Models;
 using AutoMapper;
 using WebApplicationStudents.Exceptions;
+using CourseExceptions;
 
 namespace WebApplicationStudents.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class HomeworkController : ControllerBase
     {
         private readonly IHomeworkService _homeworkService;

@@ -7,6 +7,8 @@ using System.Text.Json;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using DatabaseAccess.Repository;
+using Microsoft.Extensions.Logging;
+using CourseExceptions;
 
 namespace WebApplicationStudents.Exceptions
 {
@@ -14,8 +16,14 @@ namespace WebApplicationStudents.Exceptions
     {
         private readonly RequestDelegate _next;
 
-        public CustomExceptionHandlerMiddleware(RequestDelegate next) =>
+        private readonly ILogger _logger;
+        public CustomExceptionHandlerMiddleware(RequestDelegate next, 
+            ILogger<CustomExceptionHandlerMiddleware> logger)
+        {
             _next = next;
+            _logger = logger;
+        }
+            
 
         public async Task Invoke(HttpContext context)
         {
@@ -39,16 +47,19 @@ namespace WebApplicationStudents.Exceptions
                 case ValidationException validationException:
                     statusCode = HttpStatusCode.BadRequest;
                     result = JsonSerializer.Serialize(validationException.Errors);
+                    _logger.LogDebug(validationException.Message);
                     break;
 
                 case IndexLessThanZeroException lessThanZeroException:
                     statusCode = HttpStatusCode.BadRequest;
                     result = JsonSerializer.Serialize(lessThanZeroException.Message);
+                    _logger.LogDebug(lessThanZeroException.Message);
                     break;
 
                 case NotFoundInstanceException notFoundInstanceException:
                     statusCode = HttpStatusCode.NotFound;
                     result = JsonSerializer.Serialize(notFoundInstanceException.Message);
+                    _logger.LogDebug(notFoundInstanceException.Message);
                     break;
 
                 default:
