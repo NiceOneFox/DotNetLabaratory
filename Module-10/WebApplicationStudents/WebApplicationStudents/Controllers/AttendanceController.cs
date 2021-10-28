@@ -29,18 +29,12 @@ namespace WebApplicationStudents.Controllers
         public IActionResult GetReport(string orderBy, string name) // student "Ivan"
         {
             var result = _serviceAttendance.GetReportOfAttendance(orderBy, name);
-            //var result = _serviceAttendance.GetByPartialName(fragment);
-            //if (!result.Any())
-            //{
-            //    return NotFound(fragment);
-            //}
-            //return Ok(result);
-            //var result = _authors.GetByNameSubstring(namelike);
-            //if (!result.Any())
-            //{
-            //    return NotFound(namelike);
-            //}
-            return (IActionResult)result;           
+
+            if (!result.Any() || result is null)
+            {
+                return NotFound();
+            }
+            return Ok(result);           
         }
     }
 }
