@@ -15,8 +15,8 @@ namespace DatabaseAccess.Models
         public DateTime DeadLine { get; set; }
 
 
-        public LectureDb Lecture { get; set; }
-
         public int LectureId { get; set; }
+
+        public LectureDb Lecture { get; set; }
     }
 }

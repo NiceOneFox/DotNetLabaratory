@@ -12,7 +12,7 @@ namespace DatabaseAccess.Models
 
         public LectureDb Lecture { get; set; }
 
-
+        
         public bool isAttend { get; set; }
     }
 }
