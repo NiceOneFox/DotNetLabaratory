@@ -19,6 +19,8 @@ namespace DatabaseAccess.Models
 
         public ICollection<LectureDb> Lectures { get; set; }
 
+        public ICollection<AttendanceDb> Attendances { get; set; }
+
         public ICollection<MarkDb> Marks { get; set; }
     }
 }

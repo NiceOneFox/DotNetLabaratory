@@ -26,8 +26,10 @@ namespace DatabaseAccess.Repository
             } 
             else if (orderBy == "student")
             {
+                
                 return _context.Students.Include(s => s.Lectures)
                .Where(s =>s.FirstName == name).ToList();
+               
             }
             return null;
         }
