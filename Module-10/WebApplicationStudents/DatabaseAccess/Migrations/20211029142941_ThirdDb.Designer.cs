@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatabaseAccess.Migrations
 {
     [DbContext(typeof(CourseDbContext))]
-    [Migration("20211016172343_FirstVersionDb")]
-    partial class FirstVersionDb
+    [Migration("20211029142941_ThirdDb")]
+    partial class ThirdDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,24 @@ namespace DatabaseAccess.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("DatabaseAccess.Models.AttendanceDb", b =>
+                {
+                    b.Property<int>("LectureId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("isAttend")
+                        .HasColumnType("bit");
+
+                    b.HasKey("LectureId", "StudentId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("AttendanceDb");
+                });
 
             modelBuilder.Entity("DatabaseAccess.Models.HomeworkDb", b =>
                 {
@@ -156,19 +174,23 @@ namespace DatabaseAccess.Migrations
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("LectureDbStudentDb", b =>
+            modelBuilder.Entity("DatabaseAccess.Models.AttendanceDb", b =>
                 {
-                    b.Property<int>("LecturesId")
-                        .HasColumnType("int");
+                    b.HasOne("DatabaseAccess.Models.LectureDb", "Lecture")
+                        .WithMany("Attendances")
+                        .HasForeignKey("LectureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<int>("StudentsId")
-                        .HasColumnType("int");
+                    b.HasOne("DatabaseAccess.Models.StudentDb", "Student")
+                        .WithMany("Attendances")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasKey("LecturesId", "StudentsId");
+                    b.Navigation("Lecture");
 
-                    b.HasIndex("StudentsId");
-
-                    b.ToTable("LectureDbStudentDb");
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("DatabaseAccess.Models.HomeworkDb", b =>
@@ -210,21 +232,6 @@ namespace DatabaseAccess.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("LectureDbStudentDb", b =>
-                {
-                    b.HasOne("DatabaseAccess.Models.LectureDb", null)
-                        .WithMany()
-                        .HasForeignKey("LecturesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DatabaseAccess.Models.StudentDb", null)
-                        .WithMany()
-                        .HasForeignKey("StudentsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("DatabaseAccess.Models.LectorDb", b =>
                 {
                     b.Navigation("Lectures");
@@ -232,12 +239,16 @@ namespace DatabaseAccess.Migrations
 
             modelBuilder.Entity("DatabaseAccess.Models.LectureDb", b =>
                 {
+                    b.Navigation("Attendances");
+
                     b.Navigation("Homework")
                         .IsRequired();
                 });
 
             modelBuilder.Entity("DatabaseAccess.Models.StudentDb", b =>
                 {
+                    b.Navigation("Attendances");
+
                     b.Navigation("Marks");
                 });
 #pragma warning restore 612, 618

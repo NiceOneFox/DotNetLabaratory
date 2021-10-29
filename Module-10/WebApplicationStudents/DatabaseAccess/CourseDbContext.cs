@@ -18,7 +18,6 @@ namespace DatabaseAccess
         public CourseDbContext(DbContextOptions<CourseDbContext> options)
             : base(options)
         {
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

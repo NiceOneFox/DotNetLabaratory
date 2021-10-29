@@ -63,8 +63,8 @@ namespace WebApplicationStudents
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetRequiredService<CourseDbContext>();
-                context.Database.EnsureDeleted();
-                context.Database.EnsureCreated();
+               // context.Database.EnsureDeleted();
+                //context.Database.EnsureCreated();
             }
 
             app.UseCustomExceptionHandler();
