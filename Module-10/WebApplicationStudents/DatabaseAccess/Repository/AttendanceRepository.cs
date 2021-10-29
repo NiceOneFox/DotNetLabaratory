@@ -19,19 +19,10 @@ namespace DatabaseAccess.Repository
         }
         public IEnumerable<object> GetReport(string orderBy, string name)
         {
-            if (orderBy == "lecture")
-            {
-                return _context.Lectures.Include(l => l.Students).
-                    Where(l => l.Name == name).ToList();
-            } 
-            else if (orderBy == "student")
-            {
-                
-                return _context.Students.Include(s => s.Lectures)
-               .Where(s =>s.FirstName == name).ToList();
-               
-            }
-            return null;
+            return _context.Students
+                .Include(s => s.Attendances)
+                .Where(s => (orderBy == "student") ? s.FirstName == name : true)
+                .Include(s => s.Lectures.Where(l => (orderBy == "lecture") ? l.Name == name : true));
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BusinessLogic.Models;
+using System.Text.Json;
 
 namespace WebApplicationStudents.Controllers
 {
@@ -34,7 +35,8 @@ namespace WebApplicationStudents.Controllers
             {
                 return NotFound();
             }
-            return Ok(result);           
+            var jsonResult = JsonSerializer.Serialize(result);
+            return Ok(jsonResult);           
         }
     }
 }
