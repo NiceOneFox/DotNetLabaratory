@@ -1,9 +1,11 @@
-﻿using DatabaseAccess.RepositoryInterfaces;
+﻿using DatabaseAccess.Models;
+using DatabaseAccess.RepositoryInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace DatabaseAccess.Repository
 {
@@ -17,8 +19,10 @@ namespace DatabaseAccess.Repository
         }
         public IEnumerable<object> GetReport(string orderBy, string name)
         {
-            //return _context.Students.Join()
-            return null;
+            return _context.Students
+                .Include(s => s.Attendances)
+                .Where(s => (orderBy == "student") ? s.FirstName == name : true)
+                .Include(s => s.Lectures.Where(l => (orderBy == "lecture") ? l.Name == name : true));
         }
     }
 }

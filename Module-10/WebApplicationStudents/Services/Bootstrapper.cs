@@ -4,6 +4,7 @@ using BusinessLogic.Mappers;
 using DatabaseAccess;
 using BusinessLogic.ServiceInterfaces;
 using BusinessLogic.Services;
+using BusinessLogic.EmailSender;
 
 namespace BusinessLogic
 {
@@ -14,10 +15,13 @@ namespace BusinessLogic
             return services
                 .AddScoped<IStudentService, StudentService>()
                 .AddScoped<ILectorService, LectorService>()
-                .AddScoped<ILectureService, LectureService>()
+                .AddScoped<ILectureService, LectureService>()           
                 .AddScoped<IHomeworkService, HomeworkService>()
+                .AddScoped<IAttendanceService, AttendanceService>()                
+                .AddScoped<IEmailService, EmailService>()
                 .AddAutoMapper(typeof(MapperBl))
                 .AddDataAccess(connectionString);
+         
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BusinessLogic.Models;
+using System.Text.Json;
 
 namespace WebApplicationStudents.Controllers
 {
@@ -29,18 +30,13 @@ namespace WebApplicationStudents.Controllers
         public IActionResult GetReport(string orderBy, string name) // student "Ivan"
         {
             var result = _serviceAttendance.GetReportOfAttendance(orderBy, name);
-            //var result = _serviceAttendance.GetByPartialName(fragment);
-            //if (!result.Any())
-            //{
-            //    return NotFound(fragment);
-            //}
-            //return Ok(result);
-            //var result = _authors.GetByNameSubstring(namelike);
-            //if (!result.Any())
-            //{
-            //    return NotFound(namelike);
-            //}
-            return (IActionResult)result;           
+
+            if (!result.Any() || result is null)
+            {
+                return NotFound();
+            }
+            var jsonResult = JsonSerializer.Serialize(result);
+            return Ok(jsonResult);           
         }
     }
 }

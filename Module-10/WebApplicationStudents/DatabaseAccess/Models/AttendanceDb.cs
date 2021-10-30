@@ -6,17 +6,13 @@ using System.Threading.Tasks;
 
 namespace DatabaseAccess.Models
 {
-    public record HomeworkDb
+    public record AttendanceDb
     {
-        public int Id { get; set; }
-
-        public string Text { get; set; }
-
-        public DateTime DeadLine { get; set; }
-
-
-        public int LectureId { get; set; }
+        public StudentDb Student { get; set; }
 
         public LectureDb Lecture { get; set; }
+
+        
+        public bool isAttend { get; set; }
     }
 }

@@ -1,19 +1,15 @@
+using BusinessLogic;
+using BusinessLogic.EmailSender;
+using DatabaseAccess;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BusinessLogic;
-using AutoMapper;
-using DatabaseAccess;
-using Microsoft.EntityFrameworkCore;
-using WebApplicationStudents.Validation;
+using System.Text.Json.Serialization;
 using WebApplicationStudents.Exceptions;
 
 namespace WebApplicationStudents
@@ -37,6 +33,8 @@ namespace WebApplicationStudents
             {
                 fv.RegisterValidatorsFromAssemblyContaining<Startup>();
             });
+
+            services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
 
             services.AddAutoMapper(typeof(Startup));
 
@@ -63,6 +61,7 @@ namespace WebApplicationStudents
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetRequiredService<CourseDbContext>();
+                context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
             }
 

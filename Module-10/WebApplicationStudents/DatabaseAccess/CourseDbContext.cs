@@ -1,5 +1,9 @@
 ﻿using DatabaseAccess.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using DatabaseAccess.Configuration;
 
 namespace DatabaseAccess
 {
@@ -10,11 +14,32 @@ namespace DatabaseAccess
         public DbSet<LectorDb> Lectors { get; set; }
         public DbSet<HomeworkDb> Homeworks { get; set; }
         public DbSet<MarkDb> Marks { get; set; }
+        public DbSet<AttendanceDb> Attendances { get; set; }
 
 
         public CourseDbContext(DbContextOptions<CourseDbContext> options)
-            :base(options)
+            : base(options)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<StudentDb>()
+                .HasMany(s => s.Lectures)
+                .WithMany(l => l.Students)
+                .UsingEntity<AttendanceDb>(
+                    j => j.HasOne(a => a.Lecture).WithMany(l => l.Attendances),
+                    j => j.HasOne(a => a.Student).WithMany(s => s.Attendances)
+                    );
+
+            modelBuilder.Entity<LectureDb>()
+                .HasOne(l => l.Homework)
+                .WithOne(l => l.Lecture)
+                .HasForeignKey<HomeworkDb>(l => l.LectureId);
+
+
+
+            modelBuilder.InitializeWithValues();
 
         }
     }

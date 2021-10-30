@@ -8,6 +8,6 @@ namespace BusinessLogic.ServiceInterfaces
 {
     public interface IAttendanceService
     {
-        public IEnumerable<object> GetReportOfAttendance(string orderby, string name);
+        IReadOnlyCollection<object> GetReportOfAttendance(string orderby, string name);
     }
 }
