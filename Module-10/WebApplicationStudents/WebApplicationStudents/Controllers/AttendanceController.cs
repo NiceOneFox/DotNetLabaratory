@@ -35,8 +35,8 @@ namespace WebApplicationStudents.Controllers
             {
                 return NotFound();
             }
-            var jsonResult = JsonSerializer.Serialize(result);
-            return Ok(jsonResult);           
+
+            return Ok(result);           
         }
     }
 }
