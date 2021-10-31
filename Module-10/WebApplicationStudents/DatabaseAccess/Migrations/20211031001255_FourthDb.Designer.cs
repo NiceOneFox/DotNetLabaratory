@@ -4,14 +4,16 @@ using DatabaseAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DatabaseAccess.Migrations
 {
     [DbContext(typeof(CourseDbContext))]
-    partial class CourseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211031001255_FourthDb")]
+    partial class FourthDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -180,9 +182,6 @@ namespace DatabaseAccess.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("HomeworkId")
-                        .HasColumnType("int");
-
                     b.Property<int>("LectorId")
                         .HasColumnType("int");
 
@@ -201,7 +200,6 @@ namespace DatabaseAccess.Migrations
                         {
                             Id = 1,
                             Date = new DateTime(2021, 11, 3, 16, 0, 0, 0, DateTimeKind.Unspecified),
-                            HomeworkId = 1,
                             LectorId = 2,
                             Name = "Docker"
                         },
@@ -209,7 +207,6 @@ namespace DatabaseAccess.Migrations
                         {
                             Id = 2,
                             Date = new DateTime(2021, 11, 14, 18, 0, 0, 0, DateTimeKind.Unspecified),
-                            HomeworkId = 2,
                             LectorId = 3,
                             Name = "SOLID"
                         });
@@ -222,7 +219,7 @@ namespace DatabaseAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("LectureId")
+                    b.Property<int?>("LectureId")
                         .HasColumnType("int");
 
                     b.Property<int>("Mark")
@@ -397,9 +394,7 @@ namespace DatabaseAccess.Migrations
                 {
                     b.HasOne("DatabaseAccess.Models.LectureDb", "Lecture")
                         .WithMany()
-                        .HasForeignKey("LectureId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LectureId");
 
                     b.HasOne("DatabaseAccess.Models.StudentDb", "Student")
                         .WithMany("Marks")

@@ -19,6 +19,10 @@ namespace DatabaseAccess.Models
 
         public LectorDb Lector { get; set; }
 
+        public int HomeworkId { get; set; }
+
+        public int LectorId { get; set; }
+
         public ICollection<StudentDb> Students { get; set; }
 
         public ICollection<AttendanceDb> Attendances { get; set; }

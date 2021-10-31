@@ -28,8 +28,8 @@ namespace DatabaseAccess
                 .HasMany(s => s.Lectures)
                 .WithMany(l => l.Students)
                 .UsingEntity<AttendanceDb>(
-                    j => j.HasOne(a => a.Lecture).WithMany(l => l.Attendances),
-                    j => j.HasOne(a => a.Student).WithMany(s => s.Attendances)
+                    j => j.HasOne(a => a.Lecture).WithMany(l => l.Attendances).HasForeignKey(l => l.LectureId),
+                    j => j.HasOne(a => a.Student).WithMany(s => s.Attendances).HasForeignKey(l => l.StudentId)
                     );
 
             modelBuilder.Entity<LectureDb>()

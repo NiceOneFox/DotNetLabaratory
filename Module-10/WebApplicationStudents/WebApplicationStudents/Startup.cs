@@ -29,6 +29,7 @@ namespace WebApplicationStudents
 
             services.AddControllers().AddXmlSerializerFormatters();
 
+
             services.AddFluentValidation(fv =>
             {
                 fv.RegisterValidatorsFromAssemblyContaining<Startup>();
@@ -63,7 +64,7 @@ namespace WebApplicationStudents
                 var context = serviceScope.ServiceProvider.GetRequiredService<CourseDbContext>();
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
-            }
+            }           
 
             app.UseCustomExceptionHandler();
 

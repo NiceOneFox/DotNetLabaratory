@@ -16,6 +16,8 @@ namespace WebApplicationStudents.Mappers
               .ReverseMap();
             CreateMap<Student, StudentBl>()
                .ReverseMap();
+            CreateMap<Attendance, AttendanceBl>()
+                .ReverseMap();
         }
     }
 }
