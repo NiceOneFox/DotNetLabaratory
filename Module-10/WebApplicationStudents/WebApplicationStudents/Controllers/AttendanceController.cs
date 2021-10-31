@@ -44,5 +44,12 @@ namespace WebApplicationStudents.Controllers
             return Ok(result);
         }
 
+        [HttpPut]
+        public IActionResult UpdateAttendance([FromBody]Attendance attendance)
+        {
+            _serviceAttendance.Edit(_mapper.Map<AttendanceBl>(attendance));
+            return Ok();
+        }
+
     }
 }

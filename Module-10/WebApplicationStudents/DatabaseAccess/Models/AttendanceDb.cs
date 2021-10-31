@@ -18,6 +18,6 @@ namespace DatabaseAccess.Models
         public int LectureId { get; set; }
 
 
-        public bool isAttend { get; set; }
+        public bool IsAttend { get; set; }
     }
 }

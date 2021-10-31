@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using CourseExceptions;
 
 namespace DatabaseAccess.Repository
 {
@@ -31,8 +32,8 @@ namespace DatabaseAccess.Repository
                         Email = s.Email,
                         LectureName = l.Name,
                         LectureDate = l.Date,
-                        Attendance = a.isAttend
-                        
+                        Attendance = a.IsAttend
+
                     })
                     .Where(s => (orderBy == "student") ? (s.FirstName == name) : true)
                     .Where(s => (orderBy == "lecture") ? (s.LectureName == name) : true).ToList();
@@ -41,12 +42,23 @@ namespace DatabaseAccess.Repository
 
         public void Edit(AttendanceDb attendance)
         {
-            throw new NotImplementedException();
+            if (_context.Attendances.Find(attendance.StudentId, attendance.LectureId)
+                is AttendanceDb attendanceInDb)
+            {
+                attendanceInDb.IsAttend = attendance.IsAttend;
+                _context.Entry(attendanceInDb).State = EntityState.Modified;
+                _context.SaveChanges();
+            }
+            else
+            {
+                throw new NotFoundInstanceException();
+            }
         }
 
         public void New(AttendanceDb attendance)
         {
-            throw new NotImplementedException();
+             _context.Attendances.Add(attendance);
+            _context.SaveChanges();
         }
     }
 }

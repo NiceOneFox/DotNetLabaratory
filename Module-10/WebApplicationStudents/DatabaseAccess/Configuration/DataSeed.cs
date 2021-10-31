@@ -52,12 +52,12 @@ namespace DatabaseAccess.Configuration
             modelBuilder.Entity<AttendanceDb>().HasData(
                  new []
                  {
-                    new { StudentId = 1, LectureId = 1, isAttend = true},
-                    new { StudentId = 1, LectureId = 2, isAttend = true},
-                    new { StudentId = 2, LectureId = 1, isAttend = true},
-                    new { StudentId = 2, LectureId = 2, isAttend = false},
-                    new { StudentId = 3, LectureId = 1, isAttend = true},
-                    new { StudentId = 3, LectureId = 2, isAttend = false},
+                    new { StudentId = 1, LectureId = 1, IsAttend = true},
+                    new { StudentId = 1, LectureId = 2, IsAttend = true},
+                    new { StudentId = 2, LectureId = 1, IsAttend = true},
+                    new { StudentId = 2, LectureId = 2, IsAttend = false},
+                    new { StudentId = 3, LectureId = 1, IsAttend = true},
+                    new { StudentId = 3, LectureId = 2, IsAttend = false},
                  });
 
             modelBuilder.Entity<MarkDb>().HasData(

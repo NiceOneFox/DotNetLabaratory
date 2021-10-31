@@ -5,5 +5,5 @@ using System.Threading.Tasks;
 
 namespace WebApplicationStudents.Models
 {
-    public record Attendance(int StudentId, int LectureId, bool isAttend);
+    public record Attendance(int StudentId, int LectureId, bool IsAttend);
 }
