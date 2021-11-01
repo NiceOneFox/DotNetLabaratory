@@ -12,5 +12,7 @@ namespace BusinessLogic.ServiceInterfaces
         IReadOnlyCollection<object> GetReportOfAttendance(string orderby, string name);
         void New(AttendanceBl attendance);
         void Edit(AttendanceBl attendance);
+
+        void CheckSkippedLectures(AttendanceBl attendance);
     }
 }

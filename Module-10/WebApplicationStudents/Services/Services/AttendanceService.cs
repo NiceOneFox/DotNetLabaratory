@@ -42,18 +42,26 @@ namespace BusinessLogic.Services
         public void Edit(AttendanceBl attendance)
         {
             _attendanceRepository.Edit(_mapper.Map<AttendanceDb>(attendance));
+            CheckSkippedLectures(attendance);
         }
 
         public void New(AttendanceBl attendance)
         {
             _attendanceRepository.New(_mapper.Map<AttendanceDb>(attendance));
+            CheckSkippedLectures(attendance);
+        }
 
+        public void CheckSkippedLectures(AttendanceBl attendance)
+        {
             if (_attendanceRepository.SkippedLectures(attendance.StudentId) > allowedSkipLections)
             {
                 var studentDb = _studentRepository.Get(attendance.StudentId);
-                if (studentDb is null) throw new NotFoundInstanceException($"Instance {nameof(studentDb)} with Id {attendance.StudentId} was not found in context");
+                if (studentDb is null)
+                {
+                    throw new NotFoundInstanceException($"Instance {nameof(studentDb)} with Id {attendance.StudentId} was not found in context");
+                }
                 _emailService.SendEmailAsync(studentDb.Email, "Attendance of Lectures", "You have missed more than 3 lectures of Course.");
-            }        
+            }
         }
     }
 }
