@@ -17,7 +17,8 @@ namespace BusinessLogic
                 .AddScoped<ILectorService, LectorService>()
                 .AddScoped<ILectureService, LectureService>()           
                 .AddScoped<IHomeworkService, HomeworkService>()
-                .AddScoped<IAttendanceService, AttendanceService>()                
+                .AddScoped<IAttendanceService, AttendanceService>()
+                .AddScoped<IMarkService, MarkService>()
                 .AddScoped<IEmailService, EmailService>()
                 .AddAutoMapper(typeof(MapperBl))
                 .AddDataAccess(connectionString);
