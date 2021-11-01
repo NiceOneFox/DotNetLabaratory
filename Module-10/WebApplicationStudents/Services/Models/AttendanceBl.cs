@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic.Models
 {
-    public record AttendanceBl(int StudentId, int LectureId, bool isAttend);
+    public record AttendanceBl(int StudentId, int LectureId, bool IsAttend);
 }

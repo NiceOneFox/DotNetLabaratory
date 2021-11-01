@@ -14,6 +14,8 @@ namespace WebApplicationStudents.Validation
             RuleFor(x => x.Assesment).NotEmpty().NotNull().InclusiveBetween(0, 5).
                 WithMessage("Assesment value must be between 0 and 5");
             RuleFor(x => x.Text).MaximumLength(255);
+            RuleFor(x => x.StudentId).NotEmpty().NotNull().GreaterThan(0);
+            RuleFor(x => x.LectureId).NotEmpty().NotNull().GreaterThan(0);
         }
     }
 }
