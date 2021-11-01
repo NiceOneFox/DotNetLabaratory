@@ -60,5 +60,11 @@ namespace DatabaseAccess.Repository
              _context.Attendances.Add(attendance);
             _context.SaveChanges();
         }
+
+        public int? SkippedLectures(int studentId)
+        {
+           return _context.Attendances.Where(a => a.StudentId == studentId && a.IsAttend == false).Count();
+        }
+
     }
 }

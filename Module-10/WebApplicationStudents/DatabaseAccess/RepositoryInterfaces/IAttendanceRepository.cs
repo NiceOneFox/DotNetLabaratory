@@ -12,5 +12,7 @@ namespace DatabaseAccess.RepositoryInterfaces
         IEnumerable<object> GetReport(string orderBy, string name);
         void Edit(AttendanceDb attendance);
         void New(AttendanceDb attendance);
+
+        int? SkippedLectures(int studentId);
     }
 }
