@@ -3,6 +3,7 @@ using DatabaseAccess.Repository;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using CourseExceptions;
 
 namespace DatabaseAccess.Repository
 {
@@ -33,6 +34,10 @@ namespace DatabaseAccess.Repository
                 studentInDB.Score = student.Score;
                 _context.Entry(studentInDB).State = EntityState.Modified;
                 _context.SaveChanges();
+            }
+            else
+            {
+                throw new NotFoundInstanceException($"Instance {nameof(student)} with {student.Id} was not found in context");
             }
         }
 

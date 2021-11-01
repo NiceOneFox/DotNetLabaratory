@@ -5,5 +5,5 @@ using System.Threading.Tasks;
 
 namespace WebApplicationStudents.Models
 {
-    public record Mark(int Assesment, string Text);
+    public record Mark(int Assesment, string Text, int StudentId, int LectureId);
 }

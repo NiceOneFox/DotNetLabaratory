@@ -10,6 +10,9 @@ namespace BusinessLogic.Models
     {
         public int Id { get; init; }
         public int Assesment { get; init; }
-        public string Text { get; init; }
+        public string? Text { get; init; }
+
+        public int StudentId { get; init; }
+        public int LectureId { get; init; }
     }
 }
