@@ -13,6 +13,7 @@ namespace WebApplicationStudents.Validation
         {
             RuleFor(x => x.DeadLine).NotEmpty().NotNull().GreaterThan(DateTime.Now).WithMessage("Deadline date must be in future");
             RuleFor(x => x.Text).NotEmpty().NotNull().MaximumLength(255);
+            RuleFor(x => x.LectureId).NotEmpty().NotNull().GreaterThan(0);
         }
     }
 }

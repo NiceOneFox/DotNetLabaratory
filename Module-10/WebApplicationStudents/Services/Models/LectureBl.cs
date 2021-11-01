@@ -11,5 +11,8 @@ namespace BusinessLogic.Models
         public int Id { get; init; }
         public DateTime Date { get; init; }
         public string Name { get; init; }
+
+        public int HomeworkId { get; init; }
+        public int LectorId { get; init; }
     }
 }
