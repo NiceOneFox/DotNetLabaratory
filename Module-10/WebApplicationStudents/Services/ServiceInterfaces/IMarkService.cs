@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessLogic.SMSSender;
 
 namespace BusinessLogic.ServiceInterfaces
 {
@@ -15,6 +16,6 @@ namespace BusinessLogic.ServiceInterfaces
         int Edit(MarkBl mark);
         void Delete(int id);
 
-        void SendSMSMessage(string telephoneNumber, string message);
+        void SendSMSMessage(SMSMessage SMS);
     }
 }

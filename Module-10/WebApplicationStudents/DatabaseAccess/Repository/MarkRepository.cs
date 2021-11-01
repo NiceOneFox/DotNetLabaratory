@@ -19,6 +19,11 @@ namespace DatabaseAccess.Repository
             _context = context;
         }
 
+        public double CountAverageMark(int studentId)
+        {
+            return _context.Marks.Where(m => m.StudentId == studentId).Average(m => m.Mark);
+        }
+
         public void Delete(int id)
         {
             var markToDelete = _context.Marks.Find(id);

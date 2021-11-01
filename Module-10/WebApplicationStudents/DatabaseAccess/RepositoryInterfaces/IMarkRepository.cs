@@ -14,5 +14,7 @@ namespace DatabaseAccess.RepositoryInterfaces
         MarkDb? Get(int id);
         IEnumerable<MarkDb> GetAll();
         int New(MarkDb mark);
+
+        double CountAverageMark(int studentId);
     }
 }
