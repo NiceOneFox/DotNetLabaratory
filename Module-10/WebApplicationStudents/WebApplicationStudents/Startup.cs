@@ -1,5 +1,6 @@
 using BusinessLogic;
 using BusinessLogic.EmailSender;
+using BusinessLogic.SMSSender;
 using DatabaseAccess;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.Text.Json.Serialization;
+using Twilio.Clients;
 using WebApplicationStudents.Exceptions;
 
 namespace WebApplicationStudents
@@ -36,6 +38,8 @@ namespace WebApplicationStudents
             });
 
             services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
+
+            services.AddHttpClient<ITwilioRestClient, SMSService>();
 
             services.AddAutoMapper(typeof(Startup));
 
