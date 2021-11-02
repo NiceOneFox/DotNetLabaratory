@@ -54,6 +54,10 @@ namespace BusinessLogic.Services
                 {
                     throw new NotFoundInstanceException($"Instance {nameof(studentDb)} with Id {attendance.StudentId} was not found in context");
                 }
+                if (lectorEmail is null)
+                {
+                    throw new NotFoundInstanceException($"Instance of lecture with {attendance.LectureId} was not found");
+                }
                 _emailService.SendEmailAsync(studentDb.Email, "Attendance of Lectures", "You have missed more than 3 lectures of Course.");
                 _emailService.SendEmailAsync(lectorEmail, "Attendance of Lectures.", 
                     $"Your Student: {studentDb.FirstName + " " + studentDb.LastName} has missed more than 3 lectures of Course.");
