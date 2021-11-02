@@ -29,7 +29,8 @@ namespace DatabaseAccess.Repository
             if (_context.Homeworks.Find(homework.Id) is HomeworkDb homeworkInDb)
             {
                 homeworkInDb.DeadLine = homework.DeadLine;
-                homework.Text = homework.Text;
+                homeworkInDb.Text = homework.Text;
+                homeworkInDb.LectureId = homework.LectureId;
                 _context.Entry(homeworkInDb).State = EntityState.Modified;
                 _context.SaveChanges();
             }

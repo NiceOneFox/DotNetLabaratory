@@ -30,6 +30,8 @@ namespace DatabaseAccess.Repository
             {
                 lectureInDb.Name = lecture.Name;
                 lectureInDb.Date = lecture.Date;
+                lectureInDb.SeriesId = lecture.SeriesId;
+                lectureInDb.HomeworkId = lecture.HomeworkId;
                 _context.Entry(lectureInDb).State = EntityState.Modified;
                 _context.SaveChanges();
             }
