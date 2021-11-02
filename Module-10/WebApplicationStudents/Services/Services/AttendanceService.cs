@@ -26,6 +26,13 @@ namespace BusinessLogic.Services
 
         private const int allowedSkipLections = 3;
 
+        public AttendanceService(IAttendanceRepository attendanceRepository, IStudentRepository studentRepository, IMapper mapper, IEmailService emailService)
+        {
+            _attendanceRepository = attendanceRepository;
+            _studentRepository = studentRepository;
+            _mapper = mapper;
+            _emailService = emailService;
+        }
 
         public IReadOnlyCollection<object> GetReportOfAttendance(string orderby, string name)
         {
