@@ -25,14 +25,7 @@ namespace BusinessLogic.Services
         private readonly IEmailService _emailService;
 
         private const int allowedSkipLections = 3;
-        public AttendanceService(IAttendanceRepository attendanceRepository, IStudentRepository studentRepository,
-            IMapper mapper, IEmailService emailService)
-        {
-            _attendanceRepository = attendanceRepository;
-            _studentRepository = studentRepository;
-            _mapper = mapper;
-            _emailService = emailService;
-        }
+
 
         public IReadOnlyCollection<object> GetReportOfAttendance(string orderby, string name)
         {
@@ -56,11 +49,14 @@ namespace BusinessLogic.Services
             if (_attendanceRepository.SkippedLectures(attendance.StudentId) > allowedSkipLections)
             {
                 var studentDb = _studentRepository.Get(attendance.StudentId);
+                var lectorEmail = _attendanceRepository.GetEmailLector(attendance.LectureId);
                 if (studentDb is null)
                 {
                     throw new NotFoundInstanceException($"Instance {nameof(studentDb)} with Id {attendance.StudentId} was not found in context");
                 }
                 _emailService.SendEmailAsync(studentDb.Email, "Attendance of Lectures", "You have missed more than 3 lectures of Course.");
+                _emailService.SendEmailAsync(lectorEmail, "Attendance of Lectures.", 
+                    $"Your Student: {studentDb.FirstName + " " + studentDb.LastName} has missed more than 3 lectures of Course.");
             }
         }
     }

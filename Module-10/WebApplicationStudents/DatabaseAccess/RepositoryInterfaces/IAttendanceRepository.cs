@@ -14,5 +14,6 @@ namespace DatabaseAccess.RepositoryInterfaces
         void New(AttendanceDb attendance);
 
         int? SkippedLectures(int studentId);
+        string? GetEmailLector(int lectureId);
     }
 }

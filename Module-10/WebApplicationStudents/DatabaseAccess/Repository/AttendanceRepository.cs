@@ -66,5 +66,14 @@ namespace DatabaseAccess.Repository
            return _context.Attendances.Where(a => a.StudentId == studentId && a.IsAttend == false).Count();
         }
 
+        public string? GetEmailLector(int lectureId)
+        {
+            return (from l in _context.Lectures
+                          join s in _context.Series on l.SeriesId equals s.Id
+                          join lector in _context.Lectors on s.LectorId equals lector.Id
+                          where l.Id == lectureId
+                          select new { lector.Email }
+                          ).FirstOrDefault().ToString();                         
+        }
     }
 }

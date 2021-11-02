@@ -15,6 +15,7 @@ namespace DatabaseAccess
         public DbSet<HomeworkDb> Homeworks { get; set; }
         public DbSet<MarkDb> Marks { get; set; }
         public DbSet<AttendanceDb> Attendances { get; set; }
+        public DbSet<SeriesDb> Series { get; set; }
 
 
         public CourseDbContext(DbContextOptions<CourseDbContext> options)
