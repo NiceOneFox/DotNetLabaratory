@@ -13,7 +13,7 @@ namespace BusinessLogic.ServiceInterfaces
         MarkBl? Get(int id);
         IReadOnlyCollection<MarkBl> GetAll();
         int New(MarkBl mark);
-        int Edit(MarkBl mark);
+        MarkBl? Edit(MarkBl mark);
         void Delete(int id);
 
         void SendSMSMessage(SMSMessage SMS);

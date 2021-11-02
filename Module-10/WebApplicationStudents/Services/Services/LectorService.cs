@@ -28,11 +28,11 @@ namespace BusinessLogic.Services
             _lectorRepository.Delete(id);
         }
 
-        public int Edit(LectorBl lector)
+        public LectorBl? Edit(LectorBl lector)
         {
             var lectorDb = _mapper.Map<LectorDb>(lector);
-            _lectorRepository.Edit(lectorDb);
-            return lectorDb.Id;
+            var editedLectorDb = _lectorRepository.Edit(lectorDb);
+            return _mapper.Map<LectorBl>(editedLectorDb);
         }
 
         public LectorBl? Get(int id)

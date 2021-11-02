@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using CourseExceptions;
 
 namespace DatabaseAccess.Repository
 {
@@ -24,7 +25,7 @@ namespace DatabaseAccess.Repository
             _context.SaveChanges();
         }
 
-        public void Edit(HomeworkDb homework)
+        public HomeworkDb Edit(HomeworkDb homework)
         {
             if (_context.Homeworks.Find(homework.Id) is HomeworkDb homeworkInDb)
             {
@@ -33,6 +34,11 @@ namespace DatabaseAccess.Repository
                 homeworkInDb.LectureId = homework.LectureId;
                 _context.Entry(homeworkInDb).State = EntityState.Modified;
                 _context.SaveChanges();
+                return homeworkInDb;
+            } 
+            else
+            {
+                throw new NotFoundInstanceException($"Instance {nameof(homework)} with ${homework.Id} was not found to update");
             }
         }
 

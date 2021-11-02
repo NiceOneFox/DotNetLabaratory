@@ -33,8 +33,7 @@ namespace WebApplicationStudents.Controllers
         [HttpGet("{id}")] 
         public ActionResult<LectureBl> GetLecture(int id)
         {
-            _logger.LogTrace("GetLecture method");
-            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Lecture was less than zero");                         
+            _logger.LogTrace("GetLecture method");                        
            
             return _lectureService.Get(id) switch
             {
@@ -58,20 +57,16 @@ namespace WebApplicationStudents.Controllers
 
         [HttpPut("{id}")]
         public ActionResult<string> UpdateLecture(int id, Lecture lecture)
-        {
-            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Lecture was less than zero");
-
+        {      
             var lectureBl = _mapper.Map<LectureBl>(lecture);
-            var lectureId = _lectureService.Edit(lectureBl with { Id = id });
+            var editedLecture = _lectureService.Edit(lectureBl with { Id = id });
            
-            return Ok($"api/lecture/{lectureId}");
+            return Ok(editedLecture);
         }
 
         [HttpDelete("{id}")]
         public ActionResult DeleteLecture(int id)
-        {
-            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Lecture was less than zero");
-
+        {       
             _lectureService.Delete(id);
             return Ok();
         }

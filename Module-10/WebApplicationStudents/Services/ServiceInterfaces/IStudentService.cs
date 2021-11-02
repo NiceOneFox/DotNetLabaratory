@@ -9,7 +9,7 @@ namespace BusinessLogic.ServiceInterfaces
         StudentBl? Get(int id);
         IReadOnlyCollection<StudentBl> GetAll();
         int New(StudentBl student);
-        int Edit(StudentBl student);
+        StudentBl? Edit(StudentBl student);
         void Delete(int id);
     }
 }

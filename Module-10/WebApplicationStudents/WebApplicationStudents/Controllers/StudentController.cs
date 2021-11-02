@@ -31,8 +31,6 @@ namespace WebApplicationStudents.Controllers
         [HttpGet("{id}")]
         public ActionResult<StudentBl> GetStudent(int id)
         {
-            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Student was less than zero");
-
             return _studentService.Get(id) switch
             {
                 null => throw new NotFoundInstanceException($"Instance Student with {id} was not found"),
@@ -56,18 +54,14 @@ namespace WebApplicationStudents.Controllers
         [HttpPut("{id}")]
         public ActionResult<string> UpdateStudent(int id, Student student)
         {
-            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Student was less than zero");
-
             var studentBl = _mapper.Map<StudentBl>(student);
-            var studentId = _studentService.Edit(studentBl with { Id = id });
-            return Ok($"api/student/{studentId}");
+            var editedStudent = _studentService.Edit(studentBl with { Id = id });
+            return Ok(editedStudent);
         }
 
         [HttpDelete("{id}")]
         public ActionResult DeleteStudent(int id)
         {
-            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Student was less than zero");
-
             _studentService.Delete(id);
             return Ok();
         }

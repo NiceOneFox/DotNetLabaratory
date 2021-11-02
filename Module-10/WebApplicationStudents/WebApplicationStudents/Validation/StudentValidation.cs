@@ -23,7 +23,9 @@ namespace WebApplicationStudents.Validation
         private bool HasValidTelephone(string telephone)
         {
             Regex regex =
-                new Regex(@"((\+7 )(\(\d{2,3}\) )(\d{3}-\d{2}-\d{2})) | (\+\d{3} \(\d{2}\) \d{3}-\d{4}) | (\d{1} \d{3} \d{3}-\d{2}-\d{2})");
+                new Regex(@"((\+7 )(\(\d{2,3}\) )(\d{3}-\d{2}-\d{2})) | 
+                                     (\+\d{3} \(\d{2}\) \d{3}-\d{4}) | 
+                                     (\d{1} \d{3} \d{3}-\d{2}-\d{2})");
 
             return regex.IsMatch(telephone);            
         }

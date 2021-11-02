@@ -12,7 +12,7 @@ namespace BusinessLogic.ServiceInterfaces
         LectureBl? Get(int id);
         IReadOnlyCollection<LectureBl> GetAll();
         int New(LectureBl lecture);
-        int Edit(LectureBl lecture);
+        LectureBl? Edit(LectureBl lecture);
         void Delete(int id);
     }
 }

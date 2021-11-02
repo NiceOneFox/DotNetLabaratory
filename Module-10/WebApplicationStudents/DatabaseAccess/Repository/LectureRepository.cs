@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DatabaseAccess.Models;
 using DatabaseAccess.RepositoryInterfaces;
 using Microsoft.EntityFrameworkCore;
+using CourseExceptions;
 
 namespace DatabaseAccess.Repository
 {
@@ -24,7 +25,7 @@ namespace DatabaseAccess.Repository
             _context.SaveChanges();
         }
 
-        public void Edit(LectureDb lecture)
+        public LectureDb Edit(LectureDb lecture)
         {
             if (_context.Lectures.Find(lecture.Id) is LectureDb lectureInDb)
             {
@@ -34,6 +35,11 @@ namespace DatabaseAccess.Repository
                 lectureInDb.HomeworkId = lecture.HomeworkId;
                 _context.Entry(lectureInDb).State = EntityState.Modified;
                 _context.SaveChanges();
+                return lectureInDb;
+            } 
+            else
+            {
+                throw new NotFoundInstanceException($"Instance {nameof(lecture)} with {lecture.Id} was not found in context");
             }
         }
 

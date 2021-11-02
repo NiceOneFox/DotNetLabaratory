@@ -24,11 +24,11 @@ namespace BusinessLogic.Services
             _studentRepository.Delete(id);
         }
 
-        public int Edit(StudentBl student)
+        public StudentBl? Edit(StudentBl student)
         {
             var studentDb = _mapper.Map<StudentDb>(student);
-            _studentRepository.Edit(studentDb);
-            return studentDb.Id;
+            var editedStudentDb =_studentRepository.Edit(studentDb);
+            return _mapper.Map<StudentBl>(editedStudentDb);
         }
 
         public StudentBl? Get(int id)

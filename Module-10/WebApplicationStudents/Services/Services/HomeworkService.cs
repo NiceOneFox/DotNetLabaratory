@@ -27,11 +27,11 @@ namespace BusinessLogic.Services
             _homeworkRepository.Delete(id);
         }
 
-        public int Edit(HomeworkBl homework)
+        public HomeworkBl? Edit(HomeworkBl homework)
         {
             var homeworkDb = _mapper.Map<HomeworkDb>(homework);
-            _homeworkRepository.Edit(homeworkDb);
-            return homeworkDb.Id;
+            var editedHomeworkDb = _homeworkRepository.Edit(homeworkDb);
+            return _mapper.Map<HomeworkBl>(editedHomeworkDb);
         }
 
         public HomeworkBl? Get(int id)

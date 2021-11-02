@@ -10,7 +10,7 @@ namespace DatabaseAccess.Repository
     public interface ILectorRepository
     {
         void Delete(int id);
-        int? Edit(LectorDb lector);
+        LectorDb Edit(LectorDb lector);
         LectorDb? Get(int id);
         IEnumerable<LectorDb> GetAll();
         int New(LectorDb lector);

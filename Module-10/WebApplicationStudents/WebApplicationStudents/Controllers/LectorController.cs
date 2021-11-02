@@ -35,8 +35,6 @@ namespace WebApplicationStudents.Controllers
         [HttpGet("{id}")]
         public ActionResult<LectorBl> GetLector(int id)
         {
-            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Lector was less than zero");
-
             return _lectorService.Get(id) switch
             {
                 null => NotFound(),
@@ -59,20 +57,16 @@ namespace WebApplicationStudents.Controllers
 
         [HttpPut("{id}")]
         public ActionResult<string> UpdateLector(int id, Lector lector)
-        {
-            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Lector was less than zero");
-
+        {        
             var lectorBl = _mapper.Map<LectorBl>(lector) with { Id = id };
-            var lectorId = _lectorService.Edit(lectorBl);
+            var editedLector = _lectorService.Edit(lectorBl);
 
-            return Ok($"api/lector/{lectorId}");
+            return Ok(editedLector);
         }
 
         [HttpDelete("{id}")]
         public ActionResult DeleteLector(int id)
-        {
-            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Lector was less than zero");
-
+        {     
             _lectorService.Delete(id);
             return Ok();
         }

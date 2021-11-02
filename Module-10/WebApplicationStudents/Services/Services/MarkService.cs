@@ -43,11 +43,11 @@ namespace BusinessLogic.Services
             _markRepository.Delete(id);
         }
 
-        public int Edit(MarkBl mark)
+        public MarkBl? Edit(MarkBl mark)
         {
             var markDb = _mapper.Map<MarkDb>(mark);
-            _markRepository.Edit(markDb);
-            return markDb.Id;
+            var editedMarkDb =_markRepository.Edit(markDb);
+            return _mapper.Map<MarkBl>(editedMarkDb);
         }
 
         public MarkBl? Get(int id)
