@@ -13,6 +13,6 @@ namespace BusinessLogic.Models
         public string Name { get; init; }
 
         public int HomeworkId { get; init; }
-        public int LectorId { get; init; }
+        public int SeriesId { get; init; }
     }
 }

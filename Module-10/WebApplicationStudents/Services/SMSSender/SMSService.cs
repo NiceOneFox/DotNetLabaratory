@@ -17,7 +17,7 @@ namespace BusinessLogic.SMSSender
         public SMSService(IConfiguration config, System.Net.Http.HttpClient httpClient)
         {           
             // customize the underlying HttpClient
-            httpClient.DefaultRequestHeaders.Add("X-Custom-Header", "CustomTwilioRestClient-Demo");
+            httpClient.DefaultRequestHeaders.Add("Course", "Web-api");
             _innerClient = new TwilioRestClient(
                 config["Twilio:AccountSid"],
                 config["Twilio:AuthToken"],

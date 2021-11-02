@@ -37,7 +37,11 @@ namespace DatabaseAccess
                 .WithOne(l => l.Lecture)
                 .HasForeignKey<HomeworkDb>(l => l.LectureId);
 
-
+            modelBuilder.Entity<LectorDb>()
+                .HasOne(l => l.Series)
+                .WithOne(s => s.Lector)
+                .HasForeignKey<SeriesDb>(s => s.LectorId);
+                
 
             modelBuilder.InitializeWithValues();
 

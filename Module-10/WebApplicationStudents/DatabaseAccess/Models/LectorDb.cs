@@ -19,6 +19,10 @@ namespace DatabaseAccess.Models
         public string Position { get; set; }
 
 
-        public ICollection<LectureDb> Lectures { get; set; }
+        public SeriesDb Series { get; set; }
+
+        public int SeriesId { get; set; }
+
+        //public ICollection<LectureDb> Lectures { get; set; }
     }
 }

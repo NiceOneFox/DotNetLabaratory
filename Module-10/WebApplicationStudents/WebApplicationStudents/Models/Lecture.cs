@@ -5,5 +5,5 @@ using System.Threading.Tasks;
 
 namespace WebApplicationStudents.Models
 {
-    public record Lecture(DateTime Date, string Name, int HomeworkId, int LectureId);
+    public record Lecture(DateTime Date, string Name, int HomeworkId, int SeriesId);
 }

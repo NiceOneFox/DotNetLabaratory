@@ -28,17 +28,14 @@ namespace BusinessLogic.Services
 
         private readonly ITwilioRestClient _client;
 
-        private readonly ILogger _logger;
-
         private const double averageMarkLimit = 4;
 
-        public MarkService(IMarkRepository markRepository, IStudentRepository studentRepository, IMapper mapper, ITwilioRestClient client, ILogger logger)
+        public MarkService(IMarkRepository markRepository, IStudentRepository studentRepository, IMapper mapper, ITwilioRestClient client)
         {
             _markRepository = markRepository;
             _studentRepository = studentRepository;
             _mapper = mapper;
             _client = client;
-            _logger = logger;
         }
 
         public void Delete(int id)
@@ -88,7 +85,7 @@ namespace BusinessLogic.Services
                 SendSMSMessage(new SMSMessage()
                 {
                     From = "+7823634060",
-                    To = studentDb.Email,
+                    To = studentDb.Telephone,
                     Message = $"Your everage marks of course {averageMarkOfStudent} drop below {averageMarkLimit}"
                 });                
             }
@@ -100,8 +97,6 @@ namespace BusinessLogic.Services
                from: new PhoneNumber(SMS.From),
                body: SMS.Message,
                client: _client); // pass in the custom client
-
-            _logger.LogInformation($"Send SMS message to {SMS.To} from {SMS.From}");
         }
     }
 }
