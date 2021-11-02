@@ -34,6 +34,7 @@ namespace DatabaseAccess.Repository
                 lectorInDb.LastName = lector.LastName;
                 lectorInDb.Email = lector.Email;
                 lectorInDb.Position = lector.Position;
+                lectorInDb.SeriesId = lector.SeriesId;
                 _context.Entry(lectorInDb).State = EntityState.Modified;
                 _context.SaveChanges();
                 return lector.Id;

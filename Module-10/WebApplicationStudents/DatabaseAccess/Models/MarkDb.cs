@@ -15,6 +15,10 @@ namespace DatabaseAccess.Models
         public string? Text { get; set; }
 
 
+        public int LectureId { get; set; }
+        
+        public int StudentId { get; set; }
+
         public LectureDb Lecture { get; set; }
 
         public StudentDb Student { get; set; }

@@ -16,8 +16,12 @@ namespace DatabaseAccess.Models
 
 
         public HomeworkDb Homework { get; set; }
+        
+        public SeriesDb Series { get; set; }
 
-        public LectorDb Lector { get; set; }
+        public int SeriesId { get; set; }
+
+        public int HomeworkId { get; set; }
 
         public ICollection<StudentDb> Students { get; set; }
 

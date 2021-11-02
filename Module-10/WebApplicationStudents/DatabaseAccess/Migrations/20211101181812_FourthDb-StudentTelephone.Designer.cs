@@ -4,14 +4,16 @@ using DatabaseAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DatabaseAccess.Migrations
 {
     [DbContext(typeof(CourseDbContext))]
-    partial class CourseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211101181812_FourthDb-StudentTelephone")]
+    partial class FourthDbStudentTelephone
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,24 +53,6 @@ namespace DatabaseAccess.Migrations
                         },
                         new
                         {
-                            LectureId = 3,
-                            StudentId = 1,
-                            IsAttend = false
-                        },
-                        new
-                        {
-                            LectureId = 4,
-                            StudentId = 1,
-                            IsAttend = true
-                        },
-                        new
-                        {
-                            LectureId = 5,
-                            StudentId = 1,
-                            IsAttend = true
-                        },
-                        new
-                        {
                             LectureId = 1,
                             StudentId = 2,
                             IsAttend = true
@@ -81,24 +65,6 @@ namespace DatabaseAccess.Migrations
                         },
                         new
                         {
-                            LectureId = 3,
-                            StudentId = 2,
-                            IsAttend = false
-                        },
-                        new
-                        {
-                            LectureId = 4,
-                            StudentId = 2,
-                            IsAttend = true
-                        },
-                        new
-                        {
-                            LectureId = 5,
-                            StudentId = 2,
-                            IsAttend = true
-                        },
-                        new
-                        {
                             LectureId = 1,
                             StudentId = 3,
                             IsAttend = true
@@ -106,24 +72,6 @@ namespace DatabaseAccess.Migrations
                         new
                         {
                             LectureId = 2,
-                            StudentId = 3,
-                            IsAttend = true
-                        },
-                        new
-                        {
-                            LectureId = 3,
-                            StudentId = 3,
-                            IsAttend = true
-                        },
-                        new
-                        {
-                            LectureId = 4,
-                            StudentId = 3,
-                            IsAttend = true
-                        },
-                        new
-                        {
-                            LectureId = 5,
                             StudentId = 3,
                             IsAttend = false
                         });
@@ -167,13 +115,6 @@ namespace DatabaseAccess.Migrations
                             DeadLine = new DateTime(2021, 11, 28, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             LectureId = 2,
                             Text = "Read article and book p. 65"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            DeadLine = new DateTime(2021, 12, 16, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            LectureId = 3,
-                            Text = "Ex. 24. First Paragraph"
                         });
                 });
 
@@ -200,9 +141,6 @@ namespace DatabaseAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SeriesId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.ToTable("Lectors");
@@ -214,8 +152,7 @@ namespace DatabaseAccess.Migrations
                             Email = "irina.vlasova@mail.ru",
                             FirstName = "Irina",
                             LastName = "Vlasova",
-                            Position = "Lector",
-                            SeriesId = 1
+                            Position = "Lector"
                         },
                         new
                         {
@@ -223,8 +160,7 @@ namespace DatabaseAccess.Migrations
                             Email = "viktor.bolshov@mail.ru",
                             FirstName = "Viktor",
                             LastName = "Bolshov",
-                            Position = "Main lector",
-                            SeriesId = 2
+                            Position = "Main lector"
                         },
                         new
                         {
@@ -232,8 +168,7 @@ namespace DatabaseAccess.Migrations
                             Email = "vlad.gryaznov@mail.ru",
                             FirstName = "Vlad",
                             LastName = "Gryaznov",
-                            Position = "Lector",
-                            SeriesId = 3
+                            Position = "Lector"
                         });
                 });
 
@@ -250,16 +185,16 @@ namespace DatabaseAccess.Migrations
                     b.Property<int>("HomeworkId")
                         .HasColumnType("int");
 
+                    b.Property<int>("LectorId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SeriesId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("SeriesId");
+                    b.HasIndex("LectorId");
 
                     b.ToTable("Lectures");
 
@@ -269,40 +204,16 @@ namespace DatabaseAccess.Migrations
                             Id = 1,
                             Date = new DateTime(2021, 11, 3, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             HomeworkId = 1,
-                            Name = "Docker",
-                            SeriesId = 2
+                            LectorId = 2,
+                            Name = "Docker"
                         },
                         new
                         {
                             Id = 2,
                             Date = new DateTime(2021, 11, 14, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             HomeworkId = 2,
-                            Name = "SOLID",
-                            SeriesId = 3
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Date = new DateTime(2021, 12, 8, 16, 0, 0, 0, DateTimeKind.Unspecified),
-                            HomeworkId = 3,
-                            Name = "Design Patterns",
-                            SeriesId = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Date = new DateTime(2021, 12, 4, 18, 0, 0, 0, DateTimeKind.Unspecified),
-                            HomeworkId = 2,
-                            Name = "Machine Learning",
-                            SeriesId = 3
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Date = new DateTime(2021, 12, 23, 18, 0, 0, 0, DateTimeKind.Unspecified),
-                            HomeworkId = 2,
-                            Name = "Graphics",
-                            SeriesId = 1
+                            LectorId = 3,
+                            Name = "SOLID"
                         });
                 });
 
@@ -381,57 +292,6 @@ namespace DatabaseAccess.Migrations
                             Mark = 5,
                             StudentId = 3,
                             Text = "Great work"
-                        });
-                });
-
-            modelBuilder.Entity("DatabaseAccess.Models.SeriesDb", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime?>("DateEnd")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateStart")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("LectorId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Text")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LectorId")
-                        .IsUnique();
-
-                    b.ToTable("SeriesDb");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            LectorId = 1,
-                            Name = "Base Course of Algorithms and Programming"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            LectorId = 2,
-                            Name = "Middle Course of C# programming"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            LectorId = 3,
-                            Name = "Advanced course of Algorithms and ML"
                         });
                 });
 
@@ -533,13 +393,13 @@ namespace DatabaseAccess.Migrations
 
             modelBuilder.Entity("DatabaseAccess.Models.LectureDb", b =>
                 {
-                    b.HasOne("DatabaseAccess.Models.SeriesDb", "Series")
+                    b.HasOne("DatabaseAccess.Models.LectorDb", "Lector")
                         .WithMany("Lectures")
-                        .HasForeignKey("SeriesId")
+                        .HasForeignKey("LectorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Series");
+                    b.Navigation("Lector");
                 });
 
             modelBuilder.Entity("DatabaseAccess.Models.MarkDb", b =>
@@ -561,21 +421,9 @@ namespace DatabaseAccess.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("DatabaseAccess.Models.SeriesDb", b =>
-                {
-                    b.HasOne("DatabaseAccess.Models.LectorDb", "Lector")
-                        .WithOne("Series")
-                        .HasForeignKey("DatabaseAccess.Models.SeriesDb", "LectorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Lector");
-                });
-
             modelBuilder.Entity("DatabaseAccess.Models.LectorDb", b =>
                 {
-                    b.Navigation("Series")
-                        .IsRequired();
+                    b.Navigation("Lectures");
                 });
 
             modelBuilder.Entity("DatabaseAccess.Models.LectureDb", b =>
@@ -584,11 +432,6 @@ namespace DatabaseAccess.Migrations
 
                     b.Navigation("Homework")
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("DatabaseAccess.Models.SeriesDb", b =>
-                {
-                    b.Navigation("Lectures");
                 });
 
             modelBuilder.Entity("DatabaseAccess.Models.StudentDb", b =>

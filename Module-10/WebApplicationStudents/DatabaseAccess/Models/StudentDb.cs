@@ -14,6 +14,8 @@ namespace DatabaseAccess.Models
 
         public string Email { get; set; }
 
+        public string Telephone { get; set; }
+
         public int Score { get; set; }
 
 

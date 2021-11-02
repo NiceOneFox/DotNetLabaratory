@@ -15,7 +15,8 @@ namespace DatabaseAccess
                 .AddScoped<ILectorRepository, LectorRepository>()
                 .AddScoped<ILectureRepository, LectureRepository>()
                 .AddScoped<IHomeworkRepository, HomeworkRepository>()
-                .AddScoped<IAttendanceRepository, AttendanceRepository>();
+                .AddScoped<IAttendanceRepository, AttendanceRepository>()
+                .AddScoped<IMarkRepository, MarkRepository>();
                 
         }
     }

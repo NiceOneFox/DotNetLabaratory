@@ -23,6 +23,8 @@ namespace BusinessLogic.Mappers
                 ReverseMap();
             CreateMap<MarkBl, MarkDb>()
                .ReverseMap();
+            CreateMap<AttendanceBl, AttendanceDb>()
+                .ReverseMap();
         }
     }
 }

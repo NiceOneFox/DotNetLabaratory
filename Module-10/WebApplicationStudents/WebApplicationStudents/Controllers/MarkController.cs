@@ -1,0 +1,78 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using WebApplicationStudents.Models;
+using AutoMapper;
+using WebApplicationStudents.Exceptions;
+using CourseExceptions;
+using BusinessLogic.Models;
+using BusinessLogic.ServiceInterfaces;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+
+namespace WebApplicationStudents.Controllers
+{
+    [ApiController]
+    [Route("[controller]")]
+    public class MarkController : ControllerBase
+    {
+        private readonly IMarkService _markService;
+
+        private readonly ILogger<MarkController> _logger;
+
+        private readonly IMapper _mapper;
+
+        public MarkController(IMarkService markService, ILogger<MarkController> logger, IMapper mapper)
+        {
+            _markService = markService;
+            _logger = logger;
+            _mapper = mapper;
+        }
+
+        [HttpGet("id")]
+        public ActionResult<MarkBl> GetMark(int id)
+        {
+            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Homework was less than zero");
+
+            return _markService.Get(id) switch
+            {
+                null => NotFound(),
+                var mark => mark
+            };
+        }
+
+        [HttpGet]
+        public ActionResult<IReadOnlyCollection<MarkBl>> GetMarks()
+        {
+            return _markService.GetAll().ToArray();
+        }
+
+        [HttpPost]
+        public ActionResult AddMark(Mark mark)
+        {
+            var newMarkId = _markService.New(_mapper.Map<MarkBl>(mark));
+            return Ok($"api/mark/{newMarkId}");
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult<string> UpdateMark(int id, Mark mark)
+        {
+            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of mark was less than zero");
+
+            var markBl = _mapper.Map<MarkBl>(mark);
+            var markId = _markService.Edit(markBl with { Id = id });
+            return Ok($"api/mark/{markId}");
+        }
+
+
+        [HttpDelete("{id}")]
+        public ActionResult DeleteMark(int id)
+        {
+            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of mark was less than zero");
+
+            _markService.Delete(id);
+            return Ok();
+        }
+    }
+}

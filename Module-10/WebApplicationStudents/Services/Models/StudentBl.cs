@@ -7,6 +7,7 @@
         public string LastName { get; init; }
         public int Age { get; init; }
         public string Email { get; init; }
+        public string Telephone { get; init; }
         public int Score { get; init; }
     }
 }

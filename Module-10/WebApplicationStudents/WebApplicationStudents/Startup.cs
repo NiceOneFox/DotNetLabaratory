@@ -1,5 +1,6 @@
 using BusinessLogic;
 using BusinessLogic.EmailSender;
+using BusinessLogic.SMSSender;
 using DatabaseAccess;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.Text.Json.Serialization;
+using Twilio.Clients;
 using WebApplicationStudents.Exceptions;
 
 namespace WebApplicationStudents
@@ -29,12 +31,15 @@ namespace WebApplicationStudents
 
             services.AddControllers().AddXmlSerializerFormatters();
 
+
             services.AddFluentValidation(fv =>
             {
                 fv.RegisterValidatorsFromAssemblyContaining<Startup>();
             });
 
             services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
+
+            services.AddHttpClient<ITwilioRestClient, SMSService>();
 
             services.AddAutoMapper(typeof(Startup));
 
@@ -63,7 +68,7 @@ namespace WebApplicationStudents
                 var context = serviceScope.ServiceProvider.GetRequiredService<CourseDbContext>();
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
-            }
+            }           
 
             app.UseCustomExceptionHandler();
 

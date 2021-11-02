@@ -7,6 +7,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using BusinessLogic.Models;
 using System.Text.Json;
+using WebApplicationStudents.Models;
+using AutoMapper;
 
 namespace WebApplicationStudents.Controllers
 {
@@ -19,15 +21,18 @@ namespace WebApplicationStudents.Controllers
 
         private readonly ILogger<AttendanceController> _logger;
 
-        public AttendanceController(IAttendanceService serviceAttendance, ILogger<AttendanceController> logger)
+        private readonly IMapper _mapper;
+
+        public AttendanceController(IAttendanceService serviceAttendance, ILogger<AttendanceController> logger, IMapper mapper)
         {
             _serviceAttendance = serviceAttendance;
             _logger = logger;
+            _mapper = mapper;
         }
 
         // Генерация репорта о посещаемости, по названию лекции или по имени студента. Отчет поддерживает 2 формата - Xml / Json (формат свободный). 
         [HttpGet(".{format?}")]
-        public IActionResult GetReport(string orderBy, string name) // student "Ivan"
+        public IActionResult GetReport(string orderBy, string name) // student "Ivan" // lecture "Docker"
         {
             var result = _serviceAttendance.GetReportOfAttendance(orderBy, name);
 
@@ -35,8 +40,16 @@ namespace WebApplicationStudents.Controllers
             {
                 return NotFound();
             }
-            var jsonResult = JsonSerializer.Serialize(result);
-            return Ok(jsonResult);           
+
+            return Ok(result);
         }
+
+        [HttpPut]
+        public IActionResult UpdateAttendance([FromBody]Attendance attendance)
+        {
+            _serviceAttendance.Edit(_mapper.Map<AttendanceBl>(attendance));
+            return Ok();
+        }
+
     }
 }
