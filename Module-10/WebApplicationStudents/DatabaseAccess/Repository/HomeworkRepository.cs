@@ -21,6 +21,7 @@ namespace DatabaseAccess.Repository
         public void Delete(int id)
         {
            var homeworkToDelete = _context.Homeworks.Find(id);
+           if (homeworkToDelete is null) throw new NotFoundInstanceException($"Instance Homework with ${id} was not found to update");
             _context.Entry(homeworkToDelete).State = EntityState.Deleted;
             _context.SaveChanges();
         }

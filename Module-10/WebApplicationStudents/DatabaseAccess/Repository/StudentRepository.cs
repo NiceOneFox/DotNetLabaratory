@@ -19,6 +19,7 @@ namespace DatabaseAccess.Repository
         public void Delete(int id)
         {
             var studentToDelete = _context.Students.Find(id);
+            if (studentToDelete is null) throw new NotFoundInstanceException($"Instance Student with {id} was not found in context");
             _context.Entry(studentToDelete).State = EntityState.Deleted;
             _context.SaveChanges();
         }
