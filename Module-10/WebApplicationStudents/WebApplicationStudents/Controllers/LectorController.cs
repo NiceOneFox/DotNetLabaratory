@@ -37,7 +37,7 @@ namespace WebApplicationStudents.Controllers
         {
             return _lectorService.Get(id) switch
             {
-                null => NotFound(),
+                null => throw new NotFoundInstanceException($"Instance Lector with {id} was not found"),
                 var lector => lector // implicit cast to AcitonResult
             };
         }

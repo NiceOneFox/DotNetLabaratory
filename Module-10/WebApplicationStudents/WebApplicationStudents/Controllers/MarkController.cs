@@ -35,7 +35,7 @@ namespace WebApplicationStudents.Controllers
         {
             return _markService.Get(id) switch
             {
-                null => NotFound(),
+                null => throw new NotFoundInstanceException($"Instance Mark with {id} was not found"),
                 var mark => mark
             };
         }

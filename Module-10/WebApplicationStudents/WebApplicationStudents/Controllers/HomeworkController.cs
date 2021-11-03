@@ -32,7 +32,7 @@ namespace WebApplicationStudents.Controllers
         {       
             return _homeworkService.Get(id) switch
             {
-                null => NotFound(),
+                null => throw new NotFoundInstanceException($"Instance Homework with {id} was not found"),
                 var homework => homework
             };
         }

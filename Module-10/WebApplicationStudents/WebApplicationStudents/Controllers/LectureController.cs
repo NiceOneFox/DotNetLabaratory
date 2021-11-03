@@ -37,7 +37,7 @@ namespace WebApplicationStudents.Controllers
            
             return _lectureService.Get(id) switch
             {
-                null => NotFound(),
+                null => throw new NotFoundInstanceException($"Instance Lecture with {id} was not found"),
                 var lecture => lecture // implicit cast to AcitonResult
             };
         }
