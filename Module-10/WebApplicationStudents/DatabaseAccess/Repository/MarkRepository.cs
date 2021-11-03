@@ -27,6 +27,7 @@ namespace DatabaseAccess.Repository
         public void Delete(int id)
         {
             var markToDelete = _context.Marks.Find(id);
+            if (markToDelete is null) throw new NotFoundInstanceException($"Instance Mark with {id} was not found in context");
             _context.Entry(markToDelete).State = EntityState.Deleted;
             _context.SaveChanges();
         }

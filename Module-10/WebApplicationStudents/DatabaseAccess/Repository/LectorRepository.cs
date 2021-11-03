@@ -22,6 +22,7 @@ namespace DatabaseAccess.Repository
         public void Delete(int id)
         {
             var lectorToDelete = _context.Lectors.Find(id);
+            if (lectorToDelete is null) throw new NotFoundInstanceException($"Instance Lector with ${id} was not found to update");
             _context.Entry(lectorToDelete).State = EntityState.Deleted;
             _context.SaveChanges();
         }
