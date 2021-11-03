@@ -21,6 +21,7 @@ namespace DatabaseAccess.Repository
         public void Delete(int id)
         {
             var lectureToDelete =_context.Lectures.Find(id);
+            if (lectureToDelete is null) throw new NotFoundInstanceException($"Instance Lecture with {id} was not found in context");
             _context.Entry(lectureToDelete).State = EntityState.Deleted;
             _context.SaveChanges();
         }

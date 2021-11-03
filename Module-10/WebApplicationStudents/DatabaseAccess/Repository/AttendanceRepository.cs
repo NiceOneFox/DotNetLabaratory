@@ -51,7 +51,7 @@ namespace DatabaseAccess.Repository
             }
             else
             {
-                throw new NotFoundInstanceException();
+                throw new NotFoundInstanceException($"Instance {nameof(AttendanceDb)} with {attendance.StudentId + attendance.LectureId} id was not found");
             }
         }
 
