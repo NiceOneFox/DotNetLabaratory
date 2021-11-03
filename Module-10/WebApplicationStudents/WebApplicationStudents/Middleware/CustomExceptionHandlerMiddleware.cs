@@ -48,13 +48,7 @@ namespace WebApplicationStudents.Exceptions
                     statusCode = HttpStatusCode.BadRequest;
                     result = JsonSerializer.Serialize(validationException.Errors);
                     _logger.LogDebug(validationException.Message);
-                    break;
-
-                case IndexLessThanZeroException lessThanZeroException:
-                    statusCode = HttpStatusCode.BadRequest;
-                    result = JsonSerializer.Serialize(lessThanZeroException.Message);
-                    _logger.LogDebug(lessThanZeroException.Message);
-                    break;
+                    break;          
 
                 case NotFoundInstanceException notFoundInstanceException:
                     statusCode = HttpStatusCode.NotFound;

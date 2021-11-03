@@ -33,11 +33,9 @@ namespace WebApplicationStudents.Controllers
         [HttpGet("id")]
         public ActionResult<MarkBl> GetMark(int id)
         {
-            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Homework was less than zero");
-
             return _markService.Get(id) switch
             {
-                null => NotFound(),
+                null => throw new NotFoundInstanceException($"Instance Mark with {id} was not found"),
                 var mark => mark
             };
         }
@@ -58,19 +56,15 @@ namespace WebApplicationStudents.Controllers
         [HttpPut("{id}")]
         public ActionResult<string> UpdateMark(int id, Mark mark)
         {
-            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of mark was less than zero");
-
             var markBl = _mapper.Map<MarkBl>(mark);
-            var markId = _markService.Edit(markBl with { Id = id });
-            return Ok($"api/mark/{markId}");
+            var editedMark = _markService.Edit(markBl with { Id = id });
+            return Ok(editedMark);
         }
 
 
         [HttpDelete("{id}")]
         public ActionResult DeleteMark(int id)
         {
-            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of mark was less than zero");
-
             _markService.Delete(id);
             return Ok();
         }

@@ -10,7 +10,7 @@ namespace DatabaseAccess.RepositoryInterfaces
     public interface IMarkRepository
     {
         void Delete(int id);
-        void Edit(MarkDb mark);
+        MarkDb Edit(MarkDb mark);
         MarkDb? Get(int id);
         IEnumerable<MarkDb> GetAll();
         int New(MarkDb mark);

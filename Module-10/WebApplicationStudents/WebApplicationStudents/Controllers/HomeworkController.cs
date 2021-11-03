@@ -29,12 +29,10 @@ namespace WebApplicationStudents.Controllers
 
         [HttpGet("id")]
         public ActionResult<HomeworkBl> GetHomework(int id)
-        {
-            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Homework was less than zero");
-
+        {       
             return _homeworkService.Get(id) switch
             {
-                null => NotFound(),
+                null => throw new NotFoundInstanceException($"Instance Homework with {id} was not found"),
                 var homework => homework
             };
         }
@@ -54,9 +52,7 @@ namespace WebApplicationStudents.Controllers
 
         [HttpPut("{id}")]
         public ActionResult<string> UpdateHomework(int id, Homework homework)
-        {
-            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Homework was less than zero");
-
+        {         
             var homeworkBl = _mapper.Map<HomeworkBl>(homework);
             var homeworkId = _homeworkService.Edit(homeworkBl with { Id = id });
             return Ok($"api/homework/{homeworkId}");
@@ -66,8 +62,6 @@ namespace WebApplicationStudents.Controllers
         [HttpDelete("{id}")]
         public ActionResult DeleteHomework(int id)
         {
-            if (id <= 0) throw new IndexLessThanZeroException($"Id {id} of Homework was less than zero");
-
             _homeworkService.Delete(id);
             return Ok();
         }

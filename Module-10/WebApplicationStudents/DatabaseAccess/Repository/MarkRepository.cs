@@ -31,7 +31,7 @@ namespace DatabaseAccess.Repository
             _context.SaveChanges();
         }
 
-        public void Edit(MarkDb mark)
+        public MarkDb Edit(MarkDb mark)
         {
             if (_context.Marks.Find(mark.Id) is MarkDb markInDb)
             {
@@ -41,6 +41,7 @@ namespace DatabaseAccess.Repository
                 markInDb.LectureId = mark.LectureId;
                 _context.Entry(markInDb).State = EntityState.Modified;
                 _context.SaveChanges();
+                return markInDb;
             } 
             else
             {

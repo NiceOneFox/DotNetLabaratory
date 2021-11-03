@@ -26,7 +26,7 @@ namespace DatabaseAccess.Repository
             _context.SaveChanges();
         }
 
-        public int? Edit(LectorDb lector)
+        public LectorDb Edit(LectorDb lector)
         {
             if (_context.Lectors.Find(lector.Id) is LectorDb lectorInDb)
             {
@@ -37,11 +37,11 @@ namespace DatabaseAccess.Repository
                 lectorInDb.SeriesId = lector.SeriesId;
                 _context.Entry(lectorInDb).State = EntityState.Modified;
                 _context.SaveChanges();
-                return lector.Id;
+                return lectorInDb;
             } 
             else
             {
-                throw new NotFoundInstanceException($"Lector with ${lector.Id} was not found to update");
+                throw new NotFoundInstanceException($"Instance {nameof(lector)} with ${lector.Id} was not found to update");
             }
         }
 

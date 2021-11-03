@@ -10,7 +10,7 @@ namespace DatabaseAccess.RepositoryInterfaces
     public interface ILectureRepository
     {
         void Delete(int id);
-        void Edit(LectureDb lecture);
+        LectureDb Edit(LectureDb lecture);
         LectureDb? Get(int id);
         IEnumerable<LectureDb> GetAll();
         int New(LectureDb lecture);

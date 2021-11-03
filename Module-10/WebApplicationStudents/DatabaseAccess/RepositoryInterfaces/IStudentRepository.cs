@@ -10,7 +10,7 @@ namespace DatabaseAccess.Repository
     public interface IStudentRepository
     {
         void Delete(int id);
-        void Edit(StudentDb student);
+        StudentDb Edit(StudentDb student);
         StudentDb? Get(int id);
         IEnumerable<StudentDb> GetAll();
         int New(StudentDb student);

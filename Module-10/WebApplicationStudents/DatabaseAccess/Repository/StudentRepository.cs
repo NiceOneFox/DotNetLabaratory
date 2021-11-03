@@ -23,7 +23,7 @@ namespace DatabaseAccess.Repository
             _context.SaveChanges();
         }
 
-        public void Edit(StudentDb student)
+        public StudentDb Edit(StudentDb student)
         {
             if (_context.Students.Find(student.Id) is StudentDb studentInDB)
             {
@@ -34,6 +34,7 @@ namespace DatabaseAccess.Repository
                 studentInDB.Score = student.Score;
                 _context.Entry(studentInDB).State = EntityState.Modified;
                 _context.SaveChanges();
+                return studentInDB;
             }
             else
             {

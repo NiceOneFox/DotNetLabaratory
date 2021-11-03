@@ -10,7 +10,7 @@ namespace DatabaseAccess.RepositoryInterfaces
     public interface IHomeworkRepository
     {
         void Delete(int id);
-        void Edit(HomeworkDb homework);
+        HomeworkDb Edit(HomeworkDb homework);
         HomeworkDb? Get(int id);
         IEnumerable<HomeworkDb> GetAll();
         int New(HomeworkDb homework);
