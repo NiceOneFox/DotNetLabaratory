@@ -14,6 +14,7 @@ using BusinessLogic.Models;
 using DatabaseAccess.Models;
 using BusinessLogic.Services;
 using BusinessLogic.Mappers;
+using CourseExceptions;
 
 namespace WebApplicationStudentsTests.BusinessLogicTests
 {
@@ -62,10 +63,85 @@ namespace WebApplicationStudentsTests.BusinessLogicTests
             Assert.AreEqual(expectedCountStudents, countStudent);
         }
 
+        [Test]
         public void Delete_UnexistingId_ThrowsException()
         {
+            //arrange
+            int notExistingId = -34;
 
+            IStudentRepository studentRepository = new StudentRepository(_context);
+
+            var myProfile = new MapperBl();
+            var configuration = new MapperConfiguration(cfg => cfg.AddProfile(myProfile));
+            IMapper mapper = new Mapper(configuration);
+
+            var studentService = new StudentService(studentRepository, mapper);
+
+            // act
+            TestDelegate act = () => studentService.Delete(notExistingId);
+
+            //assert
+            try
+            {
+                Assert.Throws<NotFoundInstanceException>(act);
+            } 
+            catch (NotFoundInstanceException)
+            {
+                Assert.Pass();
+            }            
         }
+
+        [Test]
+        public void Edit_ExistingStudent_ChangedStudentModel()
+        {
+            //arrange
+            IStudentRepository studentRepository = new StudentRepository(_context);
+
+            var myProfile = new MapperBl();
+            var configuration = new MapperConfiguration(cfg => cfg.AddProfile(myProfile));
+            IMapper mapper = new Mapper(configuration);
+
+            var studentService = new StudentService(studentRepository, mapper);
+
+            var studentUnedited = mapper.Map<StudentBl>(_context.Students.FirstOrDefault());
+            var expectedStudent = studentUnedited with { FirstName = "TESTED" };
+            //act
+
+            var actualEditedStudent = studentService.Edit(expectedStudent);
+
+            //assert
+            Assert.AreEqual(expectedStudent, actualEditedStudent);
+        }
+
+        [Test]
+        public void Edit_UnexistingStudent_ThrowsExceptions()
+        {
+            //arrange           
+            IStudentRepository studentRepository = new StudentRepository(_context);
+
+            var myProfile = new MapperBl();
+            var configuration = new MapperConfiguration(cfg => cfg.AddProfile(myProfile));
+            IMapper mapper = new Mapper(configuration);
+
+            var studentService = new StudentService(studentRepository, mapper);
+
+            var studentUnedited = mapper.Map<StudentBl>(_context.Students.FirstOrDefault());
+            var expectedStudent = studentUnedited with { Id = -34 }; //unexisting primary key
+            // act
+            TestDelegate act = () => studentService.Edit(expectedStudent);
+
+            //assert
+            try
+            {
+                Assert.Throws<NotFoundInstanceException>(act);
+            }
+            catch (NotFoundInstanceException)
+            {
+                Assert.Pass();
+            }
+        }
+
+
     }
 }
 
