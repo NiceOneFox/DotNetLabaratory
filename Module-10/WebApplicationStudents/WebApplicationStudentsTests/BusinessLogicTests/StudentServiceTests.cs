@@ -29,9 +29,9 @@ namespace WebApplicationStudentsTests.BusinessLogicTests
                 .Options;
 
             _context = new CourseDbContext(options);
-            
+
             _context.Database.EnsureCreated();
-            
+
         }
 
         [TearDown]
@@ -44,16 +44,16 @@ namespace WebApplicationStudentsTests.BusinessLogicTests
         public void Delete_ExistingId_ReturnsStudent()
         {
             //arrange
-            
+
             int expectedCountStudents = _context.Students.Count() - 1;
             int id = 1;
 
             IStudentRepository studentRepository = new StudentRepository(_context);
-           
+
             var myProfile = new MapperBl();
             var configuration = new MapperConfiguration(cfg => cfg.AddProfile(myProfile));
             IMapper mapper = new Mapper(configuration);
-            
+
             var studentService = new StudentService(studentRepository, mapper);
             // act
             studentService.Delete(id);
@@ -84,11 +84,11 @@ namespace WebApplicationStudentsTests.BusinessLogicTests
             try
             {
                 Assert.Throws<NotFoundInstanceException>(act);
-            } 
+            }
             catch (NotFoundInstanceException)
             {
                 Assert.Pass();
-            }            
+            }
         }
 
         [Test]
@@ -141,6 +141,123 @@ namespace WebApplicationStudentsTests.BusinessLogicTests
             }
         }
 
+        [Test]
+        public void Get_ExistingId_ReturnsStudent()
+        {
+            //arrange
+            IStudentRepository studentRepository = new StudentRepository(_context);
+
+            var myProfile = new MapperBl();
+            var configuration = new MapperConfiguration(cfg => cfg.AddProfile(myProfile));
+            IMapper mapper = new Mapper(configuration);
+
+            var studentService = new StudentService(studentRepository, mapper);
+
+            var expectedStudent = mapper.Map<StudentBl>(
+                new StudentDb
+                {
+                    Id = 1,
+                    FirstName = "Oleg",
+                    LastName = "Leskov",
+                    Age = 24,
+                    Email = "oleg.leskov@mail.ru",
+                    Telephone = "+7(566)534-96-53",
+                    Score = 0
+                });
+
+            int existingId = expectedStudent.Id;
+
+            //act
+            var actualStudent = studentService.Get(existingId);
+
+            //assert
+            Assert.AreEqual(expectedStudent, actualStudent);
+
+        }
+
+        [Test]
+        public void Get_UnexistingId_ReturnsNull()
+        {
+            //arrange
+            IStudentRepository studentRepository = new StudentRepository(_context);
+
+            var myProfile = new MapperBl();
+            var configuration = new MapperConfiguration(cfg => cfg.AddProfile(myProfile));
+            IMapper mapper = new Mapper(configuration);
+
+            var studentService = new StudentService(studentRepository, mapper);
+
+            var expectedStudent = mapper.Map<StudentBl>(
+                new StudentDb
+                {
+                    Id = 1,
+                    FirstName = "Oleg",
+                    LastName = "Leskov",
+                    Age = 24,
+                    Email = "oleg.leskov@mail.ru",
+                    Telephone = "+7(566)534-96-53",
+                    Score = 0
+                });
+
+            int unexistingId = -34;
+
+            //act
+            var actualStudent = studentService.Get(unexistingId);
+
+            //assert
+            Assert.Null(actualStudent);
+        }
+
+        [Test]
+        public void GetAll_ReturnsCollectionStudents()
+        {
+            //arrange
+            IStudentRepository studentRepository = new StudentRepository(_context);
+
+            var myProfile = new MapperBl();
+            var configuration = new MapperConfiguration(cfg => cfg.AddProfile(myProfile));
+            IMapper mapper = new Mapper(configuration);
+
+            var studentService = new StudentService(studentRepository, mapper);
+
+
+            var expectedStudents = mapper.Map<IReadOnlyCollection<StudentBl>>(
+                 new StudentDb[]
+                 {
+                    new StudentDb { Id = 1, FirstName = "Oleg", LastName = "Leskov", Age = 24, Email = "oleg.leskov@mail.ru", Telephone = "+7(566)534-96-53", Score = 0 },
+                    new StudentDb { Id = 2, FirstName = "Ivan", LastName = "Ivanovich", Age = 22, Email = "ivan.ivanovich@mail.ru", Telephone = "+7(866)735-46-33", Score = 0 },
+                    new StudentDb { Id = 3, FirstName = "Egor", LastName = "Sizlov", Age = 21, Email = "egor.sizlov@mail.ru", Telephone = "+7(924)873-01-42", Score = 0 }
+                 });
+                                           
+
+            //act
+            var actualCollection = studentService.GetAll();
+
+            //assert
+            CollectionAssert.AllItemsAreUnique(actualCollection);
+            CollectionAssert.AreEqual(expectedStudents, actualCollection);
+        }
+
+        [Test]
+        public void New_CorrectStudent_ReturnIdContext()
+        {
+            //arrange 
+            IStudentRepository studentRepository = new StudentRepository(_context);
+
+            IMapper mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile(new MapperBl())));
+
+            var studentService = new StudentService(studentRepository, mapper);
+
+            StudentBl studentBl = new StudentBl() { Id = 4, FirstName = "Oleg", LastName = "Valeryanov", Age = 26, Email = "oleg.valeryanov@mail.ru", Telephone = "+7(566)354-96-53", Score = 0 };
+
+            //act
+            int contextId = studentService.New(studentBl);
+
+            //assert
+            StudentDb? actualStudent = _context.Students.Find(studentBl.Id);
+            Assert.NotNull(actualStudent);
+            Assert.AreEqual(contextId, actualStudent.Id);
+        }
 
     }
 }
