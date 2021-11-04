@@ -6,9 +6,7 @@ using Moq;
 using DatabaseAccess.Repository;
 using Microsoft.EntityFrameworkCore;
 using DatabaseAccess;
-using Microsoft.EntityFrameworkCore.InMemory;
 using System.Linq;
-using DatabaseAccess.Configuration;
 using AutoMapper;
 using BusinessLogic.Models;
 using DatabaseAccess.Models;
@@ -18,7 +16,7 @@ using CourseExceptions;
 
 namespace WebApplicationStudentsTests.BusinessLogicTests
 {
-    class StudentServiceTests
+    public class StudentServiceTests
     {
         private CourseDbContext _context { get; set; }
         [SetUp]
@@ -254,7 +252,7 @@ namespace WebApplicationStudentsTests.BusinessLogicTests
             int contextId = studentService.New(studentBl);
 
             //assert
-            StudentDb? actualStudent = _context.Students.Find(studentBl.Id);
+            StudentDb actualStudent = _context.Students.Find(studentBl.Id);
             Assert.NotNull(actualStudent);
             Assert.AreEqual(contextId, actualStudent.Id);
         }
