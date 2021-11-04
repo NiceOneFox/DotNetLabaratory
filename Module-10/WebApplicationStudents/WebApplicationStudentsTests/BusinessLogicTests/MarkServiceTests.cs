@@ -116,5 +116,60 @@ namespace WebApplicationStudentsTests.BusinessLogicTests
             //assert
             Assert.AreEqual(expectedEditedMark, actualMarkBl);
         }
+
+        [Test]
+        public void Edit_UnexistingMark_ThrowsException()
+        {
+            //arrange
+            var markRepository = new MarkRepository(_context);
+
+            var mockStudentRepository = new Mock<IStudentRepository>();
+            var mockTwilioRestClient = new Mock<ITwilioRestClient>();
+
+            IMapper mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile(new MapperBl())));
+
+            var markService = new MarkService(markRepository, mockStudentRepository.Object,
+                mapper, mockTwilioRestClient.Object);
+
+            MarkBl fakeMarkBl = new MarkBl() { Id = 999, Assesment = 3, LectureId = 3, StudentId = 4, Text = "Some text" };
+            //act
+
+            TestDelegate act = () => markService.Edit(fakeMarkBl);
+
+            //assert
+            try
+            {
+                Assert.Throws<NotFoundInstanceException>(act);
+            }
+            catch (NotFoundInstanceException)
+            {
+                Assert.Pass();
+            }
+        }
+
+        public void New_ExistingMark_ContextId()
+        {
+            // arrange
+            var markRepository = new MarkRepository(_context);
+
+            var mockStudentRepository = new Mock<IStudentRepository>();
+            var mockTwilioRestClient = new Mock<ITwilioRestClient>();
+
+            IMapper mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile(new MapperBl())));
+
+            var markService = new MarkService(markRepository, mockStudentRepository.Object,
+                mapper, mockTwilioRestClient.Object);
+
+            MarkBl newMark = new MarkBl() {LectureId = 2, StudentId = 3, Assesment = 4, Text = "Some text" }
+           
+            //act
+            int contextId = markService.New(newMark);
+
+            //assert
+            MarkDb actualMark = _context.Marks.Find(newMark.Id);
+            Assert.NotNull(actualMark);
+            Assert.AreEqual(contextId, actualMark.Id);
+        }
+
     }
 }
