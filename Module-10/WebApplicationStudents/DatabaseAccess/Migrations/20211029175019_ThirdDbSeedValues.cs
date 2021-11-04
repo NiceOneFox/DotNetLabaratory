@@ -87,7 +87,7 @@ namespace DatabaseAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "Marks",
-                columns: new[] { "Id", "LectureId", "Mark", "StudentId", "Text" },
+                columns: new[] { "Id", "LectureId", "Assesment", "StudentId", "Text" },
                 values: new object[,]
                 {
                     { 1, 1, 4, 2, "Little mistakes" },

@@ -10,7 +10,7 @@ namespace DatabaseAccess.Models
     {
         public int Id { get; set; }
 
-        public int Mark { get; set; }
+        public int Assesment { get; set; }
 
         public string? Text { get; set; }
 

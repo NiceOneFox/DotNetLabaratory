@@ -96,12 +96,12 @@ namespace DatabaseAccess.Configuration
                  new[]
                  {
 
-                    new {Id = 1, Mark = 4, Text = "Little mistakes", LectureId = 1, StudentId = 2},
-                    new {Id = 2, Mark = 5, Text = "Great work", LectureId = 2, StudentId = 2},
-                    new {Id = 3, Mark = 3, Text = "Too simple", LectureId = 1, StudentId = 1},
-                    new {Id = 4, Mark = 5, Text = "Great work", LectureId = 2, StudentId = 1},
-                    new {Id = 5, Mark = 0, Text = "Didn't come to lecture", LectureId = 1, StudentId = 3},
-                    new {Id = 6, Mark = 5, Text = "Great work", LectureId = 2, StudentId = 3}
+                    new {Id = 1, Assesment = 4, Text = "Little mistakes", LectureId = 1, StudentId = 2},
+                    new {Id = 2, Assesment = 5, Text = "Great work", LectureId = 2, StudentId = 2},
+                    new {Id = 3, Assesment = 3, Text = "Too simple", LectureId = 1, StudentId = 1},
+                    new {Id = 4, Assesment = 5, Text = "Great work", LectureId = 2, StudentId = 1},
+                    new {Id = 5, Assesment = 0, Text = "Didn't come to lecture", LectureId = 1, StudentId = 3},
+                    new {Id = 6, Assesment = 5, Text = "Great work", LectureId = 2, StudentId = 3}
                  });
         }
     }
