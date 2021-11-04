@@ -29,6 +29,7 @@ namespace WebApplicationStudentsTests.BusinessLogicTests
 
             _context = new CourseDbContext(options);
 
+            _context.Database.EnsureDeleted();
             _context.Database.EnsureCreated();
 
         }
@@ -99,7 +100,7 @@ namespace WebApplicationStudentsTests.BusinessLogicTests
         public void Edit_ExistingMark_ChangedMarkModel()
         {
             //arrange            
-            MarkBl expectedEditedMark = new MarkBl { Id = 1, Assesment = 2, Text = "Little mistakes", LectureId = 1, StudentId = 2 };
+            MarkBl expectedEditedMark = new MarkBl { Id = 2, Assesment = 2, Text = "Little mistakes", LectureId = 1, StudentId = 2 };
 
             var markRepository = new MarkRepository(_context);
 
@@ -160,7 +161,7 @@ namespace WebApplicationStudentsTests.BusinessLogicTests
             var markService = new MarkService(markRepository, mockStudentRepository.Object,
                 mapper, mockTwilioRestClient.Object);
 
-            MarkBl newMark = new MarkBl() {LectureId = 2, StudentId = 3, Assesment = 4, Text = "Some text" }
+            MarkBl newMark = new MarkBl() { LectureId = 2, StudentId = 3, Assesment = 4, Text = "Some text" };
            
             //act
             int contextId = markService.New(newMark);

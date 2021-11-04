@@ -13,9 +13,11 @@ using DatabaseAccess.Models;
 using BusinessLogic.Services;
 using BusinessLogic.Mappers;
 using CourseExceptions;
+using WebApplicationStudentsTests.BusinessLogicTests.TestParameters;
 
 namespace WebApplicationStudentsTests.BusinessLogicTests
 {
+    [TestFixture]
     public class StudentServiceTests
     {
         private CourseDbContext _context { get; set; }
@@ -28,6 +30,7 @@ namespace WebApplicationStudentsTests.BusinessLogicTests
 
             _context = new CourseDbContext(options);
 
+            _context.Database.EnsureDeleted();
             _context.Database.EnsureCreated();
 
         }
@@ -140,7 +143,8 @@ namespace WebApplicationStudentsTests.BusinessLogicTests
         }
 
         [Test]
-        public void Get_ExistingId_ReturnsStudent()
+        [TestCaseSource(typeof(TestParametersStudent), nameof(TestParametersStudent.TestStudentBl))]
+        public void Get_ExistingId_ReturnsStudent(int id, StudentBl expectedStudentBl)
         {
             //arrange
             IStudentRepository studentRepository = new StudentRepository(_context);
@@ -151,25 +155,11 @@ namespace WebApplicationStudentsTests.BusinessLogicTests
 
             var studentService = new StudentService(studentRepository, mapper);
 
-            var expectedStudent = mapper.Map<StudentBl>(
-                new StudentDb
-                {
-                    Id = 1,
-                    FirstName = "Oleg",
-                    LastName = "Leskov",
-                    Age = 24,
-                    Email = "oleg.leskov@mail.ru",
-                    Telephone = "+7(566)534-96-53",
-                    Score = 0
-                });
-
-            int existingId = expectedStudent.Id;
-
             //act
-            var actualStudent = studentService.Get(existingId);
+            var actualStudent = studentService.Get(id);
 
             //assert
-            Assert.AreEqual(expectedStudent, actualStudent);
+            Assert.AreEqual(expectedStudentBl, actualStudent);
 
         }
 
