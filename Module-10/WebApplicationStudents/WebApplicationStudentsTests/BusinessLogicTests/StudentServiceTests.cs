@@ -142,7 +142,6 @@ namespace WebApplicationStudentsTests.BusinessLogicTests
             }
         }
 
-        [Test]
         [TestCaseSource(typeof(TestParametersStudent), nameof(TestParametersStudent.TestStudentBl))]
         public void Get_ExistingId_ReturnsStudent(int id, StudentBl expectedStudentBl)
         {
