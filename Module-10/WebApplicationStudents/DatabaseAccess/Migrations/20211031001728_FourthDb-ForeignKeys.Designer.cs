@@ -227,7 +227,7 @@ namespace DatabaseAccess.Migrations
                     b.Property<int>("LectureId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Mark")
+                    b.Property<int>("Assesment")
                         .HasColumnType("int");
 
                     b.Property<int>("StudentId")

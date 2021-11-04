@@ -21,13 +21,13 @@ namespace DatabaseAccess.Repository
 
         public double CountAverageMark(int studentId)
         {
-            return _context.Marks.Where(m => m.StudentId == studentId).Average(m => m.Mark);
+            return _context.Marks.Where(m => m.StudentId == studentId).Average(m => m.Assesment);
         }
 
         public void Delete(int id)
         {
             var markToDelete = _context.Marks.Find(id);
-            if (markToDelete is null) throw new NotFoundInstanceException($"Instance Mark with {id} was not found in context");
+            if (markToDelete is null) throw new NotFoundInstanceException($"Instance Assesment with {id} was not found in context");
             _context.Entry(markToDelete).State = EntityState.Deleted;
             _context.SaveChanges();
         }
@@ -36,7 +36,7 @@ namespace DatabaseAccess.Repository
         {
             if (_context.Marks.Find(mark.Id) is MarkDb markInDb)
             {
-                markInDb.Mark = mark.Mark;
+                markInDb.Assesment = mark.Assesment;
                 markInDb.Text = mark.Text;
                 markInDb.StudentId = mark.StudentId;
                 markInDb.LectureId = mark.LectureId;
