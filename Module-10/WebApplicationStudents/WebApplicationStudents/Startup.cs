@@ -1,21 +1,18 @@
+using BusinessLogic;
+using BusinessLogic.EmailSender;
+using BusinessLogic.SMSSender;
+using DatabaseAccess;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BusinessLogic;
-using AutoMapper;
-using DatabaseAccess;
-using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
+using Twilio.Clients;
+using WebApplicationStudents.Exceptions;
 
 namespace WebApplicationStudents
 {
@@ -32,18 +29,19 @@ namespace WebApplicationStudents
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers().AddXmlSerializerFormatters();
 
-            services.AddFluentValidation(s =>
+
+            services.AddFluentValidation(fv =>
             {
-                s.RegisterValidatorsFromAssemblyContaining<Startup>();
-                s.DisableDataAnnotationsValidation = false;
+                fv.RegisterValidatorsFromAssemblyContaining<Startup>();
             });
 
-            services.AddDbContext<CourseDbContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("CourseDb"));
-            });        
+            services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
+
+            services.AddHttpClient<ITwilioRestClient, SMSService>();
+
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddBusinessLogic(Configuration.GetConnectionString("CourseDb"));
 
@@ -53,8 +51,6 @@ namespace WebApplicationStudents
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApplicationStudents", Version = "v1" });
             });
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,6 +62,15 @@ namespace WebApplicationStudents
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApplicationStudents v1"));
             }
+
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<CourseDbContext>();
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+            }           
+
+            app.UseCustomExceptionHandler();
 
             app.UseHttpsRedirection();
 

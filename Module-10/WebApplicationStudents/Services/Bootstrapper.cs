@@ -2,6 +2,11 @@
 using AutoMapper;
 using BusinessLogic.Mappers;
 using DatabaseAccess;
+using BusinessLogic.ServiceInterfaces;
+using BusinessLogic.Services;
+using BusinessLogic.EmailSender;
+using Twilio.Clients;
+using BusinessLogic.SMSSender;
 
 namespace BusinessLogic
 {
@@ -11,8 +16,14 @@ namespace BusinessLogic
         {
             return services
                 .AddScoped<IStudentService, StudentService>()
-                .AddAutoMapper(typeof(MapperStudent))
-                .AddDataAccess(connectionString);
+                .AddScoped<ILectorService, LectorService>()
+                .AddScoped<ILectureService, LectureService>()
+                .AddScoped<IHomeworkService, HomeworkService>()
+                .AddScoped<IAttendanceService, AttendanceService>()
+                .AddScoped<IMarkService, MarkService>()
+                .AddScoped<IEmailService, EmailService>()
+                .AddAutoMapper(typeof(MapperBl))
+                .AddDataAccess(connectionString);  
         }
     }
 }

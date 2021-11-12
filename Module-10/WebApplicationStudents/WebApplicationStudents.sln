@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogic", "Services\B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseAccess", "DatabaseAccess\DatabaseAccess.csproj", "{EFCB36AF-024A-4C4D-9592-4032A712B5C2}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CourseExceptions", "CourseExceptions\CourseExceptions.csproj", "{1DDD95C9-6F41-4804-B606-704A091CA122}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplicationStudentsTests", "WebApplicationStudentsTests\WebApplicationStudentsTests.csproj", "{DF2B01E2-A119-470C-8FB0-BB7319A9CCE8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{EFCB36AF-024A-4C4D-9592-4032A712B5C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFCB36AF-024A-4C4D-9592-4032A712B5C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFCB36AF-024A-4C4D-9592-4032A712B5C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DDD95C9-6F41-4804-B606-704A091CA122}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DDD95C9-6F41-4804-B606-704A091CA122}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DDD95C9-6F41-4804-B606-704A091CA122}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DDD95C9-6F41-4804-B606-704A091CA122}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF2B01E2-A119-470C-8FB0-BB7319A9CCE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF2B01E2-A119-470C-8FB0-BB7319A9CCE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF2B01E2-A119-470C-8FB0-BB7319A9CCE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF2B01E2-A119-470C-8FB0-BB7319A9CCE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

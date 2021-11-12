@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using DatabaseAccess.RepositoryInterfaces;
 using DatabaseAccess.Repository;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,7 +11,13 @@ namespace DatabaseAccess
         {
             return services
                 .AddDbContext<CourseDbContext>(options => options.UseSqlServer(connectionString))
-                .AddScoped<IStudentRepository, StudentRepository>();
+                .AddScoped<IStudentRepository, StudentRepository>()
+                .AddScoped<ILectorRepository, LectorRepository>()
+                .AddScoped<ILectureRepository, LectureRepository>()
+                .AddScoped<IHomeworkRepository, HomeworkRepository>()
+                .AddScoped<IAttendanceRepository, AttendanceRepository>()
+                .AddScoped<IMarkRepository, MarkRepository>();
+                
         }
     }
 
